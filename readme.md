@@ -1,4 +1,4 @@
-# 🌳 dendrosight poc monorepo 🌳
+# 🌳 dendrosight monorepo 🌳
 
 *by miraia chiou*
 
