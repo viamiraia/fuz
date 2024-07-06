@@ -4,8 +4,9 @@
 ; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
 ;
 [subrepo]
-	remote = none
+	remote = git@github.com:viamiraia/dendropy.git
 	branch = main
-	commit = 
+	commit = ca23598747ebc2172c277a58f994cb928755ebe5
 	method = merge
 	cmdver = 0.4.6
+	parent = bcf94071cfa5ef6593ad68b87da128c1431d9c5c
