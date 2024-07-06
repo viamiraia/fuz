@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:viamiraia/dendropy.git
 	branch = main
-	commit = ca23598747ebc2172c277a58f994cb928755ebe5
+	commit = 7022e4fc39622180cca1d8982418c8a4ad34c362
 	method = merge
 	cmdver = 0.4.6
-	parent = bcf94071cfa5ef6593ad68b87da128c1431d9c5c
+	parent = 2bfba817a76241f1ccc9c74a97607aac309183bb
