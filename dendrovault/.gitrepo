@@ -4,8 +4,9 @@
 ; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
 ;
 [subrepo]
-	remote = none
+	remote = git@github.com:viamiraia/dendrovault.git
 	branch = main
-	commit = 
+	commit = 54dd5f928ad762fb8044f4d241fd21a84ceccba7
 	method = merge
 	cmdver = 0.4.6
+	parent = 1a390d200548a298e081cb9aebbc005a68f512c3
