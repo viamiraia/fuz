@@ -5,7 +5,7 @@
 ;
 [subrepo]
 	remote = none
-	branch = master
+	branch = main
 	commit = 
 	method = merge
 	cmdver = 0.4.6
