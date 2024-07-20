@@ -168,3 +168,7 @@ cython_debug/
 # moon
 .moon/cache
 .moon/docker
+
+# pixi environments
+.pixi
+*.egg-info

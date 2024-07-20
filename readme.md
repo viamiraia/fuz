@@ -8,7 +8,8 @@ welcome, you found the root of the monorepo.
 
 ### 🌿 git subrepo
 
-git subrepo tracks root commits, so after committing just do a `git subrepo push mysubrepo`
+git subrepo tracks root commits, so after committing just do a `git subrepo push mysubrepo`. but
+now i setup moon so you can do `moon root:push` to push everything automatically.
 
 ### 🌙 moon repo
 
