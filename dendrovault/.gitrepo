@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:viamiraia/dendrovault.git
 	branch = main
-	commit = 627bb61926563d9ae9b4b5bec88d87dc2a8d382c
+	commit = 14d314a65957cf740fa30d30dab7b84b9c7021c2
 	method = merge
 	cmdver = 0.4.6
-	parent = 033c81b6e4785edcef40956c69f2fe92b96d84ad
+	parent = 719c3307582dfd976343165b750c5958ee462698
