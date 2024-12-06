@@ -18,5 +18,7 @@
         "titleBar.inactiveBackground": "#0d60d899",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#0d60d8"
+    "peacock.color": "#0d60d8",
+    "pieces.cloudCapabilities": "Blended",
+    "pieces.telemetry": true
 }

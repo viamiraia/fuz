@@ -2,17 +2,17 @@ tasks:
   push:
     command: 'noop'
     deps:
-      - 'push-root'
-      - 'push-poc'
-      - 'push-dpy'
+      - 'push_root'
+      - 'push_poc'
+      - 'push_dpy'
     options:
       runDepsInParallel: false
-  push-root:
+  push_root:
     command: 'git push'
     platform: 'system'
-  push-poc:
+  push_poc:
     command: 'git subrepo push dendrovault'
     platform: 'system'
-  push-dpy:
+  push_dpy:
     command: 'git subrepo push dendropy'
     platform: 'system'

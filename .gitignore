@@ -1,6 +1,11 @@
-# drafts and private files
-drafts/
+# temp and private folders
+temp/
 private/
+llm-context/
+
+# pixi environments
+.pixi
+*.egg-info
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -164,11 +169,3 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
-
-# moon
-.moon/cache
-.moon/docker
-
-# pixi environments
-.pixi
-*.egg-info

@@ -1,0 +1,1 @@
+[{"command":"git","args":["push"],"deps":{},"env":{},"inputs":{".moon/workspace.yml":"628586500767dc67ca4accd224aef0b38dc5e869"},"inputEnv":{},"outputs":[],"platform":"system","projectDeps":[],"target":"root:push-root","version":"2"},{"arch":"x86_64","os":"windows"}]
