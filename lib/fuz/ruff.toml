@@ -1,0 +1,67 @@
+# config: https://docs.astral.sh/ruff/configuration/ 
+# and https://docs.astral.sh/ruff/settings/
+fix = true
+line-length = 96
+output-format = 'grouped'
+required-version = '>=0.6.0'
+show-fixes = true
+target-version = 'py310'
+
+[format]
+  quote-style = 'single'
+  # enable reformatting of code snippets in docstrings.
+  docstring-code-format = true
+  # use ide to format toml
+  exclude = ['*.toml']
+
+[lint]
+  ignore = [
+    'FIX002', # ignore FIX002 to allow TODO comments
+    'ANN401', # allow use of Any type
+    'PD901',  # allow naming dataframes 'df'
+    'F811',   # allow redefinition for plum-dispatch
+    'N812',   # allow changing import capitalization
+    # remaining are from https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    'W191',
+    'E111',
+    'E114',
+    'E117',
+    'D206',
+    'D300',
+    'Q000',
+    'Q001',
+    'Q002',
+    'Q003',
+    'COM812',
+    'COM819',
+    'ISC001',
+    'ISC002',
+  ]
+  select = ['ALL']
+
+  [lint.extend-per-file-ignores]
+    "test*/**/*.py" = [
+      # https://github.com/astral-sh/ruff/issues/4368
+      "S101", # asserts allowed in tests...
+      "ARG",  # Unused function args -> fixtures nevertheless are functionally relevant...
+      "FBT",  # Don't care about booleans as positional arguments in tests
+    ]
+
+  [lint.isort]
+    combine-as-imports = true
+
+  [lint.pep8-naming]
+    classmethod-decorators = [
+      # allow Pydantic's `@validator` decorator to trigger class method treatment.
+      'pydantic.validator',
+      # allow SQLAlchemy's dynamic decorators, like `@field.expression`, to trigger class method treatment.
+      'declared_attr',
+      'expression',
+      'comparator',
+    ]
+
+  [lint.pydocstyle]
+    convention = 'numpy'
+
+  [lint.flake8-quotes]
+    inline-quotes = 'single'

@@ -1,0 +1,112 @@
+[project]
+  channels = ['conda-forge', 'nvidia', 'anaconda']
+  name = 'fuz'
+  platforms = ['linux-64', 'win-64', 'osx-64', 'osx-arm64']
+  preview = ['pixi-build']
+  version = '0.1.0'
+
+[host-dependencies]
+  hatchling = '*'
+  uv = '*'
+[build-system]
+  build-backend = { name = 'pixi-build-python', version = '*' }
+  channels = ['https://prefix.dev/pixi-build-backends', 'https://prefix.dev/conda-forge']
+[package]
+
+[tasks]
+
+[environments]
+  default = ['dev', 'demo', 'plot', 'minpy', 'temp']
+  dev = ['dev', 'demo', 'plot', 'minpy', 'gpu', 'temp', 'doc']
+
+[dependencies]
+  attrs = '*'
+  jaxtyping = '*'
+  narwhals = '*'
+  plum-dispatch = '*'
+  scipy = '*'
+
+[pypi-dependencies]
+  fuz = { path = '.', editable = true }
+
+[feature.plot.dependencies]
+  altair = '*'
+  matplotlib = '*'
+  mpltern = '*'
+  narwhals = '*'
+
+[feature.demo.dependencies]
+  linkify-it-py = '*'
+  marimo = '*'
+  mdformat-myst = '*'
+  myst-parser = '*'
+  pandas = '*'
+  polars = '*'
+
+[feature.demo.tasks]
+  demo = 'marimo run fuz/demo/main.py'
+  emo = 'marimo edit -p 3589 --headless --no-token'
+
+[feature.dev.dependencies]
+  ipykernel = '*'
+  mypy = '*'
+  nox = '*'
+  pytest = '*'
+  pytest-cov = '*'
+  ruff = '*'
+  tqdm = '*'
+
+[feature.dev.pypi-dependencies]
+  scipy-stubs = '*'
+  wat-inspector = '*'
+
+[feature.dev.tasks]
+  mypy = 'mypy fuz'
+
+[feature.doc.dependencies]
+  sphinx = '*'
+
+[feature.doc.pypi-dependencies]
+  sphinx-autodoc-typehints = '*'
+  sphinx-docsearch = '*'
+  sphinxawesome-theme = '*'
+
+[feature.doc.tasks]
+  doc = 'marimo run fuz/demo/main.py'
+
+[feature.minpy.dependencies]
+  python = '3.10.*'
+
+[feature.temp.dependencies]
+  expression = '*'
+  openai = '*'
+  seaborn = '*'
+
+[feature.gpu]
+  system-requirements = { cuda = '12' }
+
+  [feature.gpu.dependencies]
+    # jaxlib = { version = '0.4.34', build = '*cuda12*' }
+    torchquad = '*'
+
+  [feature.gpu.target.win-64.dependencies]
+    jax = { version = '*', channel = 'anaconda' }
+    jaxlib = { version = '*', channel = 'anaconda' }
+
+  [feature.gpu.target.linux-64.dependencies]
+    jax = { version = '0.4.34', channel = 'conda-forge' }
+    jaxlib = { version = '0.4.34', channel = 'conda-forge' }
+
+  [feature.gpu.target.osx-64.dependencies]
+    jax = { version = '0.4.34', channel = 'conda-forge' }
+    jaxlib = { version = '0.4.34', channel = 'conda-forge' }
+
+  [feature.gpu.target.osx-arm64.dependencies]
+    jax = { version = '0.4.34', channel = 'conda-forge' }
+    jaxlib = { version = '0.4.34', channel = 'conda-forge' }
+
+[feature.gpu.pypi-dependencies]
+  tfp-nightly = { version = '*', extras = ['jax'] }
+
+[feature.gpu.target.linux-64.pypi-dependencies]
+  jax-cuda12-plugin = { version = '~=0.4.34', extras = ['with_cuda'] }

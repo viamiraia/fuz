@@ -1,7 +1,9 @@
+# include main
+!fuz/
+
 # temp and private folders
 temp/
 private/
-llm-context/
 
 # pixi environments
 .pixi

@@ -20,5 +20,6 @@
     },
     "peacock.color": "#0d60d8",
     "pieces.cloudCapabilities": "Blended",
-    "pieces.telemetry": true
+    "pieces.telemetry": true,
+    "python.defaultInterpreterPath": "lib\\fuz\\.pixi\\envs\\dev\\python"
 }
