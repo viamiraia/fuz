@@ -1,0 +1,47 @@
+[project]
+  authors = [{ name = 'miraia s. chiou', email = 'viamiraia@gmail.com' }]
+  classifiers = [
+    # https://pypi.org/classifiers/
+    'Development Status :: 2 - Pre-Alpha',
+
+    # Indicate who your project is intended for
+    'Intended Audience :: Developers',
+    'Intended Audience :: Education',
+    'Intended Audience :: Information Technology',
+    'Intended Audience :: Science/Research',
+    'Topic :: Scientific/Engineering',
+    'Topic :: Scientific/Engineering :: Information Analysis',
+    'Topic :: Scientific/Engineering :: Mathematics',
+    'Topic :: Scientific/Engineering :: Artificial Intelligence',
+    'Topic :: Software Development',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Utilities',
+
+    # Also see https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
+    'License :: OSI Approved :: BSD License',
+
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+
+    'Environment :: GPU',
+    'Environment :: GPU :: NVIDIA CUDA',
+    'Environment :: GPU :: NVIDIA CUDA :: 12',
+    'Operating System :: OS Independent',
+  ]
+  dependencies = ['jaxtyping', 'narwhals', 'plum-dispatch', 'scipy', 'attrs']
+  description = 'perform probability fusion'
+  # dynamic = ['version', 'urls', 'readme']
+  license = { file = 'license.md' }
+  name = 'fuz'
+  requires-python = '>=3.10'
+  version = '0.1.0'
+
+  [project.optional-dependencies]
+
+[build-system]
+  build-backend = 'hatchling.build'
+  # requires = ['hatchling', 'hatch-vcs', 'hatch-fancy-pypi-readme']
+  requires = ['hatchling']
