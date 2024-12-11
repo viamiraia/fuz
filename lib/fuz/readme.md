@@ -1,3 +1,5 @@
+<!-- begin-short -->
+
 <h1 align='center'>fuz</h1>
 
 **fuz** is a library for probability fusion, allowing the merging of distribution functions in a principled manner.
@@ -80,11 +82,16 @@ the official pronunciation of **fuz** is a fugued function of fuzzy fusion 😉
 
 ### abstract
 
-**fuz** is a Python library for fusion of probability distributions, bayesian evidence updating and ranking, fuzzy logic, operations in logarithmic space, and more.
-**fuz** includes several original contributions, including a performant bayesian averaging/ranking algorithm that is mathematically optimal, equations for determining whether one PDF "wins" over another, and
+**fuz** is a python library for fusion of probability distributions, bayesian evidence updating and ranking, fuzzy logic, operations in logarithmic space, and more.
+**fuz** includes several original contributions, including a performant bayesian averaging/ranking algorithm that is mathematically optimal, equations for determining whether one pdf "wins" over another, and
 multiple demonstrations of equivalence. these include the equivalence of simple kalman filtering, bayesian updating, and multiplicative (upco) pooling, the equivalence of
 mode-parameterization of beta and dirichlet distributions to optimal bayesian averaging, useful limits as the dirichlet $\alpha_0$ approaches infinity, and various equivalences for
 discrete distributions.
+
+### acknowledgements
+
+thanks to jane liou for her useful insights and support!
+<!-- end-short -->
 
 ## 😿 please help 😽
 
