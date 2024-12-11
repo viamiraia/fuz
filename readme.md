@@ -22,3 +22,17 @@ with **fuz**, you can do things like bayesian evidence updating, optimal bayesia
 ## other
 
 the official pronunciation of **fuz** is a fugued function of fuzzy fusion 😉
+
+## 😿 please help 😽
+
+contributions are extremely welcome! i'm especially looking for:
+
+- co-maintainers
+- development help
+- mathematician/computer scientist help
+- real-world feedback
+- potential help with an academic paper, if this qualifies
+
+between life, work, and wayyy too many hobbies, research directions, and passion projects, i am always really short on time. also, i'm honestly not that good at math and cs, and there's definitely ways to improve that i haven't thought of. any possible help is sincerely appreciated. this is also my first publicly published python package😸, so please let me know if there's anything i can do differently.
+
+you can also support my original research by donating at [ko-fi](https://ko-fi.com/viamiraia) and/or following me @viamiraia on most social media (@raia.fun on bluesky)
