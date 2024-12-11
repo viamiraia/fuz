@@ -43,3 +43,11 @@
 [build-system]
   build-backend = 'hatchling.build'
   requires = ['hatchling', 'hatch-vcs', 'hatch-fancy-pypi-readme']
+
+[tool.commitizen]
+  major_version_zero = true
+  name = "cz_conventional_commits"
+  tag_format = "fuz_$version"
+  update_changelog_on_bump = true
+  version_provider = "pep621"
+  version_scheme = "pep440"
