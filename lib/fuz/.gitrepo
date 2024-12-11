@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:viamiraia/fuz.git
 	branch = main
-	commit = ae643d950bbb632cc1a51f57ed5c3b0db8a626a9
+	commit = 3168bb70064e18e82b6ebdac5327f9ce5d21cda7
 	method = merge
 	cmdver = 0.4.6
-	parent = 691b99c140f764e153b2e91957aa33a8841283ce
+	parent = c2144075a13fbaddb6cc40d1a843460f9288dc33
