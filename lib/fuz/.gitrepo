@@ -4,8 +4,9 @@
 ; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
 ;
 [subrepo]
-	remote = none
+	remote = git@github.com:viamiraia/fuz.git
 	branch = main
-	commit = 
+	commit = ae643d950bbb632cc1a51f57ed5c3b0db8a626a9
 	method = merge
 	cmdver = 0.4.6
+	parent = 691b99c140f764e153b2e91957aa33a8841283ce
