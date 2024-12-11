@@ -47,7 +47,7 @@
 [tool.commitizen]
   major_version_zero = true
   name = "cz_conventional_commits"
-  tag_format = "fuz_$version"
+  tag_format = "fuz_v$version"
   update_changelog_on_bump = true
-  version_provider = "pep621"
+  version_provider = "scm"
   version_scheme = "pep440"
