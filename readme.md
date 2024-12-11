@@ -13,15 +13,78 @@ with **fuz**, you can do things like bayesian evidence updating, optimal bayesia
 - `NaN` and logarithmic complex number handling
 - distribution tools
 
-## upcoming features
+### upcoming features
 
 - wider compatibility with `narwhals`
   - dataframes, functions, samples ...etc.
 - initial gpu support with `jax`
+- documentation 😹
+
+## quickstart
+
+`pip install fuz`
+
+### distributions
+
+```python
+import fuz.dists as fd
+a = fd.Beta(5,4)
+a.stats
+```
+
+```python
+b = fd.beta_from_mode_trials(0.9,10)
+d = fd.Dirichlet([3,6,2])
+```
+
+### logarithmic manipulation
+
+```python
+import numpy as np
+from fuz.log import complex_lsub, lsimp_irreg
+
+a = np.log([[1,np.nan],[3,4]])
+b = np.log([[3,2],[6,1]])
+print(complex_lsub(a,b))
+
+x = np.linspace(0,1,1025)
+b = fd.beta_from_mu_k(0.3,9)
+c = fd.beta_from_mode_k(0.3,9)
+y = b.logpdf(x) * c.logcdf(x)
+np.exp(lsimp_irreg(y,x))
+```
+note - integrating `y` here gives you the win rate of `b` over `c`. see the demo folder for more.
+
+### fuzzy logic
+
+```python
+import fuz.logic as fzl
+
+x = np.linspace(0,1,1025)
+b = fd.beta_from_mode_var(0.7,0.01)
+c = fd.beta_from_mu_var(0.7,0.01)
+b_negpdf = fzl.negf(b.pdf)
+negb_and_c = fzl.ands(x, b_negpdf(x), c.pdf(x))
+```
+### pooling
+
+### ranking
+
+### more
+
+see demo folder (`pip install marimo` first) for more usage.
 
 ## other
 
 the official pronunciation of **fuz** is a fugued function of fuzzy fusion 😉
+
+### abstract
+
+**fuz** is a Python library for fusion of probability distributions, bayesian evidence updating and ranking, fuzzy logic, operations in logarithmic space, and more.
+**fuz** includes several original contributions, including a performant bayesian averaging/ranking algorithm that is mathematically optimal, equations for determining whether one PDF "wins" over another, and
+multiple demonstrations of equivalence. these include the equivalence of simple kalman filtering, bayesian updating, and multiplicative (upco) pooling, the equivalence of
+mode-parameterization of beta and dirichlet distributions to optimal bayesian averaging, useful limits as the dirichlet $\alpha_0$ approaches infinity, and various equivalences for
+discrete distributions.
 
 ## 😿 please help 😽
 
