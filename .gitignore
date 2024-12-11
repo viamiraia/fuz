@@ -1,9 +1,10 @@
-# include main
-!fuz/
+# specific distiribution
+/dist/
 
 # temp and private folders
 temp/
 private/
+
 
 # pixi environments
 .pixi
