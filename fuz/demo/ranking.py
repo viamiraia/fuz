@@ -1,20 +1,22 @@
 import marimo
 
-__generated_with = "0.9.32"
-app = marimo.App(width="medium", app_title="ranking demo")
+__generated_with = "0.9.34"
+app = marimo.App(width="medium", app_title="optimal bayesian ranking")
 
 
 @app.cell
 def __(mo):
     mo.md(
         r"""
-        # better bayesian ranking with **fuz**
+        # optimal bayesian ranking
 
         <p align='center'>by miraia s chiou © 2024</p>
 
         ## introduction
 
-        **fuz** can be used to improve on basic bayesian ranking by taking into account the shape of distributions rather than just the means.
+        **fuz** can be used to improve on basic bayesian ranking by taking into account the shape of distributions rather than just the means. the optimal method is to use mode-parameterized beta or dirichlet distributions, but you can also use multiplicative pooling (aka upco).
+
+        traditional [bayesian averaging/ranking](https://en.wikipedia.org/wiki/Bayesian_average) uses the overall counts 
         """
     )
     return

@@ -17,7 +17,7 @@ import fuz.types as ft
 
 
 @frozen
-class Beta:
+class Beta(ft.FuzDist):
     """An immutable beta distribution with parameters a and b, and optionally loc and scale.
 
     Parameters

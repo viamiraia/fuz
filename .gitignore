@@ -5,6 +5,8 @@
 temp/
 private/
 
+# settings
+.vscode/
 
 # pixi environments
 .pixi

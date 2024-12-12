@@ -9,7 +9,7 @@ import fuz.types as ft
 
 
 @frozen
-class Dirichlet:
+class Dirichlet(ft.FuzDist):
     alpha: ft.ArrVec = field(converter=np.array)
 
     @cached_property
@@ -61,5 +61,3 @@ class Scored(Dirichlet):
     @cached_property
     def mo(self):
         return np.sum(self.scores * self.mode)
-    
-    

@@ -2,8 +2,9 @@
 
 from collections.abc import Callable, Mapping, Sequence
 from numbers import Real
-from typing import TYPE_CHECKING, Annotated, Any, Literal, TypeAlias, TypeVar
+from typing import TYPE_CHECKING, Annotated, Any, Literal, Protocol, TypeAlias, TypeVar
 
+from attrs import frozen
 from jaxtyping import Array as JArr, Real as JReal
 from narwhals.typing import IntoFrameT
 from numpy import ndarray as NPArr
@@ -14,6 +15,10 @@ RATE_N = 2
 
 # Setup
 Arr = NPArr  # TODO(viamiraia): modify in the future after creating GPU jax support
+
+
+class FuzDist(Protocol): ...
+
 
 # %% Basics
 ArrScalar = JReal[Arr, ''] | JReal[Arr, '1']
@@ -61,23 +66,13 @@ DictOfLists = dict[str, list[Any]]
 
 # %% Avoiding circular imports
 
-if TYPE_CHECKING:
-    from fuz.dists.beta import Beta
-    from fuz.dists.dirichlet import Dirichlet, Scored
-
-TBeta: TypeAlias = 'Beta'
-TDirichlet: TypeAlias = 'Dirichlet'
-TScored: TypeAlias = 'Scored'
-
 # %% Pooling
-# Custom Type Aliases
-TRealVec = NpRealVec | Collection[Real]
+# Old Type Aliases
+TRealVec = NPVec | Sequence[Real]
 SampRvs = Sequence[NPVec]
-ContDist = TBeta | TDirichlet | TScored | rv_continuous_frozen
+ContDist = FuzDist | rv_continuous_frozen
 ContDists = Sequence[ContDist]
 PoolNumF = Callable[[VecLike], NPVec]
 PoolF = Callable[[VecLike], NPVec]
 PoolNumFS = Callable[[], NPVec]
 TPoolFS = Callable[[NPVec], NPVec]
-
-
