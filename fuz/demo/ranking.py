@@ -16,7 +16,7 @@ def __(mo):
 
         **fuz** can be used to improve on basic bayesian ranking by taking into account the shape of distributions rather than just the means. the optimal method is to use mode-parameterized beta or dirichlet distributions, but you can also use multiplicative pooling (aka upco).
 
-        traditional [bayesian averaging/ranking](https://en.wikipedia.org/wiki/Bayesian_average) uses the overall counts 
+        traditional [bayesian averaging/ranking](https://en.wikipedia.org/wiki/Bayesian_average) uses the mean and counts across all items to  
         """
     )
     return
