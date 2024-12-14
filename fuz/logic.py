@@ -2,12 +2,11 @@
 
 import math
 from collections.abc import Callable
-from typing import Any
 
 import numpy as np
 from plum import Dispatcher, dispatch, overload
 from scipy.integrate import cumulative_simpson
-from scipy.interpolate import BSpline, make_interp_spline
+from scipy.interpolate import make_interp_spline
 
 import fuz.log as flog
 

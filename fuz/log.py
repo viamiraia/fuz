@@ -1,14 +1,8 @@
 """Log Integration. Adapted from the lintegrate package"""
 
-from collections.abc import Sequence
 from typing import Literal
 
 import numpy as np
-import numpy.typing as npt
-from altair import X
-from jaxtyping import Real
-from matplotlib.image import resample
-from numpy import ndarray
 from plum import dispatch
 
 import fuz.types as ft

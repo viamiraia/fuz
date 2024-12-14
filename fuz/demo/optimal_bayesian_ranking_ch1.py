@@ -1,11 +1,7 @@
 import marimo
 
 __generated_with = "0.10.2"
-app = marimo.App(
-    width="medium",
-    app_title="optimal bayesian ranking ch1",
-    auto_download=["ipynb"],
-)
+app = marimo.App(width="medium", app_title="optimal bayesian ranking ch1")
 
 
 @app.cell
@@ -55,7 +51,9 @@ def _(mo):
 def _(bernoulli, mo, plot_bernoulli, wintro_score):
     intronoulli = bernoulli(wintro_score.value)
     intronoulli_p = [intronoulli.pmf(0), intronoulli.pmf(1)]
-    _chart = plot_bernoulli(intronoulli_p).properties(width=400).configure_mark(color='darkgreen')
+    _chart = (
+        plot_bernoulli(intronoulli_p).properties(width=400).configure_mark(color='darkgreen')
+    )
     mo.ui.altair_chart(_chart)
     return intronoulli, intronoulli_p
 
@@ -81,10 +79,10 @@ def _():
 @app.cell
 def _(mo):
     wintro_no = mo.ui.slider(
-        0, 10, value=2, show_value=True, label='\# of no/tails/downvotes', full_width=True
+        0, 10, value=2, show_value=True, label='no. of no/tails/downvotes', full_width=True
     )
     wintro_yes = mo.ui.slider(
-        0, 10, value=6, show_value=True, label='\# of yes/heads/upvotes', full_width=True
+        0, 10, value=6, show_value=True, label='no. of yes/heads/upvotes', full_width=True
     )
     mo.callout(mo.hstack([wintro_no, wintro_yes], widths='equal', align='center'), kind='info')
     return wintro_no, wintro_yes
@@ -137,7 +135,7 @@ def _(
 
 @app.cell
 def _(mo, wintro_no, wintro_yes):
-    mo.md(f"""
+    mo.md(rf"""
     this is how the binomial distribution is typically first taught. the pmf shows the probability of $h$ successes, given $n$ trials. however, for bayesian ranking, this isn't what we need. 
 
     what we really want is to quantify the uncertainty around possible true scores. i.e., given {wintro_yes.value} heads and {wintro_no.value} tails, what's the probability that once we have $\infty$ ratings, the score will be $x$?
@@ -169,8 +167,8 @@ def _(np, w_xlen):
 
 
 @app.cell
-def _(alt, binom, intro2_n, pl, wintro_no, wintro_yes, x_interactive):
-    _df = pl.DataFrame(
+def _(alt, binom, intro2_n, pd, wintro_no, wintro_yes, x_interactive):
+    _df = pd.DataFrame(
         {
             'true mean': x_interactive,
             'probability': binom.pmf(wintro_yes.value, intro2_n, x_interactive),
@@ -210,6 +208,7 @@ def _(mo):
 @app.cell
 def _():
     from scipy.integrate import quad
+
     import fuz.dists as fd
     return fd, quad
 
@@ -221,13 +220,14 @@ def _(np):
 
 
 @app.cell
-def _(Callable, Sequence, alt, np, pl):
+def _(Callable, Sequence, alt, np, pd):
     def plot_betas(x: np.ndarray, pdfs: Sequence[Callable], names: Sequence[str]) -> alt.Chart:
         dfs = []
         for pdf, name in zip(pdfs, names, strict=True):
-            bdf = pl.DataFrame({'x': x, 'pdf': pdf(x)}).with_columns(name=pl.lit(name))
+            bdf = pd.DataFrame({'x': x, 'pdf': pdf(x)})
+            bdf['name'] = name
             dfs.append(bdf)
-        df = pl.concat(dfs)
+        df = pd.concat(dfs)
         base = alt.Chart(df, title=name).encode(
             alt.X('x'), alt.Y('pdf'), alt.Color('name'), alt.StrokeDash('name')
         )
@@ -243,7 +243,7 @@ def _(
     intro2_n,
     intro2_p,
     mo,
-    pl,
+    pd,
     plot_betas,
     quad,
     wintro_yes,
@@ -251,9 +251,8 @@ def _(
 ):
     pre_pdf = lambda x: binom.pmf(wintro_yes.value, intro2_n, x)
     bin_pdf = lambda x: pre_pdf(x) / quad(pre_pdf, 0, 1)[0]
-    _bin_df = pl.DataFrame({'x': x_small, 'pdf': bin_pdf(x_small)}).with_columns(
-        name=pl.lit('binomial-derived')
-    )
+    _bin_df = pd.DataFrame({'x': x_small, 'pdf': bin_pdf(x_small)})
+    _bin_df['name'] = 'binomial-derived'
     _bin_fig = (
         alt.Chart(_bin_df, title='binomial-derived vs potential betas')
         .mark_line()
@@ -324,7 +323,7 @@ def _(mo):
 @app.cell
 def _(mo):
     mo.callout(
-        mo.md("""
+        mo.md(r"""
 
     1. in a ranking context, taking $\mu_\Mu$ is equivalent to finding the posterior, where the prior consists of the other items' possible true mean distributions $M_i$.
     1. this is extensible other rating systems like 3-star, 5-star, out-of-10, and even continuous (floating-point) systems, by using dirichlet distributions.
@@ -460,9 +459,9 @@ def _(mo):
 
 
 @app.cell
-def _(Sequence, alt, np, pl):
+def _(Sequence, alt, np, pd):
     def plot_bernoulli(p: Sequence[float, float] | np.ndarray) -> alt.Chart:
-        _df = pl.DataFrame({'x': ['negative', 'positive'], 'probability': p})
+        _df = pd.DataFrame({'x': ['negative', 'positive'], 'probability': p})
         _base = alt.Chart(_df, title='bernoulli probability mass function (pmf)').encode(
             alt.X('x', axis=alt.Axis(labelAngle=0)),
             alt.Y('probability', scale=alt.Scale(domain=[0, 1])),
@@ -474,11 +473,13 @@ def _(Sequence, alt, np, pl):
 
 
 @app.cell
-def _(alt, np, pl, rv_discrete_frozen):
+def _(alt, np, pd, rv_discrete_frozen):
     def plot_binomial(dist: rv_discrete_frozen, max_n: int = 20) -> alt.Chart:
         x = np.arange(max_n + 1)
-        df = pl.DataFrame({'successes': x, 'probability': dist.pmf(x)})
-        base = alt.Chart(df, title='binomial pmf').encode(alt.X('successes'), alt.Y('probability'))
+        df = pd.DataFrame({'successes': x, 'probability': dist.pmf(x)})
+        base = alt.Chart(df, title='binomial pmf').encode(
+            alt.X('successes'), alt.Y('probability')
+        )
         line = base.mark_line()
         point = base.mark_point()
         return line + point
@@ -493,13 +494,14 @@ def _(mo):
 
 @app.cell
 def _():
+    import altair as alt
     import marimo as mo
     import numpy as np
-    import polars as pl
-    import altair as alt
-    import fuz.log as flog
+    import pandas as pd
     from scipy.stats._distn_infrastructure import rv_continuous_frozen, rv_discrete_frozen
-    return alt, flog, mo, np, pl, rv_continuous_frozen, rv_discrete_frozen
+
+    import fuz.log as flog
+    return alt, flog, mo, np, pd, rv_continuous_frozen, rv_discrete_frozen
 
 
 @app.cell

@@ -16,8 +16,9 @@
 [tasks]
 
 [environments]
-  default = ['dev', 'demo', 'plot', 'minpy', 'temp']
+  default = ['demo', 'plot']
   dev = ['dev', 'demo', 'plot', 'minpy', 'gpu', 'temp', 'doc']
+  pages = ['demo', 'plot', 'maxpy']
 
 [dependencies]
   attrs = '*'
@@ -33,7 +34,6 @@
   altair = '*'
   matplotlib = '*'
   mpltern = '*'
-  narwhals = '*'
 
 [feature.demo.dependencies]
   linkify-it-py = '*'
@@ -49,6 +49,9 @@
 [feature.demo.tasks]
   demo = 'marimo run fuz/demo/main.py'
   emo = 'marimo edit -p 3589 --headless --no-token'
+  wasm = { depends-on = ['wasm-ch1', 'wasm-ch2'] }
+  wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o pages/obr1 --mode run'
+  wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o pages/obr2 --mode run'
 
 [feature.dev.dependencies]
   ipykernel = '*'
@@ -79,6 +82,9 @@
 
 [feature.minpy.dependencies]
   python = '3.10.*'
+
+[feature.maxpy.dependencies]
+  python = '<=3.10'
 
 [feature.temp.dependencies]
   expression = '*'
