@@ -39,6 +39,7 @@
   linkify-it-py = '*'
   mdformat-myst = '*'
   myst-parser = '*'
+  nbformat = '*'
   pandas = '*'
   polars = '*'
 
