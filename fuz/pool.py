@@ -11,12 +11,12 @@ import numpy as np
 from plum import Dispatcher, overload
 from scipy.integrate import quad, simpson
 
-import fuz.log as fl
+import fuz.log as flog
 import fuz.types as ft
 
 dispatch = Dispatcher()
 
-dist_weights = wraps(fl.lnorm)
+dist_weights = wraps(flog.lnorm)
 dist_weights.__doc__ = 'Make weights sum to 1. Alias for `fuz.log.lnorm`.'
 
 
@@ -145,7 +145,7 @@ def num_f_weighted_s(pdf_s: Sequence[ft.DistVec], weights: ft.NPVec) -> ft.PoolN
 
 def get_norm_const_s(lnumerator: ft.NPVec, x: ft.NPVec) -> ft.NPVec:
     """Gets the normalizing constant for sampled RVs using Simpson's rule."""
-    return fl.lsimp_irreg(lnumerator, x)
+    return flog.lsimp_irreg(lnumerator, x)
 
 
 def pool_samples_f(num_f_s: ft.PoolNumF) -> ft.PoolFS:

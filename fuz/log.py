@@ -5,6 +5,7 @@ from typing import Literal
 
 import numpy as np
 import numpy.typing as npt
+from altair import X
 from jaxtyping import Real
 from matplotlib.image import resample
 from numpy import ndarray
@@ -87,8 +88,13 @@ def limag_sign(x: ft.Broadcast) -> ft.Broadcast:
     return res
 
 
-def lnorm(x: ft.Broadcast, is_real: bool = True) -> ft.Broadcast:
-    return np.asarray(x) - nanlse(x) if is_real else np.asarray(x) - complex_nanlse(x)
+def lnorm(lx: ft.Broadcast, force_complex: bool = False) -> ft.Broadcast:
+    lx = np.array(lx) if not force_complex else np.array(lx, dtype=complex)
+    return lx - nanlse(lx) if np.isreal(lx).all() else lx - complex_nanlse(lx)
+
+
+def norm(x: ft.Broadcast, force_complex: bool = False) -> ft.Broadcast:
+    return np.exp(lnorm(np.log(x), force_complex))
 
 
 def log_trap(

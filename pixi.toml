@@ -37,11 +37,13 @@
 
 [feature.demo.dependencies]
   linkify-it-py = '*'
-  marimo = '*'
   mdformat-myst = '*'
   myst-parser = '*'
   pandas = '*'
   polars = '*'
+
+[feature.demo.pypi-dependencies]
+  marimo = '>=0.10.1'
 
 [feature.demo.tasks]
   demo = 'marimo run fuz/demo/main.py'

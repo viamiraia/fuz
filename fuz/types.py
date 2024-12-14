@@ -5,7 +5,7 @@ from numbers import Real
 from typing import TYPE_CHECKING, Annotated, Any, Literal, Protocol, TypeAlias, TypeVar
 
 from attrs import frozen
-from jaxtyping import Array as JArr, Real as JReal
+from jaxtyping import Complex as JComplex, Real as JReal
 from narwhals.typing import IntoFrameT
 from numpy import ndarray as NPArr
 from scipy.stats._distn_infrastructure import rv_continuous_frozen
@@ -27,9 +27,7 @@ ArrTensor = JReal[Arr, '...']
 NPScalar = JReal[NPArr, ''] | JReal[NPArr, '1']
 NPVec = JReal[NPArr, 'dim']
 NPTensor = JReal[NPArr, '...']
-JaxScalar = JReal[JArr, ''] | JReal[JArr, '1']
-JaxVec = JReal[JArr, 'dim']
-JaxTensor = JReal[JArr, '...']
+
 
 # %%% General
 Scalar = float | int | ArrScalar
@@ -68,6 +66,7 @@ DictOfLists = dict[str, list[Any]]
 
 # %% Pooling
 # Old Type Aliases
+# TODO(viamiraia): clean these up
 TRealVec = NPVec | Sequence[Real]
 SampRvs = Sequence[NPVec]
 ContDist = FuzDist | rv_continuous_frozen

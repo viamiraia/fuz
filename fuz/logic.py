@@ -9,7 +9,7 @@ from plum import Dispatcher, dispatch, overload
 from scipy.integrate import cumulative_simpson
 from scipy.interpolate import BSpline, make_interp_spline
 
-import fuz.log as fl
+import fuz.log as flog
 
 dispatch = Dispatcher()
 
@@ -146,7 +146,7 @@ def and_pdfs(pdfs: np.ndarray, sfs: np.ndarray):
 
 
 def and_lpdfs(lpdfs: np.ndarray, lsfs: np.ndarray):
-    return fl.nanlse(lpdfs + np.sum(lsfs, axis=0) - lsfs, axis=0)
+    return flog.nanlse(lpdfs + np.sum(lsfs, axis=0) - lsfs, axis=0)
 
 
 def and_cdfs(cdfs: np.ndarray):
@@ -166,7 +166,7 @@ def or_pdfs(pdfs: np.ndarray, cdfs: np.ndarray):
 
 
 def or_lpdfs(lpdfs: np.ndarray, lcdfs: np.ndarray):
-    return fl.nanlse(lpdfs + np.sum(lcdfs, axis=0) - lcdfs, axis=0)
+    return flog.nanlse(lpdfs + np.sum(lcdfs, axis=0) - lcdfs, axis=0)
 
 
 def or_sfs(sfs: np.ndarray):
