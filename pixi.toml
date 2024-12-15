@@ -17,8 +17,8 @@
 
 [environments]
   default = ['demo', 'plot']
-  dev = ['dev', 'demo', 'plot', 'minpy', 'gpu', 'temp', 'doc']
-  doc = ['dev', 'demo', 'plot', 'maxpy', 'gpu', 'doc']
+  dev = ['dev', 'demo', 'plot', 'minpy', 'jax', 'gpu', 'temp', 'doc']
+  doc = ['dev', 'demo', 'plot', 'maxpy', 'jax', 'doc']
 
 [dependencies]
   attrs = '*'
@@ -106,14 +106,16 @@
 [feature.gpu]
   system-requirements = { cuda = '12' }
 
-  [feature.gpu.dependencies]
-    jax = '*'
-    jaxlib = '*'
-    torchquad = '*'
-
   [feature.gpu.target.linux-64.dependencies]
     # jaxlib-feedstock fixed conda cuda issue in 0.4.35
     jaxlib = { version = '>=0.4.35', build = '*cuda12*', channel = 'conda-forge' }
 
-[feature.gpu.pypi-dependencies]
-  tensorflow-probability = { version = '*', extras = ['jax'] }
+[feature.jax]
+
+  [feature.jax.dependencies]
+    jax = '*'
+    jaxlib = '*'
+    torchquad = '*'
+
+  [feature.jax.pypi-dependencies]
+    tensorflow-probability = { version = '*', extras = ['jax'] }

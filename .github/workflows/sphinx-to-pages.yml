@@ -1,4 +1,4 @@
-name: GitHub Pages
+name: sphinx to github pages
 on: [release, workflow_dispatch]
     
 permissions:
