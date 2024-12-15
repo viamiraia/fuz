@@ -51,7 +51,10 @@
   emo = 'marimo edit -p 3589 --headless --no-token'
   wasm = { depends-on = ['wasm-ch1', 'wasm-ch2'] }
   wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o pages/obr1 --mode run'
+  wasm-ch1-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o private/pages/obr1 --mode run'
   wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o pages/obr2 --mode run'
+  wasm-ch2-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o private/pages/obr2 --mode run'
+  wasm-test = { depends-on = ['wasm-ch1-test', 'wasm-ch2-test'] }
 
 [feature.dev.dependencies]
   ipykernel = '*'
@@ -70,15 +73,21 @@
   mypy = 'mypy fuz'
 
 [feature.doc.dependencies]
+  numpydoc = '*'
+  pydata-sphinx-theme = '*'
   sphinx = '*'
+  sphinx-autoapi = '*'
+  sphinx-copybutton = '*'
+  sphinx-design = '*'
+  sphinx-togglebutton = '*'
+  sphinxcontrib-youtube = '*'
 
 [feature.doc.pypi-dependencies]
   sphinx-autodoc-typehints = '*'
   sphinx-docsearch = '*'
-  sphinxawesome-theme = '*'
 
 [feature.doc.tasks]
-  doc = 'marimo run fuz/demo/main.py'
+  doc = 'sphinx-apidoc -f -o docs/source fuz && sphinx-build -b html docs/source docs/html'
 
 [feature.minpy.dependencies]
   python = '3.10.*'
@@ -95,27 +104,13 @@
   system-requirements = { cuda = '12' }
 
   [feature.gpu.dependencies]
-    # jaxlib = { version = '0.4.34', build = '*cuda12*' }
+    jax = '*'
+    jaxlib = '*'
     torchquad = '*'
 
-  [feature.gpu.target.win-64.dependencies]
-    jax = { version = '*', channel = 'anaconda' }
-    jaxlib = { version = '*', channel = 'anaconda' }
-
   [feature.gpu.target.linux-64.dependencies]
-    jax = { version = '0.4.34', channel = 'conda-forge' }
-    jaxlib = { version = '0.4.34', channel = 'conda-forge' }
-
-  [feature.gpu.target.osx-64.dependencies]
-    jax = { version = '0.4.34', channel = 'conda-forge' }
-    jaxlib = { version = '0.4.34', channel = 'conda-forge' }
-
-  [feature.gpu.target.osx-arm64.dependencies]
-    jax = { version = '0.4.34', channel = 'conda-forge' }
-    jaxlib = { version = '0.4.34', channel = 'conda-forge' }
+    # jaxlib-feedstock fixed conda cuda issue in 0.4.35
+    jaxlib = { version = '>=0.4.35', build = '*cuda12*', channel = 'conda-forge' }
 
 [feature.gpu.pypi-dependencies]
-  tfp-nightly = { version = '*', extras = ['jax'] }
-
-[feature.gpu.target.linux-64.pypi-dependencies]
-  jax-cuda12-plugin = { version = '~=0.4.34', extras = ['with_cuda'] }
+  tensorflow-probability = { version = '*', extras = ['jax'] }
