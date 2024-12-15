@@ -1,0 +1,12 @@
+[
+    {
+        "version": "dev",
+        "url": "https://code.raia.fun/fuz/en/latest/",
+        "preferred": true
+    },
+    {
+        "name": "v0.1.2 (alpha)",
+        "version": "0.1.2",
+        "url": "https://code.raia.fun/fuz/en/0.1.2/"
+    }
+]

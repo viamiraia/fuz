@@ -18,7 +18,7 @@
 [environments]
   default = ['demo', 'plot']
   dev = ['dev', 'demo', 'plot', 'minpy', 'gpu', 'temp', 'doc']
-  pages = ['demo', 'plot', 'maxpy']
+  doc = ['dev', 'demo', 'plot', 'maxpy', 'gpu', 'doc']
 
 [dependencies]
   attrs = '*'
@@ -50,10 +50,10 @@
   demo = 'marimo run fuz/demo/main.py'
   emo = 'marimo edit -p 3589 --headless --no-token'
   wasm = { depends-on = ['wasm-ch1', 'wasm-ch2'] }
-  wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o pages/obr1 --mode run'
-  wasm-ch1-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o private/pages/obr1 --mode run'
-  wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o pages/obr2 --mode run'
-  wasm-ch2-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o private/pages/obr2 --mode run'
+  wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o docs/build/html/mo/obr1 --mode run'
+  wasm-ch1-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o private/mo/obr1 --mode edit'
+  wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o docs/build/html/mo/obr2 --mode run'
+  wasm-ch2-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o private/mo/obr2 --mode edit'
   wasm-test = { depends-on = ['wasm-ch1-test', 'wasm-ch2-test'] }
 
 [feature.dev.dependencies]
@@ -75,6 +75,7 @@
 [feature.doc.dependencies]
   numpydoc = '*'
   pydata-sphinx-theme = '*'
+  soupsieve = '*'
   sphinx = '*'
   sphinx-autoapi = '*'
   sphinx-copybutton = '*'
@@ -87,13 +88,15 @@
   sphinx-docsearch = '*'
 
 [feature.doc.tasks]
-  doc = 'sphinx-apidoc -f -o docs/source fuz && sphinx-build -b html docs/source docs/html'
+  doc = { depends-on = ['sphinx', 'wasm'] }
+  sphinx = { cmd = "make html", cwd = "docs" }
+  testdoc = { cmd = 'python -m http.server', cwd = "docs/build/html" }
 
 [feature.minpy.dependencies]
   python = '3.10.*'
 
 [feature.maxpy.dependencies]
-  python = '<=3.10'
+  python = '>3.10'
 
 [feature.temp.dependencies]
   expression = '*'

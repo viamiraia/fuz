@@ -20,7 +20,7 @@ with **fuz**, you can do things like bayesian evidence updating, optimal bayesia
 - wider compatibility with `narwhals`
   - dataframes, functions, samples ...etc.
 - initial gpu support with `jax`
-- documentation 😹
+- more documentation 😹
 
 ## quickstart
 

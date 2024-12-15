@@ -1,10 +1,5 @@
 name: GitHub Pages
-on: 
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [release, workflow_dispatch]
     
 permissions:
   contents: read
@@ -28,14 +23,14 @@ jobs:
         uses: prefix-dev/setup-pixi@v0.8.1
         with:
           environments: >-
-            pages
+            doc
       - name: 🛠️ Run export
         run: |
-          pixi r -e pages wasm-ch1
+          pixi r -e doc doc
       - name: 📦 Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: pages/obr1
+          path: docs/build/html
 
   deploy:
     needs: build

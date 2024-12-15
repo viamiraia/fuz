@@ -1,0 +1,33 @@
+
+html[data-theme="dark"] {
+    --pst-color-primary: #eef6f5 !important;
+   background-color: #293242 !important;
+}
+
+h1[data-theme="dark"] {
+    color: #f2b5d4 !important;
+}
+h2[data-theme="dark"] {
+    color: #eef6f5 !important;
+}
+h3[data-theme="dark"] {
+    color: #f7d4df !important;
+}
+a[data-theme="dark"] {
+    color: #7ddff2 !important;
+}
+
+
+.bd-main .bd-content .bd-article-container {
+    max-width: 100%;  /* default is 60em */
+}
+
+.bd-sidebar-primary {
+    max-width: 15%;
+}
+
+#rtd-footer-container {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
