@@ -4,14 +4,12 @@
 
 with **fuz**, you can do things like bayesian evidence updating, optimal bayesian ranking, and fuzzy logic.
 
+## [demos](project:mo/index.md)
 
-:::{admonition} look at these [demos](project:mo/index.md)!
-:class: note
-optimal bayesian ranking
-- ch1. [bernoulli to beta](project:mo/obr1/index.md)
-- ch2. [comparisons](project:mo/obr2/index.md)
-:::
+### optimal bayesian ranking
 
+1. [bernoulli to beta](project:mo/obr1/index.md)
+2. [comparisons](project:mo/obr2/index.md)
 
 ## highlights
 
@@ -33,11 +31,9 @@ optimal bayesian ranking
 `pip install fuz`
 
 
-## other
-
-[demos](project:mo/index.md)
-
 ```{toctree}
 :maxdepth: 1
-[demos](project:mo/index.md)
+
+demos <mo/index>
+api <api/index>
 ```
