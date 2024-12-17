@@ -14,7 +14,9 @@ def _(mo):
 
         ## introduction
 
-        **fuz** can be used to improve on basic bayesian ranking by taking into account the shape of distributions rather than just the means. the optimal method is to use mode-parameterized beta or dirichlet distributions, but using a prior obtained by multiplicative pooling (aka upco) also improves upon traditional [bayesian averaging/ranking](https://en.wikipedia.org/wiki/Bayesian_average)
+        **fuz** can be used to improve on basic bayesian ranking by taking into account the shape of distributions rather than just the means. the optimal method is to use mode-parameterized beta or dirichlet distributions, but using a prior obtained by multiplicative pooling also improves upon traditional [bayesian averaging/ranking](https://en.wikipedia.org/wiki/Bayesian_average)
+
+        if you know already know how to derive the [rule of succession](https://en.wikipedia.org/wiki/Rule_of_succession), skip to [claims](#claims). note that this chapter covers known principles. the next chapters cover research that could be considered novel (disclaimer: i am an amateur in this field).
         """
     )
     return
@@ -26,7 +28,7 @@ def _(mo):
         r"""
         ## the bernoulli distribution
 
-        to understand how my optimal bayesian ranking algorithm works, start with the bernoulli distribution. this can be thought of as coin flips, upvotes and downvotes, yes/no ratings, or anything representable as binary. as an example the video game service _steam_ uses yes/no (thumbs up or thumbs down). in this case, a game with 6 thumbs up and 2 thumbs down has a bernoulli score distribution with $p=0.75$.
+        to understand optimal bayesian ranking, start with the bernoulli distribution. this can be thought of as coin flips, upvotes and downvotes, yes/no ratings, or anything representable as binary. as an example the video game service _steam_ uses yes/no (thumbs up or thumbs down). in this case, a game with 6 thumbs up and 2 thumbs down has a bernoulli score distribution with $p=0.75$.
         """
     )
     return
@@ -52,7 +54,9 @@ def _(bernoulli, mo, plot_bernoulli, wintro_score):
     intronoulli = bernoulli(wintro_score.value)
     intronoulli_p = [intronoulli.pmf(0), intronoulli.pmf(1)]
     _chart = (
-        plot_bernoulli(intronoulli_p).properties(width=400).configure_mark(color='darkgreen')
+        plot_bernoulli(intronoulli_p)
+        .properties(width='container')
+        .configure_mark(color='darkgreen')
     )
     mo.ui.altair_chart(_chart)
     return intronoulli, intronoulli_p
@@ -115,22 +119,29 @@ def _(
     binom,
     intro2_n,
     intro2_p,
-    mo,
     plot_bernoulli,
     plot_binomial,
     wintro_no,
     wintro_yes,
 ):
+    _noulli_chart = plot_bernoulli(intro2_p).properties(title='bernoulli pmf', width=100)
+
+
     intronomial = binom(intro2_n, intro2_p[1])
-    _noulli_chart = plot_bernoulli(intro2_p)
     _nomial_chart = plot_binomial(intronomial).properties(
         title=alt.TitleParams(
             text='binomial pmf',
             subtitle=f'n={intro2_n}, heads={wintro_yes.value}, tails={wintro_no.value}',
-        )
+        ),
+        width=300,
     )
-    mo.hstack([mo.ui.altair_chart(_noulli_chart), mo.ui.altair_chart(_nomial_chart)])
+    (_nomial_chart | _noulli_chart).interactive()
     return (intronomial,)
+
+
+@app.cell
+def _():
+    return
 
 
 @app.cell
@@ -316,40 +327,6 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""## claims""")
-    return
-
-
-@app.cell
-def _(mo):
-    mo.callout(
-        mo.md(r"""
-
-    1. in a ranking context, taking $\mu_\Mu$ is equivalent to finding the posterior, where the prior consists of the other items' possible true mean distributions $M_i$.
-    1. this is extensible other rating systems like 3-star, 5-star, out-of-10, and even continuous (floating-point) systems, by using dirichlet distributions.
-    1. given the same information, finding $\mu_\Mu$ is optimal and outperforms other bayesian ranking algorithms [^same-level]
-
-    [^same-level]: caveat being algorithms on the same level; i'm not comparing to complex recommender systems, although it could act as a basis for a better recommender system since incorporating weights is simple.
-    """),
-        kind='warn',
-    )
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(
-        r"""
-        i will address these claims in the following chapters.
-
-        i believe this is a novel angle to look at the problem of bayesian ranking, although i wouldn't be surprised if someone has done something similar before.
-        """
-    )
-    return
-
-
-@app.cell
-def _(mo):
     mo.md(
         r"""
         ## the mean of possible true means
@@ -384,6 +361,45 @@ def _(mo):
     $$
     """),
         kind='success',
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""we have just derived the [rule of succession](https://en.wikipedia.org/wiki/Rule_of_succession), aka the [bayes estimator](https://en.wikipedia.org/wiki/Binomial_distribution#Estimation_of_parameters) given a uniform prior. from here on i will refer to this estimator as $\mu_\Mu$ to reflect its meaning in the context of bayesian ranking.""")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""## claims""")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.callout(
+        mo.md(r"""
+    1. in a bayesian ranking context, taking $\mu_\Mu$ is equivalent to finding the posterior, where the prior consists of the other items' possible true mean distributions $M_i$.
+    1. this is extensible other rating systems like 3-star, 5-star, out-of-10, and even continuous (floating-point) systems, by using dirichlet distributions.
+    1. given the same information, finding $\mu_\Mu$ is optimal and outperforms other bayesian ranking algorithms [^same-level]
+
+    [^same-level]: caveat being algorithms on the same level; i'm not comparing to complex recommender systems, although it could act as a basis for a better recommender system since incorporating weights is simple.
+    """),
+        kind='warn',
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        i will address these claims in the following chapters.
+
+        although the rule of succession has been known since the 18th century, i believe this is a novel angle to look at the problem of bayesian ranking.
+        """
     )
     return
 
@@ -478,7 +494,7 @@ def _(alt, np, pd, rv_discrete_frozen):
         x = np.arange(max_n + 1)
         df = pd.DataFrame({'successes': x, 'probability': dist.pmf(x)})
         base = alt.Chart(df, title='binomial pmf').encode(
-            alt.X('successes'), alt.Y('probability')
+            alt.X('successes'), alt.Y('probability', scale=alt.Scale(domain=[0, 1]))
         )
         line = base.mark_line()
         point = base.mark_point()

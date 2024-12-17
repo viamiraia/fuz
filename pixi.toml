@@ -58,6 +58,8 @@
 
 [feature.dev.dependencies]
   ipykernel = '*'
+  ipympl = '*'
+  ipywidgets = '*'
   mypy = '*'
   nox = '*'
   pytest = '*'
