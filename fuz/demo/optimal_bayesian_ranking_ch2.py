@@ -1,7 +1,7 @@
 import marimo
 
-__generated_with = '0.10.6'
-app = marimo.App(width='medium', app_title='optimal bayesian ranking ch2')
+__generated_with = "0.10.6"
+app = marimo.App(width="medium", app_title="optimal bayesian ranking ch2")
 
 
 @app.cell
@@ -32,7 +32,6 @@ def _():
     import numpy as np
 
     import fuz.log as flog
-
     return flog, mo, mpltern, np, plt
 
 
@@ -61,7 +60,7 @@ def _(mo, w_ternr, w_ternt):
 
 
 @app.cell
-def _(mo, np, plt, ternl, ternr, ternt):
+def _(np, plt, ternl, ternr, ternt):
     x_small = np.linspace(0, 1, 129)
     x_other = (1 - x_small) / 2
     dx_small = x_small[1] - x_small[0]
@@ -83,7 +82,7 @@ def _(mo, np, plt, ternl, ternr, ternt):
     _ax.raxis.set_label_position('tick1')
     _ax.legend(fontsize=9, framealpha=0.3)
     _ax.grid(alpha=0.4)
-    mo.mpl.interactive(_fig)
+    _fig
     return dx_small, p1, p2, p3, x_other, x_small
 
 
@@ -108,7 +107,6 @@ def _():
     import fuz.dists as fd
     import fuz.marimo as fmo
     import fuz.plot as fp
-
     return fd, fmo, fp, stats
 
 
@@ -143,29 +141,27 @@ def _(mo):
 
 
 @app.cell
-def _(fp, mo, multi_3star):
+def _(fp, multi_3star):
     _fig, _ax = fp.plot_multinomial(multi_3star, '3-star multinomial pmf')
     _fig.set_figwidth(5)
     _fig.set_figheight(4)
-    mo.mpl.interactive(_fig)
+    _fig
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""the analogous distribution to the beta is the dirichlet. it is characterized by $\alpha$, a vector of the number of ratings + 1 for each dimension."""
-    )
+    mo.md(r"""the analogous distribution to the beta is the dirichlet. it is characterized by $\alpha$, a vector of the number of ratings + 1 for each dimension.""")
     return
 
 
 @app.cell
-def _(alpha_3star, fd, fp, mo):
+def _(alpha_3star, fd, fp):
     d_3star = fd.Scored(alpha_3star, [1, 2, 3])
     _fig, _ax = fp.plot_scored_pdf(d_3star, '3-star dirichlet pdf')
     _fig.set_figwidth(5)
     _fig.set_figheight(4)
-    mo.mpl.interactive(_fig)
+    _fig
     return (d_3star,)
 
 
@@ -186,7 +182,6 @@ def _():
     import altair as alt
     import pandas as pd
     from scipy.integrate import romb
-
     return alt, pd, romb
 
 
@@ -222,8 +217,8 @@ def _(
     )
     _multi_chart = _base.mark_line().encode(y='multinomial')
     _diri_chart = _base.mark_line(opacity=0.2, strokeWidth=12).encode(y='dirichlet')
-
-    mo.ui.altair_chart(_multi_chart + _diri_chart)
+    _chart = alt.layer(_multi_chart, _diri_chart)
+    mo.ui.altair_chart(_chart)
     return
 
 
@@ -298,7 +293,6 @@ def _(fd, np):
             ind = round((n_dim - 1) * val)
             alpha[ind] += cnt
         return fd.Scored(alpha, scores)
-
     return (get_like_infdir,)
 
 
@@ -378,7 +372,7 @@ def _(mo, w_infcnt, w_infval):
     mo.md(rf"""so for our current floating-point score of ${w_infval.value}$ and score count of ${w_infcnt.value}$, the asymptote is 
 
     $$
-    {(w_infval.value - 0.5)*(w_infcnt.value):0.2g}
+    {(w_infval.value - 0.5)*(w_infcnt.value):0.5g}
     $$""")
     return
 
@@ -433,9 +427,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""how is this useful? note that since $\mu$ is the bayes estimator, all we did was move and scale it, so it's essentially a linear transformation. thus our new infinite estimator can still be used for ranking!"""
-    )
+    mo.md(r"""how is this useful? note that since $\mu$ is the bayes estimator, all we did was move and scale it, so it's essentially a linear transformation. thus our new infinite estimator can still be used for ranking!""")
     return
 
 
@@ -512,5 +504,5 @@ def _():
     return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
