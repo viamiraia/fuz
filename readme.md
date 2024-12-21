@@ -22,6 +22,13 @@ with **fuz**, you can do things like bayesian evidence updating, optimal bayesia
 - initial gpu support with `jax`
 - more documentation 😹
 
+## demos
+
+check out the marimo demos at:
+
+- ch1. [bernoulli to beta](https://code.raia.fun/fuz/mo/obr1/index.html)
+- ch2. [to infinity](https://code.raia.fun/fuz/mo/obr2/index.html)
+
 ## quickstart
 
 `pip install fuz`

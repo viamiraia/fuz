@@ -37,22 +37,21 @@
 
 [feature.demo.dependencies]
   linkify-it-py = '*'
+  marimo = '>=0.10.1'
+markdown = "*"
   mdformat-myst = '*'
   myst-parser = '*'
   nbformat = '*'
   pandas = '*'
   polars = '*'
 
-[feature.demo.pypi-dependencies]
-  marimo = '>=0.10.1'
-
 [feature.demo.tasks]
   demo = 'marimo run fuz/demo/main.py'
   emo = 'marimo edit -p 3589 --headless --no-token'
   wasm = { depends-on = ['wasm-ch1', 'wasm-ch2'] }
-  wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o docs/build/html/mo/obr1 --mode run'
+  wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o docs/build/html/mo/obr1 --mode run --no-show-code '
   wasm-ch1-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o private/mo/obr1 --mode edit'
-  wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o docs/build/html/mo/obr2 --mode run'
+  wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o docs/build/html/mo/obr2 --mode run --no-show-code '
   wasm-ch2-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o private/mo/obr2 --mode edit'
   wasm-test = { depends-on = ['wasm-ch1-test', 'wasm-ch2-test'] }
 

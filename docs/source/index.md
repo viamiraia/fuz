@@ -9,7 +9,7 @@ with **fuz**, you can do things like bayesian evidence updating, optimal bayesia
 ### optimal bayesian ranking
 
 1. [bernoulli to beta](project:mo/obr1/index.md)
-2. [comparisons](project:mo/obr2/index.md)
+2. [to infinity](project:mo/obr2/index.md)
 
 ## highlights
 
