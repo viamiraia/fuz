@@ -1,10 +1,10 @@
 import marimo
 
-__generated_with = "0.10.6"
-app = marimo.App(width="medium", app_title="optimal bayesian ranking ch2")
+__generated_with = "0.10.7"
+app = marimo.App(app_title="optimal bayesian ranking ch2")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -18,7 +18,7 @@ def _(mo):
 
         in this chapter, i will show original research extending the estimator to the inifinite dirichlet case.
 
-        we'll be looking at some ternary plots. if you haven't seen them before, this [tutorial](https://grapherhelp.goldensoftware.com/Graphs/Reading_Ternary_Diagrams.htm) may help. below i have created a plot of the three axes
+        we'll be looking at some ternary plots. if you haven't seen them before, this [tutorial](https://grapherhelp.goldensoftware.com/Graphs/Reading_Ternary_Diagrams.htm) may help. to get you acquainted, i show the three axes of a ternary plot, along with an moveable point.
         """
     )
     return
@@ -35,7 +35,7 @@ def _():
     return flog, mo, mpltern, np, plt
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo, w_ternr, w_ternt):
     mo.callout(
         mo.vstack(
@@ -50,7 +50,7 @@ def _(mo, w_ternr, w_ternt):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo, w_ternr, w_ternt):
     ternr = w_ternr.value
     ternt = w_ternt.value
@@ -59,7 +59,7 @@ def _(mo, w_ternr, w_ternt):
     return ternl, ternr, ternt
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(np, plt, ternl, ternr, ternt):
     x_small = np.linspace(0, 1, 129)
     x_other = (1 - x_small) / 2
@@ -86,7 +86,7 @@ def _(np, plt, ternl, ternr, ternt):
     return dx_small, p1, p2, p3, x_other, x_small
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -94,7 +94,9 @@ def _(mo):
 
         let's start by setting the number of ratings for an item in the 3-star rating system. in a sense, this is a 3-dimensional system. the three dimensions are 1-star, 2-star, and 3-star, or $\{0, 0.5, 1\}$.
 
-        in a 5-star rating system, the five dimensions could be 1-5 or $\{0, 0.25, 0.5, 0.75, 1\}$
+        just as an example, in a 5-star rating system, the five dimensions could be 1-5 or $\{0, 0.25, 0.5, 0.75, 1\}$
+
+        play with the rating counts below to see how the corresponding distributions change!
         """
     )
     return
@@ -110,7 +112,7 @@ def _():
     return fd, fmo, fp, stats
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(fmo, mo):
     w_3star_stack, (w_3star1, w_3star2, w_3star3) = fmo.make_star_widget(
         n_stars=3, star0=(1, 2, 3), max_ratings=12
@@ -119,14 +121,14 @@ def _(fmo, mo):
     return w_3star1, w_3star2, w_3star3, w_3star_stack
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(np, w_3star1, w_3star2, w_3star3):
     trials_3star = np.array([w_3star1.value, w_3star2.value, w_3star3.value])
     alpha_3star = trials_3star + 1
     return alpha_3star, trials_3star
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(flog, stats, trials_3star):
     n_3star = trials_3star.sum()
     p_3star = flog.norm(trials_3star)
@@ -134,15 +136,15 @@ def _(flog, stats, trials_3star):
     return multi_3star, n_3star, p_3star
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""in this system, the analogous distribution to the binomial is the multinomial:""")
+    mo.md(r"""in this system, the analogous distribution to the binomial is the multinomial. it can be represented by a ternary plot:""")
     return
 
 
 @app.cell
 def _(fp, multi_3star):
-    _fig, _ax = fp.plot_multinomial(multi_3star, '3-star multinomial pmf')
+    _fig, _ax = fp.plot_multinomial(multi_3star, title='3-star multinomial pmf')
     _fig.set_figwidth(5)
     _fig.set_figheight(4)
     _fig
@@ -158,20 +160,20 @@ def _(mo):
 @app.cell
 def _(alpha_3star, fd, fp):
     d_3star = fd.Scored(alpha_3star, [1, 2, 3])
-    _fig, _ax = fp.plot_scored_pdf(d_3star, '3-star dirichlet pdf')
+    _fig, _ax = fp.plot_scored_pdf(d_3star, title='3-star dirichlet pdf')
     _fig.set_figwidth(5)
     _fig.set_figheight(4)
     _fig
     return (d_3star,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
-        just like in chapter 1, you can get the dirichlet from the multinomial. it's harder to visualize but sweeping $p$ along top, left, and right cross-sections of the ternary plot, you can see that the distributions match. 
+        just like in chapter 1, you can get the dirichlet from the multinomial. it's harder to visualize but sweeping $p$ along top, left, and right cross-sections of the ternary plot, you can see that the distributions match. again, we use a mode-based parameterization to get the matching distribution.
 
-        the multinomial-derived is the opaque line, while the corresponding dirichlet plot is the translucent thick line.
+        the multinomial-derived pdf is the opaque line, while the corresponding dirichlet plot is the translucent thick line.
         """
     )
     return
@@ -185,7 +187,7 @@ def _():
     return alt, pd, romb
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(
     alt,
     d_3star,
@@ -254,7 +256,7 @@ def _(mo):
         \end{aligned}
         $$
 
-        note that this works for the binary case. working backwards:
+        note that this works for the binary case (ch1). working backwards:
 
         $$
         \begin{aligned}
@@ -272,13 +274,17 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
         ## reaching infinity
 
-        what if you want to allow for arbitrary ratings? ex. instead of a 4 star rating, allow for 4.23. we can extend the dirichlet dimensions to infinity and see what happens.
+        what if you want to allow for arbitrary ratings? ex. instead of a 4 star rating, allow for 4.23, 3, 2.718281828... etc. we can gradually extend the dirichlet dimensions toward infinity and see what happens.
+
+        to do this we create dimensions along the interval $[0,1]$ and increase the alpha for that dimension by one (using mode parameterization, meaning each alpha starts with 1). for visualization purposes we increase the dimensions by 100 each time and only allow user input wih a resolution of 0.01. then we try to figure out the mean, which would be the rule of succession... 
+
+        however...
         """
     )
     return
@@ -296,7 +302,7 @@ def _(fd, np):
     return (get_like_infdir,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     w_infval = mo.ui.slider(0.01, 0.99, 0.01, 0.01, full_width=True, show_value=True)
     w_infcnt = mo.ui.slider(1, 100, 1, 1, full_width=True, show_value=True)
@@ -313,7 +319,7 @@ def _(mo):
     return w_infcnt, w_infval
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(alt, get_like_infdir, mo, np, pd, w_infcnt, w_infval):
     infx = np.arange(100, 10001, 100)
     _mus, _ys = [], []
@@ -330,54 +336,58 @@ def _(alt, get_like_infdir, mo, np, pd, w_infcnt, w_infval):
     return d, infdf1, infx
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
         no matter what, the bayes estimator / rule of succession approaches $0.5$ as the number of dimensions approaches $\infty$.
 
-        this is not that useful then. can we think of something else that may help? let's start by subtracting 0.5, so it's not centered on 0.5, and multiply by the number of dimensions to normalize it.
+        this is not that useful then... what can we do?
+
+        let's start by subtracting 0.5, so the estimator is not centered on 0.5, and multiply by the number of dimensions to normalize it.
         """
     )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(alt, infdf1, mo):
-    _chart = (
-        alt.Chart(infdf1).mark_line().encode(alt.X('dimensions'), alt.Y('y').scale(zero=False))
-    )
+    _chart = alt.Chart(infdf1).mark_line().encode(alt.X('dimensions'), alt.Y('y').scale(zero=False))
     mo.ui.altair_chart(_chart)
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
         this is a lot better! now this approaches a value, and can potentially be used for ranking. after some experimentation, i figured out the asymptote.
 
         $$
-        \begin{equation}
-        (\textrm{mode}-0.5) (\alpha_i-1)
-        \end{equation}
+        \begin{align}
+        \sum_{i=1}^N(\textrm{mode}_i-0.5)(\alpha_i-1)
+        \end{align}
         $$
+
+
         """
     )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo, w_infcnt, w_infval):
     mo.md(rf"""so for our current floating-point score of ${w_infval.value}$ and score count of ${w_infcnt.value}$, the asymptote is 
 
     $$
     {(w_infval.value - 0.5)*(w_infcnt.value):0.5g}
-    $$""")
+    $$
+
+    note that 0.5 in the equation is the midpoint of the scale 0-1.""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -408,7 +418,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.callout(
         mo.md(r"""
@@ -425,38 +435,43 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""how is this useful? note that since $\mu$ is the bayes estimator, all we did was move and scale it, so it's essentially a linear transformation. thus our new infinite estimator can still be used for ranking!""")
+    mo.md(
+        r"""
+        how is this useful? we can use it for ranking! now that we're past the introductory concepts, in the next chapter we'll dive into optimal bayesian ranking.
+
+        """
+    )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""## code navigation""")
+    mo.md(r"""## additional code""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""### widgets""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     w_ternr = mo.ui.slider(0, 1, 0.01, value=0.5, full_width=True, show_value=True)
     mo.accordion({'ternary r widget': w_ternr})
     return (w_ternr,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     get_t, set_t = mo.state(0)
     return get_t, set_t
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(get_t, mo, set_t, w_ternr):
     _t = get_t()
     _max = 1 - w_ternr.value
@@ -473,35 +488,6 @@ def _(get_t, mo, set_t, w_ternr):
     )
     mo.accordion({'ternary t widget': w_ternt})
     return (w_ternt,)
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""#### initial parameters""")
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""### plotting""")
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""### imports""")
-    return
-
-
-@app.cell
-def _():
-    # common imports
-    return
-
-
-@app.cell
-def _():
-    return
 
 
 if __name__ == "__main__":

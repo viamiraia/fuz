@@ -1,10 +1,10 @@
 import marimo
 
-__generated_with = "0.10.2"
-app = marimo.App(width="medium", app_title="optimal bayesian ranking ch1")
+__generated_with = "0.10.7"
+app = marimo.App(app_title="optimal bayesian ranking ch1")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -22,7 +22,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -34,13 +34,13 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     from scipy.stats import bernoulli
     return (bernoulli,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     wintro_score = mo.ui.slider(
         0, 1, 0.01, value=0.75, show_value=True, label='choose a score', full_width=True
@@ -62,7 +62,7 @@ def _(bernoulli, mo, plot_bernoulli, wintro_score):
     return intronoulli, intronoulli_p
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""this distribution represents the sample mean. however, we have some additional information we want to represent - the number of ratings (count). we can do this with the binomial distribution.""")
     return
@@ -74,13 +74,13 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     from scipy.stats import binom
     return (binom,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     wintro_no = mo.ui.slider(
         0, 10, value=2, show_value=True, label='no. of no/tails/downvotes', full_width=True
@@ -92,7 +92,7 @@ def _(mo):
     return wintro_no, wintro_yes
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(flog, mo, np, wintro_no, wintro_yes):
     intro2_weights = np.array([wintro_no.value, wintro_yes.value])
     intro2_p = flog.norm(intro2_weights)
@@ -113,7 +113,7 @@ def _(flog, mo, np, wintro_no, wintro_yes):
     return intro2_n, intro2_p, intro2_weights
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(
     alt,
     binom,
@@ -139,12 +139,7 @@ def _(
     return (intronomial,)
 
 
-@app.cell
-def _():
-    return
-
-
-@app.cell
+@app.cell(hide_code=True)
 def _(mo, wintro_no, wintro_yes):
     mo.md(rf"""
     this is how the binomial distribution is typically first taught. the pmf shows the probability of $h$ successes, given $n$ trials. however, for bayesian ranking, this isn't what we need. 
@@ -158,26 +153,26 @@ def _(mo, wintro_no, wintro_yes):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""## binomial to beta""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     w_xlen = mo.ui.slider(5, 50, value=5, full_width=True, label='slide to sample!')
     mo.callout(w_xlen, kind='danger')
     return (w_xlen,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(np, w_xlen):
     x_interactive = np.linspace(0, 1, w_xlen.value)
     return (x_interactive,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(alt, binom, intro2_n, pd, wintro_no, wintro_yes, x_interactive):
     _df = pd.DataFrame(
         {
@@ -199,7 +194,7 @@ def _(alt, binom, intro2_n, pd, wintro_no, wintro_yes, x_interactive):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -216,7 +211,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     from scipy.integrate import quad
 
@@ -224,13 +219,13 @@ def _():
     return fd, quad
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(np):
     x_small = np.linspace(0, 1, 257)
     return (x_small,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(Callable, Sequence, alt, np, pd):
     def plot_betas(x: np.ndarray, pdfs: Sequence[Callable], names: Sequence[str]) -> alt.Chart:
         dfs = []
@@ -246,7 +241,7 @@ def _(Callable, Sequence, alt, np, pd):
     return (plot_betas,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(
     alt,
     binom,
@@ -282,7 +277,7 @@ def _(
     return b_mo_k1, b_mo_t, b_mu_k1, bin_pdf, pre_pdf
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -294,7 +289,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -325,7 +320,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -352,7 +347,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.callout(
         mo.md(r"""
@@ -365,7 +360,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""we have just derived the [rule of succession](https://en.wikipedia.org/wiki/Rule_of_succession), aka the [bayes estimator](https://en.wikipedia.org/wiki/Binomial_distribution#Estimation_of_parameters) given a uniform prior. from here on i will refer to this estimator as $\mu_\Mu$ to reflect its meaning in the context of bayesian ranking.""")
     return
@@ -377,7 +372,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.callout(
         mo.md(r"""
@@ -392,7 +387,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -404,25 +399,25 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""## code navigation""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""### widgets""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""#### initial parameters""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     w_n_items = mo.ui.slider(
         steps=[5, 10, 50, 100, 500, 1000],
@@ -468,13 +463,13 @@ def _(mo):
     )
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""### plotting""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(Sequence, alt, np, pd):
     def plot_bernoulli(p: Sequence[float, float] | np.ndarray) -> alt.Chart:
         _df = pd.DataFrame({'x': ['negative', 'positive'], 'probability': p})
@@ -488,7 +483,7 @@ def _(Sequence, alt, np, pd):
     return (plot_bernoulli,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(alt, np, pd, rv_discrete_frozen):
     def plot_binomial(dist: rv_discrete_frozen, max_n: int = 20) -> alt.Chart:
         x = np.arange(max_n + 1)
@@ -502,13 +497,13 @@ def _(alt, np, pd, rv_discrete_frozen):
     return (plot_binomial,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""### imports""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     import altair as alt
     import marimo as mo
@@ -518,11 +513,6 @@ def _():
 
     import fuz.log as flog
     return alt, flog, mo, np, pd, rv_continuous_frozen, rv_discrete_frozen
-
-
-@app.cell
-def _():
-    return
 
 
 if __name__ == "__main__":

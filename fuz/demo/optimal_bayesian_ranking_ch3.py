@@ -1,24 +1,226 @@
 import marimo
 
-__generated_with = "0.10.2"
-app = marimo.App(width="medium", app_title="optimal bayesian ranking ch3")
+__generated_with = "0.10.7"
+app = marimo.App(app_title="optimal bayesian ranking ch2")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
         # optimal bayesian ranking
-        <h3 align='center'>chapter 3: comparisons</h3>
+        <h3 align='center'>chapter 2: to infinity</h3>
         <p align='center'>by miraia s. chiou © 2024</p>
 
         ## introduction
 
         in the previous chapter, i demonstrated how to derive the [rule of succession](https://en.wikipedia.org/wiki/Rule_of_succession), aka the [bayes estimator](https://en.wikipedia.org/wiki/Binomial_distribution#Estimation_of_parameters) with a uniform prior. in a ranking context, this represents the mean of the distribution of potential true means $\mu_\Mu = \dfrac{t \mu_s + 1}{t+2}$.
 
-        in this chapter, i will show how, in a bayesian ranking context, taking $\mu_\Mu$ is equivalent to finding the posterior.
+        in this chapter, i will show original research extending the estimator to the inifinite dirichlet case.
+
+        we'll be looking at some ternary plots. if you haven't seen them before, this [tutorial](https://grapherhelp.goldensoftware.com/Graphs/Reading_Ternary_Diagrams.htm) may help. to get you acquainted, i show the three axes of a ternary plot, along with an moveable point.
         """
     )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    import marimo as mo
+    import matplotlib.pyplot as plt
+    import mpltern
+    import numpy as np
+
+    import fuz.log as flog
+    return flog, mo, mpltern, np, plt
+
+
+@app.cell(hide_code=True)
+def _(mo, w_ternr, w_ternt):
+    mo.callout(
+        mo.vstack(
+            [
+                mo.md('### move the point on the plot'),
+                mo.hstack([mo.md('$r$ axis'), w_ternr], widths=[1, 5], align='center'),
+                mo.hstack([mo.md('$t$ axis'), w_ternt], widths=[1, 5], align='center'),
+            ]
+        ),
+        kind='info',
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo, w_ternr, w_ternt):
+    ternr = w_ternr.value
+    ternt = w_ternt.value
+    ternl = round(1 - w_ternr.value - w_ternt.value, 2)
+    mo.callout(mo.md(f"""$r,t,l = \\{{{ternr}, {ternt}, {ternl}\\}}$"""))
+    return ternl, ternr, ternt
+
+
+@app.cell(hide_code=True)
+def _(np, plt, ternl, ternr, ternt):
+    x_small = np.linspace(0, 1, 129)
+    x_other = (1 - x_small) / 2
+    dx_small = x_small[1] - x_small[0]
+    p1 = np.vstack([x_small, x_other, x_other]).T
+    p2 = np.vstack([x_other, x_small, x_other]).T
+    p3 = np.vstack([x_other, x_other, x_small]).T
+    _fig = plt.figure(figsize=(5, 4))
+    _fig.subplots_adjust(top=0.8, bottom=0.15)
+    _ax = plt.subplot(projection='ternary')
+    _ax.plot(p1[:, 0], p1[:, 1], p1[:, 2], color='steelblue', label='top axis')
+    _ax.plot(p2[:, 0], p2[:, 1], p2[:, 2], color='darkorange', label='left axis')
+    _ax.plot(p3[:, 0], p3[:, 1], p3[:, 2], color='forestgreen', label='right axis')
+    _ax.scatter(ternt, ternl, ternr, color='crimson')
+    _ax.set_tlabel('$t$')
+    _ax.set_llabel('$l$')
+    _ax.set_rlabel('$r$')
+    _ax.taxis.set_label_position('tick1')
+    _ax.laxis.set_label_position('tick1')
+    _ax.raxis.set_label_position('tick1')
+    _ax.legend(fontsize=9, framealpha=0.3)
+    _ax.grid(alpha=0.4)
+    _fig
+    return dx_small, p1, p2, p3, x_other, x_small
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        ## multinomial to dirichlet
+
+        let's start by setting the number of ratings for an item in the 3-star rating system. in a sense, this is a 3-dimensional system. the three dimensions are 1-star, 2-star, and 3-star, or $\{0, 0.5, 1\}$.
+
+        just as an example, in a 5-star rating system, the five dimensions could be 1-5 or $\{0, 0.25, 0.5, 0.75, 1\}$
+
+        play with the rating counts below to see how the corresponding distributions change!
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    from scipy import stats
+
+    import fuz.dists as fd
+    import fuz.marimo as fmo
+    import fuz.plot as fp
+    return fd, fmo, fp, stats
+
+
+@app.cell(hide_code=True)
+def _(fmo, mo):
+    w_3star_stack, (w_3star1, w_3star2, w_3star3) = fmo.make_star_widget(
+        n_stars=3, star0=(1, 2, 3), max_ratings=12
+    )
+    mo.callout(w_3star_stack, kind='success')
+    return w_3star1, w_3star2, w_3star3, w_3star_stack
+
+
+@app.cell(hide_code=True)
+def _(np, w_3star1, w_3star2, w_3star3):
+    trials_3star = np.array([w_3star1.value, w_3star2.value, w_3star3.value])
+    alpha_3star = trials_3star + 1
+    return alpha_3star, trials_3star
+
+
+@app.cell(hide_code=True)
+def _(flog, stats, trials_3star):
+    n_3star = trials_3star.sum()
+    p_3star = flog.norm(trials_3star)
+    multi_3star = stats.multinomial(n=n_3star, p=p_3star)
+    return multi_3star, n_3star, p_3star
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""in this system, the analogous distribution to the binomial is the multinomial. it can be represented by a ternary plot:""")
+    return
+
+
+@app.cell
+def _(fp, multi_3star):
+    _fig, _ax = fp.plot_multinomial(multi_3star, title='3-star multinomial pmf')
+    _fig.set_figwidth(5)
+    _fig.set_figheight(4)
+    _fig
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""the analogous distribution to the beta is the dirichlet. it is characterized by $\alpha$, a vector of the number of ratings + 1 for each dimension.""")
+    return
+
+
+@app.cell
+def _(alpha_3star, fd, fp):
+    d_3star = fd.Scored(alpha_3star, [1, 2, 3])
+    _fig, _ax = fp.plot_scored_pdf(d_3star, title='3-star dirichlet pdf')
+    _fig.set_figwidth(5)
+    _fig.set_figheight(4)
+    _fig
+    return (d_3star,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        just like in chapter 1, you can get the dirichlet from the multinomial. it's harder to visualize but sweeping $p$ along top, left, and right cross-sections of the ternary plot, you can see that the distributions match. again, we use a mode-based parameterization to get the matching distribution.
+
+        the multinomial-derived pdf is the opaque line, while the corresponding dirichlet plot is the translucent thick line.
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    import altair as alt
+    import pandas as pd
+    from scipy.integrate import romb
+    return alt, pd, romb
+
+
+@app.cell(hide_code=True)
+def _(
+    alt,
+    d_3star,
+    dx_small,
+    mo,
+    n_3star,
+    p1,
+    p2,
+    p3,
+    pd,
+    romb,
+    stats,
+    trials_3star,
+    x_small,
+):
+    _ps = [p1, p2, p3]
+    _dfs = []
+    for _i, _p in enumerate(_ps):
+        _ym = stats.multinomial.pmf(trials_3star, n=n_3star, p=_p)
+        _ym = _ym / romb(_ym, dx_small)
+        _yd = d_3star.pdf(_p.T)
+        _yd = _yd / romb(_yd, dx_small)
+        _df = pd.DataFrame({'x': x_small, 'multinomial': _ym, 'dirichlet': _yd})
+        _df['axis'] = _i + 1
+        _dfs.append(_df)
+    _df = pd.concat(_dfs)
+    _base = alt.Chart(_df).encode(
+        alt.X('x'), alt.Color('axis:N', scale=alt.Scale(scheme='category10'))
+    )
+    _multi_chart = _base.mark_line().encode(y='multinomial')
+    _diri_chart = _base.mark_line(opacity=0.2, strokeWidth=12).encode(y='dirichlet')
+    _chart = alt.layer(_multi_chart, _diri_chart)
+    mo.ui.altair_chart(_chart)
     return
 
 
@@ -26,400 +228,204 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-        ## traditional bayesian ranking
-
-        there are several forms bayesian ranking commonly takes. i find this the easiest to understand:
+        in our specific 3-star case, the rule of succession is:
 
         $$
-        \begin{aligned}
-        t_\forall &= \sum_{i=1}^N t_i \\
-        w &= \frac{t_s}{t_s + t_\forall} \\
-        \mu_B &= w\mu_s + (1-w)\mu_\forall
-        \end{aligned}
+        \begin{equation}
+        \mu_\Mu = \frac{t_1 + 1}{t+3} + \frac{2(t_2 + 1)}{t+3} + \frac{3(t_3 + 1)}{t+3}
+        \end{equation}
+        $$
+
+        as we expand to more dimensions / more stars, the general rule is:
+
+        $$
+        \begin{equation}
+        \mu_\Mu = \sum_{d=1}^m\frac{x_d(t_d + 1)}{t + m}
+        \end{equation}
         $$
 
         where
 
         $$
         \begin{aligned}
-        \mu_B &= \text{bayesian average} \\
-        t_s &= \text{number of ratings (t for trials) of the item} \\
-        t_\forall &= \text{number of ratings for all items} \\
-        \mu_s &= \text{score of the item} \\
-        \mu_\forall &= \text{average score of all items} \\
+        \mu_\Mu &= \text{the mean of possible true means}\\
+        N &= \text{number of dimensions} \\
+        x_d &= \text{value of dimension } d\\
+        t &= \text{total number of trials (ratings)} \\
+        t_d &= \text{number of trials for dimension } d\\
         \end{aligned}
         $$
 
-        let's play with it a bit.
-        """
-    )
-    return
-
-
-@app.cell
-def _():
-    from fuz.rank import bayes_avg
-    return (bayes_avg,)
-
-
-@app.cell
-def _(mo):
-    w_mu_s = mo.ui.slider(0, 1, 0.01, value=0.9, label='$\mu_s$: item mean', show_value=True, full_width=True)
-    w_mu_all = mo.ui.slider(0, 1, 0.01, value=0.5, label=r'$\mu_\forall$: all mean', show_value=True, full_width=True)
-    w_t_s = mo.ui.slider(1, 10, value=5, label=r'$t_s$: item ratings', show_value=True, full_width=True)
-    w_t_all = mo.ui.slider(10, 50, value=20, label=r'$t_\forall$: all ratings', show_value=True, full_width=True)
-    mo.callout(mo.vstack([mo.hstack([w_mu_s, w_mu_all], widths='equal'), mo.hstack([w_t_s, w_t_all], widths='equal')]),kind='info')
-    return w_mu_all, w_mu_s, w_t_all, w_t_s
-
-
-@app.cell
-def _(bayes_avg, mo, w_mu_all, w_mu_s, w_t_all, w_t_s):
-    _w = w_t_s.value / (w_t_s.value + w_t_all.value)
-    _mu = bayes_avg(w_mu_s.value, w_mu_all.value, w_t_s.value, w_t_all.value)
-    w_bayes_avg = mo.ui.slider(0,1,0.01,value=round(_mu,2), label=r'$\mu_B$: bayes avg', full_width=True, show_value=True)
-    w_weight = mo.ui.slider(0, 1, 0.01, value=_w, label='$w$: weight', show_value=True, full_width=True)
-    _diff = _mu - w_mu_s.value
-    _dir = 'increase' if _diff>0 else 'decrease'
-    w_orig_stat = mo.stat(value=w_mu_s.value, label='orig. mean')
-    w_bayes_avg_stat = mo.stat(value=f'{_mu:0.2f}', label=r'bayes avg.', caption=f'{_diff:0.2f}', direction=_dir)
-    mo.hstack([mo.vstack([w_weight, w_bayes_avg], gap=2), mo.vstack([w_orig_stat,w_bayes_avg_stat], gap=0)], widths=(5,1))
-    return w_bayes_avg, w_bayes_avg_stat, w_orig_stat, w_weight
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""essentially, the bayesian average is a weighted mean between the item score and the mean of all scores, where the weight depends on the item rating proportion""")
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(
-        r"""
-        ## using multiplicative pooling 
-        > a bayesian average incorporating distribution shape
-
-        multiplicative (upco) pooling has been proven to be equivalent to
-        """
-    )
-    return
-
-
-@app.cell
-def _():
-    return
-
-
-@app.cell
-def _():
-    from scipy.stats import binom
-    return (binom,)
-
-
-@app.cell
-def _(mo):
-    wintro_no = mo.ui.slider(
-        0, 10, value=2, show_value=True, label='\# of no/tails/downvotes', full_width=True
-    )
-    wintro_yes = mo.ui.slider(
-        0, 10, value=6, show_value=True, label='\# of yes/heads/upvotes', full_width=True
-    )
-    mo.callout(mo.hstack([wintro_no, wintro_yes], widths='equal', align='center'), kind='info')
-    return wintro_no, wintro_yes
-
-
-@app.cell
-def _(flog, mo, np, wintro_no, wintro_yes):
-    intro2_weights = np.array([wintro_no.value, wintro_yes.value])
-    intro2_p = flog.norm(intro2_weights)
-    intro2_n = intro2_weights.sum()
-    mo.md(f"""
-    here i introduce `fuz.log.lnorm` which can stably normalize weights in logarithmic space (log -> log), handling `nan`s and complex numbers. a little excessive for our example here, but works well with very small probabilities. if you want to move out of log space, a convenience function, `norm`, does log conversion and exponentiation for you.
-
-    ```python
-    import fuz.log as flog
-    import numpy as np
-
-    flog.norm({intro2_weights}) # {intro2_p}
-    # this is equivalent to:
-    np.exp(flog.lnorm(np.log({intro2_weights}))) # {intro2_p}
-    ```
-
-    """)
-    return intro2_n, intro2_p, intro2_weights
-
-
-@app.cell
-def _(
-    alt,
-    binom,
-    intro2_n,
-    intro2_p,
-    mo,
-    plot_bernoulli,
-    plot_binomial,
-    wintro_no,
-    wintro_yes,
-):
-    intronomial = binom(intro2_n, intro2_p[1])
-    _noulli_chart = plot_bernoulli(intro2_p)
-    _nomial_chart = plot_binomial(intronomial).properties(
-        title=alt.TitleParams(
-            text='binomial pmf',
-            subtitle=f'n={intro2_n}, heads={wintro_yes.value}, tails={wintro_no.value}',
-        )
-    )
-    mo.hstack([mo.ui.altair_chart(_noulli_chart), mo.ui.altair_chart(_nomial_chart)])
-    return (intronomial,)
-
-
-@app.cell
-def _(mo, wintro_no, wintro_yes):
-    mo.md(f"""
-    this is how the binomial distribution is typically first taught. the pmf shows the probability of $h$ successes, given $n$ trials. however, for bayesian ranking, this isn't what we need. 
-
-    what we really want is to quantify the uncertainty around possible true scores. i.e., given {wintro_yes.value} heads and {wintro_no.value} tails, what's the probability that once we have $\infty$ ratings, the score will be $x$?
-
-    good news - we can still start with the binomial distribution!
-
-    we use the formula of the binomial pmf to hold $k$ and $n$ constant, sweeping $x$ to get probabilities and creating a chart.
-    """)
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""## binomial to beta""")
-    return
-
-
-@app.cell
-def _(mo):
-    w_xlen = mo.ui.slider(5, 50, value=5, full_width=True, label='slide to sample!')
-    mo.callout(w_xlen, kind='danger')
-    return (w_xlen,)
-
-
-@app.cell
-def _(np, w_xlen):
-    x_interactive = np.linspace(0, 1, w_xlen.value)
-    return (x_interactive,)
-
-
-@app.cell
-def _(alt, binom, intro2_n, pl, wintro_no, wintro_yes, x_interactive):
-    _df = pl.DataFrame(
-        {
-            'true mean': x_interactive,
-            'probability': binom.pmf(wintro_yes.value, intro2_n, x_interactive),
-        }
-    )
-    _base = alt.Chart(
-        _df,
-        title=alt.TitleParams(
-            text='probability of potential true means',
-            subtitle=f'given {wintro_yes.value} heads and {wintro_no.value} tails',
-        ),
-    ).encode(alt.X('true mean'), alt.Y('probability'))
-    _line = _base.mark_line(color='maroon')
-    _point = _base.mark_point(color='maroon')
-    _chart = _line + _point
-    _chart.properties(width=600)
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(
-        r"""
-        what do you notice here? 
-
-        1. this is not a probability distribution function (pdf) yet. to make it a pdf, we'll divide the probability by the integral to get the density.
-        1. the mode (peak) is $p$.
-        1. the mean of the possible true means is different from the mode.
-        1. after turning this into a pdf, this is a beta distribution.
-
-        let's turn this into a pdf and see which beta distributions might match. fortunately **fuz** allows you to make beta distributions in a variety of ways.
-        """
-    )
-    return
-
-
-@app.cell
-def _():
-    from scipy.integrate import quad
-    import fuz.dists as fd
-    return fd, quad
-
-
-@app.cell
-def _(np):
-    x_small = np.linspace(0, 1, 257)
-    return (x_small,)
-
-
-@app.cell
-def _(Callable, Sequence, alt, np, pl):
-    def plot_betas(x: np.ndarray, pdfs: Sequence[Callable], names: Sequence[str]) -> alt.Chart:
-        dfs = []
-        for pdf, name in zip(pdfs, names, strict=True):
-            bdf = pl.DataFrame({'x': x, 'pdf': pdf(x)}).with_columns(name=pl.lit(name))
-            dfs.append(bdf)
-        df = pl.concat(dfs)
-        base = alt.Chart(df, title=name).encode(
-            alt.X('x'), alt.Y('pdf'), alt.Color('name'), alt.StrokeDash('name')
-        )
-        return base.mark_line(opacity=0.5, strokeWidth=9)
-    return (plot_betas,)
-
-
-@app.cell
-def _(
-    alt,
-    binom,
-    fd,
-    intro2_n,
-    intro2_p,
-    mo,
-    pl,
-    plot_betas,
-    quad,
-    wintro_yes,
-    x_small,
-):
-    pre_pdf = lambda x: binom.pmf(wintro_yes.value, intro2_n, x)
-    bin_pdf = lambda x: pre_pdf(x) / quad(pre_pdf, 0, 1)[0]
-    _bin_df = pl.DataFrame({'x': x_small, 'pdf': bin_pdf(x_small)}).with_columns(
-        name=pl.lit('binomial-derived')
-    )
-    _bin_fig = (
-        alt.Chart(_bin_df, title='binomial-derived vs potential betas')
-        .mark_line()
-        .encode(alt.X('x'), alt.Y('pdf'), alt.Color('name'), alt.StrokeDash('name'))
-    )
-
-    _mo = intro2_p[1]
-    b_mo_t = fd.beta_from_mode_trials(_mo, intro2_n)
-    b_mo_k1 = fd.beta_from_mode_k(_mo, intro2_n)
-    b_mu_k1 = fd.beta_from_mu_k(_mo, intro2_n)
-    _beta_fig = plot_betas(
-        x_small, (b_mo_t.pdf, b_mo_k1.pdf, b_mu_k1.pdf), ('β mode trials', 'β mode k', 'β μ k')
-    )
-
-    mo.ui.altair_chart(_bin_fig + _beta_fig)
-    return b_mo_k1, b_mo_t, b_mu_k1, bin_pdf, pre_pdf
-
-
-@app.cell
-def _(mo):
-    mo.md(
-        r"""
-        from the chart, it's clear that the beta distribution parameterized by mode and number of trials matches the binomial-derived pdf.
-
-        what are the implications? moving from bernoulli to binomial to beta is a well-known fundamental concept in statistics, so what's new here? let's set things up to understand.
-        """
-    )
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(
-        r"""
-        ## setup
-
-        first, for the purposes of this chapter, let's define:
+        note that this works for the binary case (ch1). working backwards:
 
         $$
         \begin{aligned}
-        \mu_s &= \text{sample mean} \\
-        \mu_\top &= \text{the true mean} \\
-        \mu_\diamond &= \text{a possible true mean} \\
-        \Mu &= \text{the distribution of possible true means} \\
-        \mathrm{E}[M] = \mu_\Mu &= \text{the mean of possible true means} \\
-        \hat{\Mu} &= \text{the mode of the possible true mean distribution} \\
-        \hat{\Beta} &= \text{the mode of a beta distribution} \\
+        \mu_s &= \frac{0\cdot t_1 + 1 \cdot t_2}{t} \\
+        &= \frac{t_2}{t} \\
+        \mu_\Mu &= \frac {t\mu_s + 1}{t+2} \\
+        &= \frac{t(t_2 / t)+1}{t+2}\\
+        &= \frac{t_2 + 1}{t+2}\\
+        &= \frac{0(t_1 + 1)}{t+2} + \frac{1(t_2 + 1)}{t+2}\\
+        &= \sum_{d=1}^N\frac{x_d(t_d + 1)}{t + N} \\
         \end{aligned}
         $$
+        """
+    )
+    return
 
-        in addition, we use standard notation for the [beta distribution from wikipedia](https://en.wikipedia.org/wiki/Beta_distribution).
 
-        here are some insights:
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        ## reaching infinity
 
-        1. the parameterization of the beta by mode and no. of trials $t$, where $t = k-2$, matches best.
-        1. the mean of the beta $\mu_B$ corresponds to the mean of possible true means $\mu_\Mu$
+        what if you want to allow for arbitrary ratings? ex. instead of a 4 star rating, allow for 4.23, 3, 2.718281828... etc. we can gradually extend the dirichlet dimensions toward infinity and see what happens.
+
+        to do this we create dimensions along the interval $[0,1]$ and increase the alpha for that dimension by one (using mode parameterization, meaning each alpha starts with 1). for visualization purposes we increase the dimensions by 100 each time and only allow user input wih a resolution of 0.01. then we try to figure out the mean, which would be the rule of succession... 
+
+        however...
         """
     )
     return
 
 
 @app.cell
-def _(mo):
-    mo.md(r"""## claims""")
-    return
+def _(fd, np):
+    def get_like_infdir(vals, cnts, n_dim=1001):
+        scores = np.linspace(0, 1, n_dim)
+        alpha = np.ones(n_dim)
+        for val, cnt in zip(vals, cnts):
+            ind = round((n_dim - 1) * val)
+            alpha[ind] += cnt
+        return fd.Scored(alpha, scores)
+    return (get_like_infdir,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
+    w_infval = mo.ui.slider(0.01, 0.99, 0.01, 0.01, full_width=True, show_value=True)
+    w_infcnt = mo.ui.slider(1, 100, 1, 1, full_width=True, show_value=True)
     mo.callout(
-        mo.md("""
-
-    1. in a ranking context, taking $\mu_\Mu$ is equivalent to finding the posterior, where the prior consists of the other items' possible true mean distributions $M_i$.
-    1. this is extensible other rating systems like 3-star, 5-star, out-of-10, and even continuous (floating-point) systems, by using dirichlet distributions.
-    1. given the same information, finding $\mu_\Mu$ is optimal and outperforms other bayesian ranking algorithms [^same-level]
-
-    [^same-level]: caveat being algorithms on the same level; i'm not comparing to complex recommender systems, although it could act as a basis for a better recommender system since incorporating weights is simple.
-    """),
+        mo.vstack(
+            [
+                mo.md('### add a single value'),
+                mo.hstack([mo.md('score'), w_infval], widths=[1, 5], align='center'),
+                mo.hstack([mo.md('count'), w_infcnt], widths=[1, 5], align='center'),
+            ]
+        ),
         kind='warn',
     )
-    return
+    return w_infcnt, w_infval
 
 
-@app.cell
+@app.cell(hide_code=True)
+def _(alt, get_like_infdir, mo, np, pd, w_infcnt, w_infval):
+    infx = np.arange(100, 10001, 100)
+    _mus, _ys = [], []
+    for _ndim in infx:
+        d = get_like_infdir([w_infval.value], [w_infcnt.value], n_dim=_ndim)
+        _mus.append(d.mu)
+        _ys.append((d.mu - 0.5) * _ndim)
+
+    infdf1 = pd.DataFrame({'dimensions': infx, 'mu': _mus, 'y': _ys})
+    _chart = (
+        alt.Chart(infdf1).mark_line().encode(alt.X('dimensions'), alt.Y('mu').scale(zero=False))
+    )
+    mo.ui.altair_chart(_chart)
+    return d, infdf1, infx
+
+
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
-        i will address these claims in the following chapters.
+        no matter what, the bayes estimator / rule of succession approaches $0.5$ as the number of dimensions approaches $\infty$.
 
-        i believe this is a novel angle to look at the problem of bayesian ranking, although i wouldn't be surprised if someone has done something similar before.
+        this is not that useful then... what can we do?
+
+        let's start by subtracting 0.5, so the estimator is not centered on 0.5, and multiply by the number of dimensions to normalize it.
         """
     )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
+def _(alt, infdf1, mo):
+    _chart = alt.Chart(infdf1).mark_line().encode(alt.X('dimensions'), alt.Y('y').scale(zero=False))
+    mo.ui.altair_chart(_chart)
+    return
+
+
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
-        ## the mean of possible true means
+        this is a lot better! now this approaches a value, and can potentially be used for ranking. after some experimentation, i figured out the asymptote.
 
-        first, what's the best way to calculate $\mu_\Mu$? just a bit of algebra:
+        $$
+        \begin{align}
+        \sum_{i=1}^N(\textrm{mode}_i-0.5)(\alpha_i-1)
+        \end{align}
+        $$
+        """
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo, w_infcnt, w_infval):
+    mo.md(rf"""so for our current floating-point score of ${w_infval.value}$ and score count of ${w_infcnt.value}$, the asymptote is 
+
+    $$
+    {(w_infval.value - 0.5)*(w_infcnt.value):0.5g}
+    $$
+
+    note that 0.5 in the equation is the midpoint of the scale 0-1.""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+        here's a derivation. note that this derivation may be wrong due to my lack of math skills, but i have empirically confirmed the result to be correct.
 
         $$
         \begin{aligned}
-        t &= k-2 \\
-        k &= \alpha + \beta \\
-        \hat{\Beta} &\coloneqq \mu_s\\
-        \hat{\Beta} &= \frac{\alpha-1}{\alpha+\beta-2} = \frac{\alpha-1}{t} \\
-        \Mu &= \Beta(\alpha,\beta) \\
-        \mu_\Mu &= \frac{\alpha}{k} \\
-        \alpha &= k\mu_\Mu = t\hat{\Beta} + 1 \\
-        \mu_\Mu &= \frac{t \mu_s + 1}{k} \\
+        \alpha_i &\ge 1 \\
+        \alpha_0 &= \sum_{i=1}^N \alpha_i \\
+        \mu(x_i) &= \sum_{i=1}^N \frac{\alpha_i}{\alpha_0}\cdot x_i \\
+        &= \sum_{i=1}^N \frac{\alpha_i}{\sum_{i=1}^N \alpha_i}\cdot x_i\\
+        m &= \text{scale midpoint} \\
+        f(x_i) &= N\cdot(\mu(x_i) - m) \\
+        \lim_{N \to \infty} f(x_i) &= \lim_{N \to \infty} N\cdot(\mu(x_i) - m)\\
+        &= \lim_{N \to \infty}N \left( \sum_{i=1}^N \frac{\alpha_i}{\sum_{i=1}^N \alpha_i}\cdot x_i \right)-Nm \\
+        &= \lim_{N \to \infty} N \left( \sum_{i=1}^N \frac{\alpha_i}{N \cdot \alpha_{avg}} \cdot x_i \right) - Nm \\
+        &= \lim_{N \to \infty} N \left( \sum_{i=1}^N \frac{\alpha_i}{N \cdot \alpha_{\infty}} \cdot x_i \right) - Nm  \\
+        &= \lim_{N \to \infty} \left( \sum_{i=1}^N \frac{\alpha_i}{\alpha_{\infty}} \cdot x_i \right) - Nm \\
+        &= \lim_{N \to \infty} \left( \sum_{i=1}^N \frac{\alpha_i}{\alpha_{\infty}} \cdot x_i \right) - N \cdot m + N \cdot m - N \cdot m  \\
+        &= \lim_{N \to \infty} \left( \sum_{i=1}^N \frac{\alpha_i}{\alpha_{\infty}} \cdot x_i - \frac{\alpha_i}{\alpha_{\infty}} \cdot m \right)  \\
+        &= \lim_{N \to \infty} \sum_{i=1}^N \frac{\alpha_i}{\alpha_{\infty}} \cdot (x_i - m)\\
+        &= \lim_{N \to \infty} \sum_{i=1}^N (\alpha_i - 1) \cdot (x_i - m)\\
+        &= \sum_{i=1}^N(x_i-m)(\alpha_i-1)\\
         \end{aligned}
         $$
-
-        thus, to find $\mu_\Mu$ given number of ratings $t$ and mean $\mu_s$:
         """
     )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.callout(
         mo.md(r"""
+    #### miraia's infinite rule of succession / infinite-dimensional factor
+
     $$
-    \mu_\Mu = \frac{t \mu_s + 1}{t+2}
+    \begin{equation}
+    \lim_{N \to \infty} f(x_i) = \sum_{i=1}^N(x_i-m)(\alpha_i-1)\\
+    \end{equation}
     $$
     """),
         kind='success',
@@ -427,255 +433,54 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
-    return
-
-
-@app.cell
-def _(np):
-    seed = 42
-    rng = np.random.default_rng(seed)
-    return rng, seed
-
-
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
-        here is a description of the experiment to compare ranking systems.
-
-        1. generate a list of scored items. per item:
-            1. create reasonable sample scores (between 0 and 1 to make things easier)
-            1. create reasonable sample counts
-        1. from scored items, find a per-item distribution of possible true means
-        1. create a simulation to find mean rankings
-        """
-    )
+    mo.md(r"""how is this useful? we can use it for ranking! now that we're past the introductory concepts, in the next chapter we'll dive into optimal bayesian ranking.""")
     return
 
 
-@app.cell
-def _(
-    mo,
-    w_init_n_scores,
-    w_init_possible_means,
-    w_n_items,
-    w_xax_resolution,
-):
-    w_init_params = mo.vstack(
-        [
-            mo.md('## experiment parameters'),
-            mo.hstack([w_n_items, w_init_possible_means], widths='equal', align='center'),
-            mo.hstack([w_init_n_scores, w_xax_resolution], widths='equal', align='center'),
-        ]
-    )
-    mo.callout(w_init_params, kind='info')
-    return (w_init_params,)
-
-
-@app.cell
-def _(
-    alt,
-    fdb,
-    mo,
-    np,
-    pl,
-    w_init_n_scores,
-    w_init_possible_means,
-    w_n_items,
-    w_xax_resolution,
-):
-    n_items = w_n_items.value
-    _lb, _ub = w_init_possible_means.value
-    init_possible_means = np.linspace(_lb, _ub, n_items)[:, None]
-    xax = np.linspace(0, 1, w_xax_resolution.value)
-    _al, _be = fdb.ab_from_mode_trials(0.06, 4)
-    min_score_count, max_score_count = w_init_n_scores.value
-    _scale = max_score_count - min_score_count
-    score_dist = fdb.Beta(_al, _be, loc=min_score_count, scale=_scale)
-
-
-    _x_count = np.linspace(min_score_count, max_score_count, 200)
-    _chart = (
-        alt.Chart(pl.DataFrame({'count': _x_count, 'density': score_dist.pdf(_x_count)}))
-        .mark_line()
-        .encode(x='count', y='density')
-        .properties(title='score count distribution')
-    )
-    mo.ui.altair_chart(_chart)
-    return (
-        init_possible_means,
-        max_score_count,
-        min_score_count,
-        n_items,
-        score_dist,
-        xax,
-    )
-
-
-@app.cell
-def _(
-    init_possible_means,
-    max_score_count,
-    n_items,
-    np,
-    rng,
-    score_dist,
-    stats,
-):
-    score_counts = score_dist.rvs((n_items, 1), random_state=rng).round().astype(np.int64)
-    init_samp = stats.bernoulli.rvs(init_possible_means, size=(n_items, max_score_count))
-    heads = np.take_along_axis(init_samp.cumsum(axis=1), score_counts - 1, axis=1)
-    heads, score_counts
-    return heads, init_samp, score_counts
-
-
-@app.cell
-def _():
-    return
-
-
-@app.cell
-def _(n_items, score_dist):
-    score_dist.rvs((n_items, 1)).dtype
-    return
-
-
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""## code navigation""")
+    mo.md(r"""## additional code""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""### widgets""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""#### initial parameters""")
-    return
+    w_ternr = mo.ui.slider(0, 1, 0.01, value=0.5, full_width=True, show_value=True)
+    mo.accordion({'ternary r widget': w_ternr})
+    return (w_ternr,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    w_n_items = mo.ui.slider(
-        steps=[5, 10, 50, 100, 500, 1000],
-        debounce=True,
-        label='no. of scored items',
-        full_width=True,
-        show_value=True,
-        value=10,
-    )
-    w_init_possible_means = mo.ui.range_slider(
+    get_t, set_t = mo.state(0)
+    return get_t, set_t
+
+
+@app.cell(hide_code=True)
+def _(get_t, mo, set_t, w_ternr):
+    _t = get_t()
+    _max = 1 - w_ternr.value
+    if _t > _max:
+        _t = _max
+    w_ternt = mo.ui.slider(
+        0,
+        1 - w_ternr.value,
         0.01,
-        0.99,
-        0.01,
-        value=(0.05, 0.95),
-        debounce=True,
-        show_value=True,
-        label='possible mean scores',
-        full_width=True,
-    )
-    w_init_n_scores = mo.ui.range_slider(
-        2,
-        200,
-        1,
-        value=(3, 36),
-        debounce=True,
-        label='possible no. of scores',
+        value=_t,
         full_width=True,
         show_value=True,
+        on_change=lambda v: set_t(v),
     )
-    w_xax_resolution = mo.ui.slider(
-        steps=[129, 257, 513, 1025, 2049, 4097, 8193],
-        debounce=True,
-        label='x axis resolution',
-        full_width=True,
-        show_value=True,
-        value=1025,
-    )
-    return (
-        w_init_n_scores,
-        w_init_possible_means,
-        w_n_items,
-        w_xax_resolution,
-    )
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""### plotting""")
-    return
-
-
-@app.cell
-def _(Sequence, alt, np, pl):
-    def plot_bernoulli(p: Sequence[float, float] | np.ndarray) -> alt.Chart:
-        _df = pl.DataFrame({'x': ['negative', 'positive'], 'probability': p})
-        _base = alt.Chart(_df, title='bernoulli probability mass function (pmf)').encode(
-            alt.X('x', axis=alt.Axis(labelAngle=0)),
-            alt.Y('probability', scale=alt.Scale(domain=[0, 1])),
-        )
-        _bar = _base.mark_bar()
-        _text = _base.mark_text(dy=-10).encode(alt.Text('probability', format='.2f'))
-        return _bar + _text
-    return (plot_bernoulli,)
-
-
-@app.cell
-def _(alt, np, pl, rv_discrete_frozen):
-    def plot_binomial(dist: rv_discrete_frozen, max_n: int = 20) -> alt.Chart:
-        x = np.arange(max_n + 1)
-        df = pl.DataFrame({'successes': x, 'probability': dist.pmf(x)})
-        base = alt.Chart(df, title='binomial pmf').encode(alt.X('successes'), alt.Y('probability'))
-        line = base.mark_line()
-        point = base.mark_point()
-        return line + point
-    return (plot_binomial,)
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""### imports""")
-    return
-
-
-@app.cell
-def _():
-    import marimo as mo
-    import numpy as np
-    from scipy import stats
-    import polars as pl
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import altair as alt
-    import seaborn as sns
-    import fuz.dists.beta as fdb
-    import fuz.log as flog
-    from scipy.stats._distn_infrastructure import rv_continuous_frozen, rv_discrete_frozen
-    return (
-        alt,
-        fdb,
-        flog,
-        mo,
-        np,
-        pd,
-        pl,
-        plt,
-        rv_continuous_frozen,
-        rv_discrete_frozen,
-        sns,
-        stats,
-    )
-
-
-@app.cell
-def _():
-    return
+    mo.accordion({'ternary t widget': w_ternt})
+    return (w_ternt,)
 
 
 if __name__ == "__main__":

@@ -6,10 +6,12 @@ with **fuz**, you can do things like bayesian evidence updating, optimal bayesia
 
 ## [demos](project:mo/index.md)
 
+allow 30s-1min for the interactive demos to load.
+
 ### optimal bayesian ranking
 
-1. [bernoulli to beta](project:mo/obr1/index.md)
-2. [to infinity](project:mo/obr2/index.md)
+- ch1: bernoulli to beta. [static](project:mo/optimal-bayesian-ranking-ch1-static.md) / [interactive](project:mo/optimal-bayesian-ranking-ch1/index.md)
+- ch2: to infinity. [static](project:mo/optimal-bayesian-ranking-ch2-static.md) / [interactive](project:mo/optimal-bayesian-ranking-ch2/index.md)
 
 ## highlights
 

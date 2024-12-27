@@ -11,6 +11,7 @@
 [build-system]
   build-backend = { name = 'pixi-build-python', version = '*' }
   channels = ['https://prefix.dev/pixi-build-backends', 'https://prefix.dev/conda-forge']
+
 [package]
 
 [tasks]
@@ -38,7 +39,6 @@
 [feature.demo.dependencies]
   linkify-it-py = '*'
   marimo = '>=0.10.1'
-markdown = "*"
   mdformat-myst = '*'
   myst-parser = '*'
   nbformat = '*'
@@ -48,11 +48,14 @@ markdown = "*"
 [feature.demo.tasks]
   demo = 'marimo run fuz/demo/main.py'
   emo = 'marimo edit -p 3589 --headless --no-token'
+  html = { depends-on = ['html-ch1', 'html-ch2'] }
+  html-ch1 = 'marimo export html fuz/demo/optimal_bayesian_ranking_ch1.py -o docs/build/html/mo/optimal-bayesian-ranking-ch1-static.html'
+  html-ch2 = 'marimo export html fuz/demo/optimal_bayesian_ranking_ch2.py -o docs/build/html/mo/optimal-bayesian-ranking-ch2-static.html'
   wasm = { depends-on = ['wasm-ch1', 'wasm-ch2'] }
-  wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o docs/build/html/mo/obr1 --mode run --no-show-code '
-  wasm-ch1-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o private/mo/obr1 --mode edit'
-  wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o docs/build/html/mo/obr2 --mode run --no-show-code '
-  wasm-ch2-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o private/mo/obr2 --mode edit'
+  wasm-ch1 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o docs/build/html/mo/optimal-bayesian-ranking-ch1 --mode run'
+  wasm-ch1-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch1.py -o private/mo/optimal-bayesian-ranking-ch1 --mode edit'
+  wasm-ch2 = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o docs/build/html/mo/optimal-bayesian-ranking-ch2 --mode run'
+  wasm-ch2-test = 'marimo export html-wasm fuz/demo/optimal_bayesian_ranking_ch2.py -o private/mo/optimal-bayesian-ranking-ch2 --mode edit'
   wasm-test = { depends-on = ['wasm-ch1-test', 'wasm-ch2-test'] }
 
 [feature.dev.dependencies]
@@ -89,7 +92,7 @@ markdown = "*"
   sphinx-docsearch = '*'
 
 [feature.doc.tasks]
-  doc = { depends-on = ['sphinx', 'wasm'] }
+  doc = { depends-on = ['sphinx', 'html', 'wasm'] }
   sphinx = { cmd = "make html", cwd = "docs" }
   testdoc = { cmd = 'python -m http.server', cwd = "docs/build/html" }
 

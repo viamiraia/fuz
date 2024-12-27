@@ -26,8 +26,8 @@ with **fuz**, you can do things like bayesian evidence updating, optimal bayesia
 
 check out the marimo demos at:
 
-- ch1. [bernoulli to beta](https://code.raia.fun/fuz/mo/obr1/index.html)
-- ch2. [to infinity](https://code.raia.fun/fuz/mo/obr2/index.html)
+- ch1. [bernoulli to beta](https://code.raia.fun/fuz/mo/optimal-bayesian-ranking-ch1/index.html)
+- ch2. [to infinity](https://code.raia.fun/fuz/mo/optimal-bayesian-ranking-ch2/index.html)
 
 ## quickstart
 
