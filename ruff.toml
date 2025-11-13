@@ -3,7 +3,7 @@
 fix = true
 line-length = 96
 output-format = 'grouped'
-required-version = '>=0.6.0'
+required-version = '>=0.8.0'
 show-fixes = true
 target-version = 'py310'
 

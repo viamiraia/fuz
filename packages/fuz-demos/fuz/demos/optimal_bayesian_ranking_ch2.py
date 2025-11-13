@@ -105,11 +105,10 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _():
+    import fuz.core.dists as fd
+    import fuz.core.marimo as fmo
+    import fuz.rank.plot as fp
     from scipy import stats
-
-    import fuz.dists as fd
-    import fuz.marimo as fmo
-    import fuz.plot as fp
 
     return fd, fmo, fp, stats
 

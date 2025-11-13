@@ -7,12 +7,12 @@ from collections.abc import Sequence
 from functools import partial, wraps
 from typing import Literal
 
+import fuz.core.types as ft
 import numpy as np
 from plum import Dispatcher, overload
 from scipy.integrate import quad, simpson
 
 import fuz.lint as flog
-import fuz.types as ft
 
 dispatch = Dispatcher()
 

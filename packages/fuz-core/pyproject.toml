@@ -1,0 +1,23 @@
+[project]
+name = "fuz-core"
+version = "0.1.3"
+description = "Core types and distributions for fuz"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "attrs",
+    "jaxtyping",
+    "narwhals",
+    "numpy",
+    "scipy",
+    "plum-dispatch",
+]
+
+[project.optional-dependencies]
+marimo = ["marimo"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["fuz"]

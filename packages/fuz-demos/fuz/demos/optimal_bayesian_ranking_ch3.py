@@ -1,7 +1,24 @@
 import marimo
 
 __generated_with = '0.10.7'
-app = marimo.App(app_title='optimal bayesian ranking ch2')
+app = marimo.App(app_title='optimal bayesian ranking ch3')
+
+
+@app.cell(hide_code=True)
+def _():
+    import io
+
+    import altair as alt
+    import fuz.core.marimo as fmo
+    import marimo as mo
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
+    from scipy.integrate import romb
+
+    import fuz.lint as flog
+
+    return alt, flog, fmo, io, mo, np, pd, plt, romb
 
 
 @app.cell(hide_code=True)
@@ -9,82 +26,97 @@ def _(mo):
     mo.md(
         r"""
         # optimal bayesian ranking
-        <h3 align='center'>chapter 2: to infinity</h3>
+        <h3 align='center'>chapter 3: ranking comparisons</h3>
         <p align='center'>by miraia s. chiou © 2024</p>
 
         ## introduction
 
-        in the previous chapter, i demonstrated how to derive the [rule of succession](https://en.wikipedia.org/wiki/Rule_of_succession), aka the [bayes estimator](https://en.wikipedia.org/wiki/Binomial_distribution#Estimation_of_parameters) with a uniform prior. in a ranking context, this represents the mean of the distribution of potential true means $\mu_\Mu = \dfrac{t \mu_s + 1}{t+2}$.
+        in the previous chapter, i demonstrated how the rule of succession for a 3-star based scoring system. i showed my infinite version of the rule of succession, allowing for optimal ranking in a scoring sytem allowing for rational number ratings.
 
-        in this chapter, i will show original research extending the estimator to the inifinite dirichlet case.
+        in this chapter, i will use a novel method to compare various ranking methods. comparing ranking with uncertainty has some subtleties:
 
-        we'll be looking at some ternary plots. if you haven't seen them before, this [tutorial](https://grapherhelp.goldensoftware.com/Graphs/Reading_Ternary_Diagrams.htm) may help. to get you acquainted, i show the three axes of a ternary plot, along with an moveable point.
+        - you should compare how well your ranking captures potential true means, not the true means themselves.
+            - a common mistake is creating a single true score per item and seeing how well a ranking predicts the true non-bayesian ranking.
+            - basically you need to compare both the estimate and the uncertainty.
+        - how do you compare how well an uncertainty estimate captures the true uncertainty?
         """
     )
     return
 
 
-@app.cell(hide_code=True)
-def _():
-    import marimo as mo
-    import matplotlib.pyplot as plt
-    import mpltern
-    import numpy as np
-
-    import fuz.lint as flog
-
-    return flog, mo, mpltern, np, plt
-
-
-@app.cell(hide_code=True)
-def _(mo, w_ternr, w_ternt):
-    mo.callout(
-        mo.vstack(
-            [
-                mo.md('### move the point on the plot'),
-                mo.hstack([mo.md('$r$ axis'), w_ternr], widths=[1, 5], align='center'),
-                mo.hstack([mo.md('$t$ axis'), w_ternt], widths=[1, 5], align='center'),
-            ]
-        ),
-        kind='info',
+@app.cell
+def _(mo):
+    w_google_data = mo.ui.file(
+        filetypes=['.parquet', '.csv', '.csv.gz'],
+        label='upload google local data here',
+        kind='area',
     )
+    w_google_data
+    return (w_google_data,)
+
+
+@app.cell
+def _(io, pd, w_google_data):
+    _file = io.BytesIO(w_google_data.contents())
+    df = pd.read_parquet(_file)
+    df
+    return (df,)
+
+
+@app.cell
+def _(fmo):
+    w_starcheck_layout, [w_star1, w_star2, w_star3, w_star4, w_star5] = fmo.make_star_widget()
+    w_starcheck_layout
+    return w_star1, w_star2, w_star3, w_star4, w_star5, w_starcheck_layout
+
+
+@app.cell
+def _(alt, df, w_star1, w_star2, w_star3, w_star4, w_star5):
+    star_filt = (
+        (df['1'] == w_star1.value)
+        & (df['2'] == w_star2.value)
+        & (df['3'] == w_star3.value)
+        & (df['4'] == w_star4.value)
+        & (df['5'] == w_star5.value)
+    )
+
+    alt.Chart(df[star_filt]).transform_density(
+        'score',
+        as_=['score', 'density'],
+    ).mark_area().encode(
+        alt.X('score', scale=alt.Scale(domain=(1, 5))),
+        alt.Y('density:Q'),
+    )
+    return (star_filt,)
+
+
+@app.cell
+def _(df):
+    len(df[df['1'] > 5]), len(df)
     return
 
 
 @app.cell(hide_code=True)
-def _(mo, w_ternr, w_ternt):
-    ternr = w_ternr.value
-    ternt = w_ternt.value
-    ternl = round(1 - w_ternr.value - w_ternt.value, 2)
-    mo.callout(mo.md(f"""$r,t,l = \\{{{ternr}, {ternt}, {ternl}\\}}$"""))
-    return ternl, ternr, ternt
+def _(mo):
+    w_seed = mo.ui.slider(
+        0, 100, 1, value=42, full_width=True, show_value=True, label='random seed'
+    )
+    mo.callout(w_seed, kind='success')
+    return (w_seed,)
 
 
 @app.cell(hide_code=True)
-def _(np, plt, ternl, ternr, ternt):
-    x_small = np.linspace(0, 1, 129)
-    x_other = (1 - x_small) / 2
-    dx_small = x_small[1] - x_small[0]
-    p1 = np.vstack([x_small, x_other, x_other]).T
-    p2 = np.vstack([x_other, x_small, x_other]).T
-    p3 = np.vstack([x_other, x_other, x_small]).T
-    _fig = plt.figure(figsize=(5, 4))
-    _fig.subplots_adjust(top=0.8, bottom=0.15)
-    _ax = plt.subplot(projection='ternary')
-    _ax.plot(p1[:, 0], p1[:, 1], p1[:, 2], color='steelblue', label='top axis')
-    _ax.plot(p2[:, 0], p2[:, 1], p2[:, 2], color='darkorange', label='left axis')
-    _ax.plot(p3[:, 0], p3[:, 1], p3[:, 2], color='forestgreen', label='right axis')
-    _ax.scatter(ternt, ternl, ternr, color='crimson')
-    _ax.set_tlabel('$t$')
-    _ax.set_llabel('$l$')
-    _ax.set_rlabel('$r$')
-    _ax.taxis.set_label_position('tick1')
-    _ax.laxis.set_label_position('tick1')
-    _ax.raxis.set_label_position('tick1')
-    _ax.legend(fontsize=9, framealpha=0.3)
-    _ax.grid(alpha=0.4)
-    _fig
-    return dx_small, p1, p2, p3, x_other, x_small
+def _(np, pd, w_seed):
+    rng = np.random.default_rng(w_seed.value)
+    bi_counts = rng.integers(2, 25, 10)
+    bi_scores = rng.random(10)
+    bi_df = (
+        pd.DataFrame({'score': bi_scores, 'count': bi_counts})
+        .sort_values('score', ascending=False)
+        .reset_index(drop=True)
+    )
+    bi_df
+    return bi_counts, bi_df, bi_scores, rng
 
 
 @app.cell(hide_code=True)
@@ -104,41 +136,6 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _():
-    from scipy import stats
-
-    import fuz.dists as fd
-    import fuz.marimo as fmo
-    import fuz.plot as fp
-
-    return fd, fmo, fp, stats
-
-
-@app.cell(hide_code=True)
-def _(fmo, mo):
-    w_3star_stack, (w_3star1, w_3star2, w_3star3) = fmo.make_star_widget(
-        n_stars=3, star0=(1, 2, 3), max_ratings=12
-    )
-    mo.callout(w_3star_stack, kind='success')
-    return w_3star1, w_3star2, w_3star3, w_3star_stack
-
-
-@app.cell(hide_code=True)
-def _(np, w_3star1, w_3star2, w_3star3):
-    trials_3star = np.array([w_3star1.value, w_3star2.value, w_3star3.value])
-    alpha_3star = trials_3star + 1
-    return alpha_3star, trials_3star
-
-
-@app.cell(hide_code=True)
-def _(flog, stats, trials_3star):
-    n_3star = trials_3star.sum()
-    p_3star = flog.norm(trials_3star)
-    multi_3star = stats.multinomial(n=n_3star, p=p_3star)
-    return multi_3star, n_3star, p_3star
-
-
-@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""in this system, the analogous distribution to the binomial is the multinomial. it can be represented by a ternary plot:"""
@@ -147,18 +144,22 @@ def _(mo):
 
 
 @app.cell
-def _(fp, multi_3star):
-    _fig, _ax = fp.plot_multinomial(multi_3star, title='3-star multinomial pmf')
-    _fig.set_figwidth(5)
-    _fig.set_figheight(4)
-    _fig
-    return
-
-
-@app.cell
 def _(mo):
     mo.md(
-        r"""the analogous distribution to the beta is the dirichlet. it is characterized by $\alpha$, a vector of the number of ratings + 1 for each dimension."""
+        r"""
+        ## citations
+
+        ### for the google reviews data
+
+        **UCTopic: Unsupervised Contrastive Learning for Phrase Representations and Topic Mining**
+        Jiacheng Li, Jingbo Shang, Julian McAuley
+        Annual Meeting of the Association for Computational Linguistics (ACL), 2022
+        pdf
+
+        **Personalized Showcases: Generating Multi-Modal Explanations for Recommendations**
+        An Yan, Zhankui He, Jiacheng Li, Tianyang Zhang, Julian Mcauley
+        arXiv:2207.00422, 2022
+        """
     )
     return
 
@@ -187,11 +188,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _():
-    import altair as alt
-    import pandas as pd
-    from scipy.integrate import romb
-
-    return alt, pd, romb
+    return
 
 
 @app.cell(hide_code=True)

@@ -1,0 +1,23 @@
+[project]
+name = "fuz-pool"
+version = "0.1.3"
+description = "Probability fusion and fuzzy logic for fuz"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "fuz-core",
+    "fuz-lint",
+    "numpy",
+    "plum-dispatch",
+    "scipy",
+]
+
+[tool.uv.sources]
+fuz-core = { workspace = true }
+fuz-lint = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["fuz"]

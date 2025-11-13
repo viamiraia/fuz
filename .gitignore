@@ -1,3 +1,9 @@
+# setuptools-scm
+fuz/_version.py
+
+# data
+/data/
+
 # sphinx
 docs/source/api/
 
@@ -11,8 +17,13 @@ private/
 # settings
 .vscode/
 
-# pixi environments
-.pixi
+# pixi environments (removed - migrated to UV)
+# .pixi
+
+# UV virtual environments
+.venv/
+venv/
+
 *.egg-info
 
 # Byte-compiled / optimized / DLL files

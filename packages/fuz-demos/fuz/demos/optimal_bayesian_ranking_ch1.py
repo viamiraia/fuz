@@ -105,7 +105,7 @@ def _(flog, mo, np, wintro_no, wintro_yes):
     here i introduce `fuz.log.lnorm` which can stably normalize weights in logarithmic space (log -> log), handling `nan`s and complex numbers. a little excessive for our example here, but works well with very small probabilities. if you want to move out of log space, a convenience function, `norm`, does log conversion and exponentiation for you.
 
     ```python
-    import fuz.log as flog
+    import fuz.lint as flog
     import numpy as np
 
     flog.norm({intro2_weights}) # {intro2_p}
@@ -216,9 +216,8 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _():
+    import fuz.core.dists as fd
     from scipy.integrate import quad
-
-    import fuz.dists as fd
 
     return fd, quad
 
