@@ -6,7 +6,6 @@
 # %% Imports and Setup
 import datetime as dt
 import sys
-from dataclasses import asdict
 from pathlib import Path
 
 import fuz
@@ -172,4 +171,3 @@ html_context = {
     'doc_path': 'docs',
     'default_mode': 'light',
 }
-#

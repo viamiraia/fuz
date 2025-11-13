@@ -1,0 +1,52 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.17.7"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "814460c13324add97b071c976681e6ef",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "e574f46c0190ada20a24a49ed5896ba2",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 align='center'>fuz-lint</h1>\n<h3 align='center'>chapter 1: integration in log space</h3>\n<p align='center'>by miraia s. chiou \u00a9 2025</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "70e0e0e9bd23d577190118aed90d3087",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "jkeL",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

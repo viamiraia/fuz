@@ -132,7 +132,9 @@ def float_array(
             allow_infinity=False,
             width=64,
         )
-    return np.array(draw(st.lists(elements, min_size=size, max_size=size)), dtype=float)
+    return np.array(
+        draw(st.lists(elements, min_size=size, max_size=size)), dtype=float
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -303,14 +305,21 @@ def test_simpson_rules(data: tuple[np.ndarray, np.ndarray]) -> None:
     fx = np.log(f)
     # For Simpson rules require length conditions; guard here
     if (x.size - 1) % 2 == 0:
-        assert np.allclose(np.exp(lsimp13(fx, x)), np.trapz(f, x), rtol=1e-6, atol=1e-6)
+        assert np.allclose(
+            np.exp(lsimp13(fx, x)), np.trapz(f, x), rtol=1e-6, atol=1e-6
+        )
     if (x.size - 1) % 3 == 0:
-        assert np.allclose(np.exp(lsimp38(fx, x)), np.trapz(f, x), rtol=1e-6, atol=1e-6)
+        assert np.allclose(
+            np.exp(lsimp38(fx, x)), np.trapz(f, x), rtol=1e-6, atol=1e-6
+        )
 
     # Irregular spacing: perturb x slightly while keeping order
     x_irreg = x + 0.1 * (x - x.mean())
     assert np.all(np.diff(x_irreg) > 0)
     fx_irreg = np.log(f)
     assert np.allclose(
-        np.exp(lsimp_irreg(fx_irreg, x_irreg)), np.trapz(f, x_irreg), rtol=1e-6, atol=1e-6
+        np.exp(lsimp_irreg(fx_irreg, x_irreg)),
+        np.trapz(f, x_irreg),
+        rtol=1e-6,
+        atol=1e-6,
     )

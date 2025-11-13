@@ -1,7 +1,7 @@
-# config: https://docs.astral.sh/ruff/configuration/ 
+# config: https://docs.astral.sh/ruff/configuration/
 # and https://docs.astral.sh/ruff/settings/
 fix = true
-line-length = 96
+line-length = 84
 output-format = 'grouped'
 required-version = '>=0.8.0'
 show-fixes = true
@@ -18,7 +18,6 @@ target-version = 'py310'
   ignore = [
     'FIX002', # ignore FIX002 to allow TODO comments
     'ANN401', # allow use of Any type
-    'PD901',  # allow naming dataframes 'df'
     'F811',   # allow redefinition for plum-dispatch
     'N812',   # allow changing import capitalization
     'E741',   # l should look distinct with the right font

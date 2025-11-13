@@ -14,7 +14,8 @@ docs/source/api/
 temp/
 private/
 
-# settings
+# settings and AI
+claude.md
 .vscode/
 
 # pixi environments (removed - migrated to UV)
