@@ -18,8 +18,11 @@ private/
 claude.md
 .vscode/
 
-# pixi environments (removed - migrated to UV)
-# .pixi
+# pixi environments
+ .pixi
+
+# marimo
+ __marimo__/
 
 # UV virtual environments
 .venv/
