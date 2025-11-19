@@ -16,11 +16,6 @@ dependencies = [
     "numpy",
 ]
 
-[tool.uv.sources]
-fuz-core = { workspace = true }
-fuz-lint = { workspace = true }
-fuz-rank = { workspace = true }
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

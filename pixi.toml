@@ -32,7 +32,11 @@
   scipy = '*'
 
 [pypi-dependencies]
-  fuz = { path = '.', editable = true }
+  fuz-core = { path = "./pkg/fuz-core", editable = true }
+  fuz-lint = { path = "./pkg/fuz-lint", editable = true }
+  fuz-pool = { path = "./pkg/fuz-pool", editable = true }
+  fuz-rank = { path = "./pkg/fuz-rank", editable = true }
+  fuz-demo = { path = "./pkg/fuz-demo", editable = true }
 
 [feature.plot.dependencies]
   altair = '*'
@@ -42,6 +46,7 @@
 [feature.demo.dependencies]
   fastparquet = '*'
   linkify-it-py = '*'
+  lintegrate = '*'
   marimo = '*'
   mdformat-myst = '*'
   myst-parser = '*'

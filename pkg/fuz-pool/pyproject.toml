@@ -11,10 +11,6 @@ dependencies = [
     "scipy",
 ]
 
-[tool.uv.sources]
-fuz-core = { workspace = true }
-fuz-lint = { workspace = true }
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

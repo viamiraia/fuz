@@ -11,16 +11,6 @@ dependencies = [
 
 ]
 
-[tool.uv.workspace]
-members = ["pkg/*"]
-
-[tool.uv.sources]
-fuz-core = { workspace = true }
-fuz-lint = { workspace = true }
-fuz-pool = { workspace = true }
-fuz-rank = { workspace = true }
-fuz-demo = { workspace = true }
-
 [project.optional-dependencies]
 
 doc = [
@@ -58,21 +48,3 @@ all = [
 [build-system]
 requires = ["hatchling", "hatch-vcs", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
-
-[dependency-groups]
-dev = [
-    "fuz-demo",
-    "hypothesis",
-    "ipykernel",
-    "ipympl",
-    "ipywidgets",
-    "mypy",
-    "nox",
-    "pyarrow",
-    "pytest",
-    "pytest-cov",
-    "ruff",
-    "scipy-stubs",
-    "tqdm",
-    "wat-inspector",
-]
