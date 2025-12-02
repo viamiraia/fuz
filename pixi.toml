@@ -1,16 +1,17 @@
 [workspace]
-  channels = ['conda-forge', 'anaconda', 'conda-forge/label/ty_alpha']
+  channels = ['conda-forge', 'main']
   name = 'fuz'
-  platforms = ['linux-64', 'win-64', 'osx-64', 'osx-arm64']
+  platforms = ['linux-64', 'osx-64', 'osx-arm64', 'win-64']
   preview = ['pixi-build']
+  authors = ['Miraia Chiou <133145224+viamiraia@users.noreply.github.com>']
 
 [package]
   name = 'fuz'
   version = '0.1.4-alpha.2'
 
   [package.build.backend]
-    name = "pixi-build-python"
-    version = "*"
+    name = 'pixi-build-python'
+    version = '*'
 
   [package.host-dependencies]
     hatchling = '*'
@@ -20,23 +21,23 @@
 
 [environments]
   default = ['demo', 'plot']
-  dev = ['dev', 'demo', 'plot', 'minpy', 'jax', 'temp', 'doc']
-  devgpu = ['dev', 'demo', 'plot', 'minpy', 'jax', 'gpu', 'temp', 'doc']
-  doc = ['dev', 'demo', 'plot', 'maxpy', 'jax', 'doc']
+  dev = ['demo', 'dev', 'doc', 'array', 'minpy', 'plot', 'temp']
+  devgpu = ['demo', 'dev', 'doc', 'gpu', 'array', 'minpy', 'plot', 'temp']
+  doc = ['demo', 'dev', 'doc', 'array', 'maxpy', 'plot']
 
 [dependencies]
   attrs = '*'
   jaxtyping = '*'
   narwhals = '*'
-  plum-dispatch = '*'
   scipy = '*'
+  array-api-compat = '*'
 
 [pypi-dependencies]
-  fuz-core = { path = "./pkg/fuz-core", editable = true }
-  fuz-lint = { path = "./pkg/fuz-lint", editable = true }
-  fuz-pool = { path = "./pkg/fuz-pool", editable = true }
-  fuz-rank = { path = "./pkg/fuz-rank", editable = true }
-  fuz-demo = { path = "./pkg/fuz-demo", editable = true }
+  fuz-core = { path = './pkg/fuz-core', editable = true }
+  fuz-lint = { path = './pkg/fuz-lint', editable = true }
+  fuz-pool = { path = './pkg/fuz-pool', editable = true }
+  fuz-rank = { path = './pkg/fuz-rank', editable = true }
+  fuz-demo = { path = './pkg/fuz-demo', editable = true }
 
 [feature.plot.dependencies]
   altair = '*'
@@ -47,12 +48,27 @@
   fastparquet = '*'
   linkify-it-py = '*'
   lintegrate = '*'
-  marimo = '*'
   mdformat-myst = '*'
   myst-parser = '*'
-  nbformat = '*'
   pandas = '*'
   polars = '*'
+  pyinstrument = '*'
+  # marimo
+  marimo = '*'
+  altair = '*'
+  duckdb = '*'
+  mcp = '*'
+  nbformat = '*'
+  openai = '*'
+  pyarrow = '*'
+  pytest = '*'
+  python-lsp-ruff = '*'
+  python-lsp-server = '*'
+  sqlglot = '*'
+  basedpyright = '*'
+  vegafusion = '*'
+  vl-convert-python = '*'
+  websockets = '*'
 
 [feature.demo.tasks]
   demo = 'marimo run fuz/demo/main.py'
@@ -74,28 +90,31 @@
   ipywidgets = '*'
   mypy = '*'
   nox = '*'
-  pyarrow = '*'
   pytest = '*'
   pytest-cov = '*'
   ruff = '*'
   scipy-stubs = '*'
   tqdm = '*'
   wat-inspector = '*'
+  plum-dispatch = '*'
   # marimo extras
   duckdb = '*'
   # nbformat = '*' # repeat
   openai = '*'
-  python-lsp-ruff = "*"
-  python-lsp-server = "*"
+  python-lsp-ruff = '*'
+  python-lsp-server = '*'
   sqlglot = '*'
-  ty = { version = '*', channel = 'conda-forge/label/ty_alpha' }
-  vegafusion = "*"
-  vl-convert-python = "*"
-  websockets = "*"
+  basedpyright = '*'
+  vegafusion = '*'
+  vl-convert-python = '*'
+  websockets = '*'
 
 [feature.dev.tasks]
   mypy = 'mypy fuz'
   test = 'pytest -v tests'
+  lint = 'ruff check pkg'
+  format = 'ruff format pkg'
+  test-lint = 'pytest -v pkg/fuz-lint/tests'
 
 [feature.doc.dependencies]
   numpydoc = '*'
@@ -113,9 +132,9 @@
   sphinx-docsearch = '*'
 
 [feature.doc.tasks]
-  doc = { depends-on = ['sphinx', 'html', 'wasm'] }
-  sphinx = { cmd = "make html", cwd = "docs" }
-  testdoc = { cmd = 'python -m http.server', cwd = "docs/build/html" }
+  doc = { depends-on = ['html', 'sphinx', 'wasm'] }
+  sphinx = { cmd = 'make html', cwd = 'docs' }
+  testdoc = { cmd = 'python -m http.server', cwd = 'docs/build/html' }
 
 [feature.minpy.dependencies]
   python = '3.10.*'
@@ -133,7 +152,9 @@
   [feature.gpu.target.linux-64.dependencies]
     # jaxlib-feedstock fixed conda cuda issue in 0.4.35
     jaxlib = { version = '>=0.4.35', build = '*cuda12*', channel = 'conda-forge' }
+    pytorch-gpu = '*'
 
-[feature.jax.dependencies]
+[feature.array.dependencies]
   jax = '*'
-  jaxlib = '*'
+  pytorch = '*'
+  numpy = '*'

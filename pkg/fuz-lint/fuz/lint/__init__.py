@@ -1,7 +1,7 @@
 """Log-space numerical helpers."""
 
 from fuz.lint.lint import (
-    log_trap,
+    lsimp,
     lsimp13,
     lsimp38,
     lsimp_irreg,
@@ -24,7 +24,7 @@ __all__ = [
     'fillna',
     'limag_sign',
     'lnorm',
-    'log_trap',
+    'lsimp',
     'lsimp13',
     'lsimp38',
     'lsimp_irreg',

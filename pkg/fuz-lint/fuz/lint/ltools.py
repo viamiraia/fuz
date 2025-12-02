@@ -4,13 +4,14 @@ This module contains fundamental log-space operations including NaN handling,
 log-subtraction, log-sum-exp variants, and normalization functions.
 """
 
+import array_api_compat as xpc
 import numpy as np
 
 import fuz.types as ft
 
 
-def fillna(x: ft.Broadcast, nan: ft.Scalar = 0) -> ft.NPTensor:
-    """Fill NaN values in an array.
+def fillna(x: ft.Broadcast, nan: ft.Scalar = 0) -> ft.Broadcast:
+    """Fill NaN values in an array with specified value.
 
     This function is a faster alternative to ``np.where(np.isnan(x), nan, x)``.
 
@@ -23,13 +24,15 @@ def fillna(x: ft.Broadcast, nan: ft.Scalar = 0) -> ft.NPTensor:
 
     Returns
     -------
-    ft.NPTensor
+    ft.Broadcast
         A new array with NaN values replaced.
     """
-    x = np.array(x)  # make a copy
-    is_nan = np.isnan(x)
-    x[is_nan] = nan
-    return x
+    xp = xpc.array_namespace(x)
+    if xpc.is_numpy_array(x):
+        is_nan = xp.isnan(x)
+        x[is_nan] = nan
+        return x
+    return xp.nan_to_num(x, nan=nan)
 
 
 def lsub(

@@ -1,7 +1,7 @@
 """Types and constants for fuz."""
 
 from collections.abc import Callable, Mapping, Sequence
-from numbers import Real
+from numbers import Number, Real
 from typing import (
     Annotated,
     Any,
@@ -11,7 +11,7 @@ from typing import (
     runtime_checkable,
 )
 
-from jaxtyping import Real as JReal
+from jaxtyping import Num
 from narwhals.typing import IntoFrameT
 from numpy import ndarray as NPArr
 from scipy.stats._distn_infrastructure import rv_continuous_frozen
@@ -28,16 +28,16 @@ class FuzDist(Protocol): ...
 
 
 # %% Basics
-ArrScalar = JReal[Arr, ''] | JReal[Arr, '1']
-ArrVec = JReal[Arr, 'dim']
-ArrTensor = JReal[Arr, '...']
-NPScalar = JReal[NPArr, ''] | JReal[NPArr, '1']
-NPVec = JReal[NPArr, 'dim']
-NPTensor = JReal[NPArr, '...']
+ArrScalar = Num[Any, ''] | Num[Any, '1']
+ArrVec = Num[Any, 'dim']
+ArrTensor = Num[Any, '...']
+NPScalar = Num[NPArr, ''] | Num[NPArr, '1']
+NPVec = Num[NPArr, 'dim']
+NPTensor = Num[NPArr, '...']
 
 
 # %%% General
-Scalar = float | int | ArrScalar
+Scalar = Number | ArrScalar
 VecLike = ArrVec | Sequence[Scalar]
 Broadcast = Scalar | ArrTensor
 BroadcastT = TypeVar('BroadcastT', bound=Broadcast)
@@ -52,8 +52,8 @@ ABLocScale = (
 ABBroadcast = tuple[Broadcast, Broadcast]
 
 # %% Ranking-specific
-ArrPair = JReal[Arr, '2'] | JReal[Arr, '2 1'] | JReal[Arr, '1 2']
-ArrPairs = JReal[Arr, '2 dim'] | JReal[Arr, 'dim 2']
+ArrPair = Num[Any, '2'] | Num[Any, '2 1'] | Num[Any, '1 2']
+ArrPairs = Num[Any, '2 dim'] | Num[Any, 'dim 2']
 SeqPair = Annotated[Sequence[Scalar], 2]
 RealPair = Annotated[Sequence[Real], 2]
 RatingPair = RealPair | ArrPair
@@ -66,9 +66,9 @@ Ranked = (
 Columns = Literal['col', 'column', 'cols', 'columns', 1]
 Rows = Literal['row', 'rows', 0]
 Auto = Literal['auto', 'automatic']
-XVec = JReal[Arr, 'x'] | JReal[Arr, '1 x']
-DistVec = JReal[Arr, 'dist'] | JReal[Arr, 'dist 1']
-DistMat = JReal[Arr, 'dist x']
+XVec = Num[Any, 'x'] | Num[Any, '1 x']
+DistVec = Num[Any, 'dist'] | Num[Any, 'dist 1']
+DistMat = Num[Any, 'dist x']
 PairLike = ArrPair | SeqPair
 
 # %% Utils

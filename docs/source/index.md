@@ -38,4 +38,5 @@ allow 30s-1min for the interactive demos to load.
 
 demos <mo/index>
 api <api/index>
+devlog <devlog/index>
 ```

@@ -7,7 +7,7 @@ dependencies = [
     "fuz-core[marimo]",
     "fuz-lint",
     "fuz-rank",
-    "marimo[lsp,mcp,recommended,sql]",
+    "marimo",
     "pandas",
     "polars",
     "altair",
