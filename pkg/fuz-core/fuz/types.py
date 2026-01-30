@@ -1,12 +1,13 @@
 """Types and constants for fuz."""
 
 from collections.abc import Callable, Mapping, Sequence
-from numbers import Number, Real
+from numbers import Complex, Real
 from typing import (
     Annotated,
     Any,
     Literal,
     Protocol,
+    TypeAlias,
     TypeVar,
     runtime_checkable,
 )
@@ -27,6 +28,22 @@ Arr = NPArr  # TODO(viamiraia): modify in the future after creating GPU jax supp
 class FuzDist(Protocol): ...
 
 
+@runtime_checkable
+class Array(Protocol):
+    """Minimal array protocol."""
+
+    @property
+    def shape(self) -> tuple[int, ...]: ...
+    @property
+    def dtype(self) -> Any: ...
+    def __sub__(self, other: Any) -> 'Array': ...
+    def __add__(self, other: Any) -> 'Array': ...
+    def __mul__(self, other: Any) -> 'Array': ...
+    def __truediv__(self, other: Any) -> 'Array': ...
+    def __lt__(self, other: Any) -> 'Array': ...
+    def __gt__(self, other: Any) -> 'Array': ...
+
+
 # %% Basics
 ArrScalar = Num[Any, ''] | Num[Any, '1']
 ArrVec = Num[Any, 'dim']
@@ -37,9 +54,11 @@ NPTensor = Num[NPArr, '...']
 
 
 # %%% General
-Scalar = Number | ArrScalar
-VecLike = ArrVec | Sequence[Scalar]
-Broadcast = Scalar | ArrTensor
+# supposedly complex works better than numbers.Complex
+Scalar: TypeAlias = Real | Complex
+ArrScalar: TypeAlias = Scalar | Array
+VecLike: TypeAlias = Sequence[Scalar] | Array
+Broadcast: TypeAlias = ArrScalar | VecLike
 BroadcastT = TypeVar('BroadcastT', bound=Broadcast)
 
 # %% Distributions

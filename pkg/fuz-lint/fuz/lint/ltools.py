@@ -4,13 +4,15 @@ This module contains fundamental log-space operations including NaN handling,
 log-subtraction, log-sum-exp variants, and normalization functions.
 """
 
+import math
+
 import array_api_compat as xpc
 import numpy as np
 
 import fuz.types as ft
 
 
-def fillna(x: ft.Broadcast, nan: ft.Scalar = 0) -> ft.Broadcast:
+def fillna(x: ft.Broadcast, nan: ft.Scalar = 0) -> ft.Array:
     """Fill NaN values in an array with specified value.
 
     This function is a faster alternative to ``np.where(np.isnan(x), nan, x)``.
@@ -36,11 +38,12 @@ def fillna(x: ft.Broadcast, nan: ft.Scalar = 0) -> ft.Broadcast:
 
 
 def lsub(
-    la: ft.Broadcast, lb: ft.Broadcast, nan: ft.Scalar = -np.inf
-) -> ft.NPTensor:
-    """Given log(a) and log(b), calculate log(a-b). Recommend using complex_lsub instead.
+    la: ft.Broadcast, lb: ft.Broadcast, nan: ft.Scalar = -math.inf
+) -> ft.ArrTensor:
+    """Given log(a) and log(b), calculate log(a-b). Suggest complex_lsub instead.
 
-    Will fail if a < b. Recommend using :func:`complex_lsub` and taking the real part.
+    Will fail if a < b. Recommend using :func:`complex_lsub` and taking the real
+    part.
 
     AKA logsubexp. See
     https://stackoverflow.com/questions/65233445/how-to-calculate-sums-in-log-space-without-underflow
@@ -59,20 +62,18 @@ def lsub(
     ft.NPTensor
         The value of `log(a - b)`.
     """
-    la, lb = fillna(la, nan), fillna(lb, nan)
-    if la.size > lb.size:
-        lb = np.broadcast_to(lb, la.shape)
-    elif la.size < lb.size:
-        la = np.broadcast_to(la, lb.shape)
+    xp = xpc.array_namespace(la, lb)
+    la = fillna(la, nan)
+    lb = fillna(lb, nan)
+    if xpc.size(la) > xpc.size(lb):
+        lb = xp.broadcast_to(lb, la.shape)
+    elif xpc.size(la) < xpc.size(lb):
+        la = xp.broadcast_to(la, lb.shape)
     lb_minus_la = lb - la
     method = lb_minus_la < -0.6931471805599453  # noqa: PLR2004
-
-    res = np.empty_like(lb_minus_la)
-    res[method] = la[method] + np.log1p(-np.exp(lb_minus_la[method]))
-
-    method = ~method
-    res[method] = la[method] + np.log(-np.expm1(lb_minus_la[method]))
-    return res
+    res_method1 = la + xp.log1p(-xp.exp(lb_minus_la))
+    res_method2 = la + xp.log(-xp.expm1(lb_minus_la))
+    return xp.where(method, res_method1, res_method2)
 
 
 def complex_lsub(
@@ -97,12 +98,16 @@ def complex_lsub(
     ft.NPTensor
         The value of `log(a - b)` as a complex number.
     """
-    la, lb = fillna(la, nan).astype(complex), fillna(lb, nan).astype(complex)
-    if la.size > lb.size:
-        lb = np.broadcast_to(lb, la.shape)
-    elif la.size < lb.size:
-        la = np.broadcast_to(la, lb.shape)
-    return la + np.log(-np.expm1(lb - la))
+    xp = xpc.array_namespace(la, lb)
+
+    la = xp.astype(fillna(la, nan), complex)
+    lb = xp.astype(fillna(lb, nan), complex)
+
+    if xpc.size(la) > xpc.size(lb):
+        lb = xp.broadcast_to(lb, la.shape)
+    elif xpc.size(la) < xpc.size(lb):
+        la = xp.broadcast_to(la, lb.shape)
+    return la + xp.log(-xp.expm1(lb - la))
 
 
 def nanlse(x: ft.Broadcast, axis: int | None = None) -> ft.Broadcast:

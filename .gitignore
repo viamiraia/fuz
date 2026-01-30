@@ -1,28 +1,28 @@
 # setuptools-scm
 fuz/_version.py
 
-# data
-/data/
-
 # sphinx
 docs/source/api/
 
-# specific distiribution
-/dist/
-
-# temp and private folders
+# special folders
 temp/
+tmp/
 private/
+/data/
+/dist/
+__marimo__/
 
 # settings and AI
 claude.md
+.claude/
 .vscode/
 
 # pixi environments
- .pixi
+.pixi/*
+!.pixi/config.toml
 
-# marimo
- __marimo__/
+# ruff
+.ruff_cache/
 
 # UV virtual environments
 .venv/

@@ -1,9 +1,9 @@
 [workspace]
-  channels = ['conda-forge', 'main']
+  authors = ['Miraia Chiou <133145224+viamiraia@users.noreply.github.com>']
+  channels = ['conda-forge', 'main', 'conda-forge/label/ty_alpha']
   name = 'fuz'
   platforms = ['linux-64', 'osx-64', 'osx-arm64', 'win-64']
   preview = ['pixi-build']
-  authors = ['Miraia Chiou <133145224+viamiraia@users.noreply.github.com>']
 
 [package]
   name = 'fuz'
@@ -26,18 +26,18 @@
   doc = ['demo', 'dev', 'doc', 'array', 'maxpy', 'plot']
 
 [dependencies]
+  array-api-compat = '*'
   attrs = '*'
-  jaxtyping = '*'
   narwhals = '*'
   scipy = '*'
-  array-api-compat = '*'
 
 [pypi-dependencies]
+  array-api-typing = '*'
   fuz-core = { path = './pkg/fuz-core', editable = true }
+  fuz-demo = { path = './pkg/fuz-demo', editable = true }
   fuz-lint = { path = './pkg/fuz-lint', editable = true }
   fuz-pool = { path = './pkg/fuz-pool', editable = true }
   fuz-rank = { path = './pkg/fuz-rank', editable = true }
-  fuz-demo = { path = './pkg/fuz-demo', editable = true }
 
 [feature.plot.dependencies]
   altair = '*'
@@ -54,9 +54,10 @@
   polars = '*'
   pyinstrument = '*'
   # marimo
-  marimo = '*'
   altair = '*'
+  basedpyright = '*'
   duckdb = '*'
+  marimo = '*'
   mcp = '*'
   nbformat = '*'
   openai = '*'
@@ -65,7 +66,7 @@
   python-lsp-ruff = '*'
   python-lsp-server = '*'
   sqlglot = '*'
-  basedpyright = '*'
+  ty = { version = "*", channel = "conda-forge/label/ty_alpha" }
   vegafusion = '*'
   vl-convert-python = '*'
   websockets = '*'
@@ -88,32 +89,34 @@
   ipykernel = '*'
   ipympl = '*'
   ipywidgets = '*'
+  jaxtyping = '*'
   mypy = '*'
   nox = '*'
+  plum-dispatch = '*'
   pytest = '*'
   pytest-cov = '*'
   ruff = '*'
   scipy-stubs = '*'
   tqdm = '*'
   wat-inspector = '*'
-  plum-dispatch = '*'
   # marimo extras
   duckdb = '*'
   # nbformat = '*' # repeat
+  basedpyright = '*'
   openai = '*'
   python-lsp-ruff = '*'
   python-lsp-server = '*'
   sqlglot = '*'
-  basedpyright = '*'
+  ty = { version = "*", channel = "conda-forge/label/ty_alpha" }
   vegafusion = '*'
   vl-convert-python = '*'
   websockets = '*'
 
 [feature.dev.tasks]
+  format = 'ruff format pkg'
+  lint = 'ruff check pkg'
   mypy = 'mypy fuz'
   test = 'pytest -v tests'
-  lint = 'ruff check pkg'
-  format = 'ruff format pkg'
   test-lint = 'pytest -v pkg/fuz-lint/tests'
 
 [feature.doc.dependencies]
@@ -156,5 +159,5 @@
 
 [feature.array.dependencies]
   jax = '*'
-  pytorch = '*'
   numpy = '*'
+  pytorch = '*'
