@@ -1,6 +1,8 @@
 """Types and constants for fuz."""
 
 from collections.abc import Callable, Mapping, Sequence
+from decimal import Decimal
+from fractions import Fraction
 from numbers import Complex, Real
 from typing import (
     Annotated,
@@ -55,7 +57,7 @@ NPTensor = Num[NPArr, '...']
 
 # %%% General
 # supposedly complex works better than numbers.Complex
-Scalar: TypeAlias = Real | Complex
+Scalar: TypeAlias = float | int | complex | Decimal | Fraction
 ArrScalar: TypeAlias = Scalar | Array
 VecLike: TypeAlias = Sequence[Scalar] | Array
 Broadcast: TypeAlias = ArrScalar | VecLike

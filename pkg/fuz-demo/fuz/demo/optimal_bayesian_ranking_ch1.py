@@ -1,7 +1,7 @@
 import marimo
 
-__generated_with = '0.17.7'
-app = marimo.App(app_title='optimal bayesian ranking ch1')
+__generated_with = "0.19.7"
+app = marimo.App(app_title="optimal bayesian ranking ch1")
 
 
 @app.cell(hide_code=True)
@@ -33,7 +33,6 @@ def _(mo):
 @app.cell(hide_code=True)
 def _():
     from scipy.stats import bernoulli
-
     return (bernoulli,)
 
 
@@ -84,7 +83,6 @@ def _(mo):
 @app.cell(hide_code=True)
 def _():
     from scipy.stats import binom
-
     return (binom,)
 
 
@@ -238,7 +236,6 @@ def _():
     from scipy.integrate import quad
 
     import fuz.dists as fd
-
     return fd, quad
 
 
@@ -263,7 +260,6 @@ def _(Callable, Sequence, alt, np, pd):
             alt.X('x'), alt.Y('pdf'), alt.Color('name'), alt.StrokeDash('name')
         )
         return base.mark_line(opacity=0.5, strokeWidth=9)
-
     return (plot_betas,)
 
 
@@ -511,7 +507,6 @@ def _(Sequence, alt, np, pd):
             alt.Text('probability', format='.2f')
         )
         return _bar + _text
-
     return (plot_bernoulli,)
 
 
@@ -526,7 +521,6 @@ def _(alt, np, pd, rv_discrete_frozen):
         line = base.mark_line()
         point = base.mark_point()
         return line + point
-
     return (plot_binomial,)
 
 
@@ -550,9 +544,9 @@ def _():
     )
 
     import fuz.lint as flog
+    from collections.abc import Sequence, Callable
+    return Callable, Sequence, alt, flog, mo, np, pd, rv_discrete_frozen
 
-    return alt, flog, mo, np, pd, rv_discrete_frozen
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()

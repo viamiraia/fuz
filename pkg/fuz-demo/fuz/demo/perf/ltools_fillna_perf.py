@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.18.1"
+__generated_with = "0.20.2"
 app = marimo.App(width="columns")
 
 
@@ -43,6 +43,7 @@ def _(fillna, fillna3):
 
     def fillna_torch_wrapper3(x):
         return fillna3(x)
+
     return (
         fillna_jax_wrapper,
         fillna_jax_wrapper3,
@@ -104,7 +105,48 @@ def _():
     from pyinstrument import Profiler
     from fuz import lint
     from functools import partial
-    return Profiler, jnp, mo, np, torch, xpc
+    from typing import TypeAlias
+    from attrs import frozen
+    import attrs
+
+    return Profiler, TypeAlias, frozen, jnp, mo, np, torch, xpc
+
+
+@app.cell
+def _(TypeAlias, frozen, torch):
+    DevType: TypeAlias = str | torch.device
+
+    @frozen
+    class TorchCfg:
+        device: DevType
+        seed: int | None = None
+
+    def setup_torch(seed: int | None = None) -> TorchCfg:
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        torch.set_default_device(device)
+        tcfg = TorchCfg(device=device, seed=seed)
+        return tcfg
+
+
+    def handle_tcfg(tcfg: TorchCfg | None = None):
+        if tcfg is None:
+            return torch.get_default_device()
+        device = torch.get_default_device() if tcfg.device is None else tcfg.device
+        if tcfg.seed is not None and torch.seed() != tcfg.seed:
+            torch.manual_seed(tcfg.seed)
+        return device
+
+
+    tcfg = setup_torch(seed=42)
+    tcfg
+    return
+
+
+@app.cell
+def _(torch):
+    for _i in range(torch.cuda.device_count()):
+       print(torch.cuda.get_device_properties(_i).name)
+    return
 
 
 @app.cell
@@ -134,12 +176,13 @@ def _(jnp, np, torch):
     def fillna_torch2(x, nan=0):
         """Fill NaN values in a PyTorch tensor using torch.nan_to_num."""
         return torch.nan_to_num(x, nan=nan)
-    
+
     def fillna_torch3(x, nan=0):
         """Fill NaN values in a PyTorch tensor"""
         is_nan = torch.isnan(x)
         x[is_nan] = nan
         return x
+
     return (
         fillna_jax,
         fillna_jax2,
@@ -179,19 +222,21 @@ def _(jnp, np, torch, xpc):
             return torch.nan_to_num(x, nan=nan)
         xp = xpc.array_namespace(x)   
         return xp.nan_to_num(x, nan=nan)
+
     return fillna, fillna3
 
 
 @app.cell
 def _(jnp, np, torch):
-    def setup(shape: tuple[int, ...] = (10, 5), nan_prob: float = 0.75, seed: int = 42) -> tuple[np.ndarray, jnp.ndarray, torch.Tensor]:
+    def setup(shape: tuple[int, ...] = (10, 5), nan_prob: float = 0.75, seed: int = 42, pt_device: str = 'cuda') -> tuple[np.ndarray, jnp.ndarray, torch.Tensor]:
         rng = np.random.default_rng(42)
         x_np = rng.random(shape)
         mask = rng.random(shape) < nan_prob
         x_np[mask] = np.nan
         x_jax = jnp.array(x_np)
-        x_torch = torch.from_numpy(x_np)
+        x_torch = torch.from_numpy(x_np).to(pt_device)
         return x_np, x_jax, x_torch
+
     return (setup,)
 
 

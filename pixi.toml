@@ -22,7 +22,7 @@
 [environments]
   default = ['demo', 'plot']
   dev = ['demo', 'dev', 'doc', 'array', 'minpy', 'plot', 'temp']
-  devgpu = ['demo', 'dev', 'doc', 'gpu', 'array', 'minpy', 'plot', 'temp']
+  devrocm = ['demo', 'dev', 'doc', 'rocm', 'array', 'plot', 'temp']
   doc = ['demo', 'dev', 'doc', 'array', 'maxpy', 'plot']
 
 [dependencies]
@@ -94,6 +94,7 @@
   nox = '*'
   plum-dispatch = '*'
   pytest = '*'
+  pytest-benchmark = '*'
   pytest-cov = '*'
   ruff = '*'
   scipy-stubs = '*'
@@ -107,7 +108,7 @@
   python-lsp-ruff = '*'
   python-lsp-server = '*'
   sqlglot = '*'
-  ty = { version = "*", channel = "conda-forge/label/ty_alpha" }
+  ty = '*'                # { version = "*", channel = "conda-forge/label/ty_alpha" }
   vegafusion = '*'
   vl-convert-python = '*'
   websockets = '*'
@@ -143,16 +144,16 @@
   python = '3.10.*'
 
 [feature.maxpy.dependencies]
-  python = '>3.10, <3.14'
+  python = '>=3.10'
 
 [feature.temp.dependencies]
   expression = '*'
   seaborn = '*'
 
-[feature.gpu]
+[feature.cuda]
   system-requirements = { cuda = '12' }
 
-  [feature.gpu.target.linux-64.dependencies]
+  [feature.cuda.target.linux-64.dependencies]
     # jaxlib-feedstock fixed conda cuda issue in 0.4.35
     jaxlib = { version = '>=0.4.35', build = '*cuda12*', channel = 'conda-forge' }
     pytorch-gpu = '*'
@@ -160,4 +161,17 @@
 [feature.array.dependencies]
   jax = '*'
   numpy = '*'
-  pytorch = '*'
+
+[feature.rocm]
+  [feature.rocm.dependencies]
+    python = "3.12.*"
+    nomkl = "*"
+
+  [feature.rocm.target.win-64.pypi-dependencies]
+    rocm-sdk-core = { url = "https://repo.radeon.com/rocm/windows/rocm-rel-7.2/rocm_sdk_core-7.2.0.dev0-py3-none-win_amd64.whl" }
+    rocm-sdk-devel = { url = "https://repo.radeon.com/rocm/windows/rocm-rel-7.2/rocm_sdk_devel-7.2.0.dev0-py3-none-win_amd64.whl" }
+    rocm-sdk-libraries-custom = { url = "https://repo.radeon.com/rocm/windows/rocm-rel-7.2/rocm_sdk_libraries_custom-7.2.0.dev0-py3-none-win_amd64.whl" }
+    rocm = { url = "https://repo.radeon.com/rocm/windows/rocm-rel-7.2/rocm-7.2.0.dev0.tar.gz" }
+    torch = { url = "https://repo.radeon.com/rocm/windows/rocm-rel-7.2/torch-2.9.1%2Brocmsdk20260116-cp312-cp312-win_amd64.whl" }
+    torchaudio = { url = "https://repo.radeon.com/rocm/windows/rocm-rel-7.2/torchaudio-2.9.1%2Brocmsdk20260116-cp312-cp312-win_amd64.whl" }
+    torchvision = { url = "https://repo.radeon.com/rocm/windows/rocm-rel-7.2/torchvision-0.24.1%2Brocmsdk20260116-cp312-cp312-win_amd64.whl" }
