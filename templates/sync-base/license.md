@@ -1,3 +1,6 @@
+---
+force: true
+---
 BSD 3-Clause License
 
 Copyright (c) 2024-2026, Miraia S. Chiou

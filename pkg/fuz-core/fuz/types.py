@@ -3,7 +3,7 @@
 from collections.abc import Callable, Mapping, Sequence
 from decimal import Decimal
 from fractions import Fraction
-from numbers import Complex, Real
+from numbers import Real
 from typing import (
     Annotated,
     Any,

@@ -1,0 +1,3409 @@
+{
+    "machine_info": {
+        "node": "mcflow25",
+        "processor": "AMD64 Family 26 Model 112 Stepping 0, AuthenticAMD",
+        "machine": "AMD64",
+        "python_compiler": "MSC v.1944 64 bit (AMD64)",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.12.12",
+        "python_version": "3.12.12",
+        "python_build": [
+            "main",
+            "Jan 26 2026 23:38:32"
+        ],
+        "release": "11",
+        "system": "Windows",
+        "cpu": {
+            "python_version": "3.12.12.final.0 (64 bit)",
+            "cpuinfo_version": [
+                9,
+                0,
+                0
+            ],
+            "cpuinfo_version_string": "9.0.0",
+            "arch": "X86_64",
+            "bits": 64,
+            "count": 32,
+            "arch_string_raw": "AMD64",
+            "vendor_id_raw": "AuthenticAMD",
+            "brand_raw": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+            "hz_advertised_friendly": "2.9940 GHz",
+            "hz_actual_friendly": "2.9940 GHz",
+            "hz_advertised": [
+                2994000000,
+                0
+            ],
+            "hz_actual": [
+                2994000000,
+                0
+            ],
+            "flags": [
+                "3dnow",
+                "3dnowprefetch",
+                "abm",
+                "adx",
+                "aes",
+                "apic",
+                "avx",
+                "avx2",
+                "avx512bitalg",
+                "avx512bw",
+                "avx512cd",
+                "avx512dq",
+                "avx512f",
+                "avx512ifma",
+                "avx512vbmi",
+                "avx512vbmi2",
+                "avx512vl",
+                "avx512vnni",
+                "avx512vpopcntdq",
+                "bmi1",
+                "bmi2",
+                "clflush",
+                "clflushopt",
+                "clwb",
+                "cmov",
+                "cmp_legacy",
+                "cr8_legacy",
+                "cx16",
+                "cx8",
+                "de",
+                "dts",
+                "erms",
+                "f16c",
+                "fma",
+                "fpu",
+                "fxsr",
+                "gfni",
+                "ht",
+                "hypervisor",
+                "ia64",
+                "invpcid",
+                "lahf_lm",
+                "mca",
+                "mce",
+                "misalignsse",
+                "mmx",
+                "monitor",
+                "movbe",
+                "msr",
+                "mtrr",
+                "osvw",
+                "osxsave",
+                "pae",
+                "pat",
+                "pclmulqdq",
+                "perfctr_core",
+                "pge",
+                "pni",
+                "popcnt",
+                "pqe",
+                "pqm",
+                "pse",
+                "pse36",
+                "rdpid",
+                "rdrnd",
+                "rdseed",
+                "sep",
+                "sepamd",
+                "serial",
+                "sha",
+                "smap",
+                "smep",
+                "ss",
+                "sse",
+                "sse2",
+                "sse4_1",
+                "sse4_2",
+                "sse4a",
+                "ssse3",
+                "tm",
+                "topoext",
+                "tsc",
+                "umip",
+                "vaes",
+                "vme",
+                "vpclmulqdq",
+                "wdt",
+                "xsave"
+            ],
+            "l2_cache_size": 65536,
+            "l2_cache_line_size": 1024,
+            "l2_cache_associativity": 8,
+            "model": 112,
+            "family": 26
+        },
+        "gpu": {
+            "name": "AMD Radeon(TM) 8060S Graphics",
+            "count": 1,
+            "memory_mb": 89976
+        }
+    },
+    "commit_info": {
+        "id": "21d5f62114275bb0ecf34db14b2c341061712d3d",
+        "time": "2026-03-03T19:33:52-05:00",
+        "author_time": "2026-03-03T19:33:52-05:00",
+        "dirty": true,
+        "project": "fuz",
+        "branch": "v1.0.0"
+    },
+    "benchmarks": [
+        {
+            "group": "numpy (100)",
+            "name": "test_mask_inplace[shape0]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_mask_inplace[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.5999976312741637e-06,
+                "max": 1.700012944638729e-06,
+                "mean": 1.6359995061066001e-06,
+                "stddev": 4.8241890181071974e-08,
+                "rounds": 100,
+                "median": 1.5999976312741637e-06,
+                "iqr": 1.00000761449337e-07,
+                "q1": 1.5999976312741637e-06,
+                "q3": 1.6999983927235007e-06,
+                "iqr_outliers": 0,
+                "stddev_outliers": 36,
+                "outliers": "36;0",
+                "ld15iqr": 1.5999976312741637e-06,
+                "hd15iqr": 1.700012944638729e-06,
+                "ops": 611247.1282951848,
+                "total": 0.00016359995061066002,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (10000x10)",
+            "name": "test_mask_inplace[shape1]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_mask_inplace[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0002840999950421974,
+                "max": 0.0005320999916875735,
+                "mean": 0.000319938999164151,
+                "stddev": 3.0609946965493716e-05,
+                "rounds": 100,
+                "median": 0.00031149999267654493,
+                "iqr": 9.300005331169814e-06,
+                "q1": 0.00030854999931761995,
+                "q3": 0.00031785000464878976,
+                "iqr_outliers": 28,
+                "stddev_outliers": 13,
+                "outliers": "13;28",
+                "ld15iqr": 0.0002953999937744811,
+                "hd15iqr": 0.00033599999733269215,
+                "ops": 3125.5958248682596,
+                "total": 0.0319938999164151,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (1000x1000)",
+            "name": "test_mask_inplace[shape2]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_mask_inplace[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0030380999960470945,
+                "max": 0.0044273999956203625,
+                "mean": 0.003400646999798482,
+                "stddev": 0.0003280516316732976,
+                "rounds": 100,
+                "median": 0.003309449995867908,
+                "iqr": 0.00033755000185919926,
+                "q1": 0.0031565500030410476,
+                "q3": 0.003494100004900247,
+                "iqr_outliers": 9,
+                "stddev_outliers": 18,
+                "outliers": "18;9",
+                "ld15iqr": 0.0030380999960470945,
+                "hd15iqr": 0.0040025999915087596,
+                "ops": 294.06168886663585,
+                "total": 0.34006469997984823,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (100)",
+            "name": "test_mask_copy[shape0]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_mask_copy[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.0999938240274787e-06,
+                "max": 1.0599993402138352e-05,
+                "mean": 1.1663039608104717e-06,
+                "stddev": 2.3566317337520953e-07,
+                "rounds": 17922,
+                "median": 1.100008375942707e-06,
+                "iqr": 1.00000761449337e-07,
+                "q1": 1.0999938240274787e-06,
+                "q3": 1.1999945854768157e-06,
+                "iqr_outliers": 368,
+                "stddev_outliers": 366,
+                "outliers": "366;368",
+                "ld15iqr": 1.0999938240274787e-06,
+                "hd15iqr": 1.3999961083754897e-06,
+                "ops": 857409.4177859895,
+                "total": 0.020902499585645273,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (10000x10)",
+            "name": "test_mask_copy[shape1]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_mask_copy[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00027829999453388155,
+                "max": 0.0006106000073486939,
+                "mean": 0.0003135920013899678,
+                "stddev": 3.593428320631909e-05,
+                "rounds": 2888,
+                "median": 0.000302100001135841,
+                "iqr": 2.0399995264597237e-05,
+                "q1": 0.0002945000014733523,
+                "q3": 0.00031489999673794955,
+                "iqr_outliers": 409,
+                "stddev_outliers": 405,
+                "outliers": "405;409",
+                "ld15iqr": 0.00027829999453388155,
+                "hd15iqr": 0.0003462000022409484,
+                "ops": 3188.8568444590155,
+                "total": 0.9056537000142271,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (1000x1000)",
+            "name": "test_mask_copy[shape2]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_mask_copy[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004040500003611669,
+                "max": 0.005632000000332482,
+                "mean": 0.004342108620503809,
+                "stddev": 0.0003112597820353084,
+                "rounds": 232,
+                "median": 0.004252699996868614,
+                "iqr": 0.00023875000624684617,
+                "q1": 0.004135650000534952,
+                "q3": 0.004374400006781798,
+                "iqr_outliers": 28,
+                "stddev_outliers": 32,
+                "outliers": "32;28",
+                "ld15iqr": 0.004040500003611669,
+                "hd15iqr": 0.004777699999976903,
+                "ops": 230.30285223126717,
+                "total": 1.0073691999568837,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (100)",
+            "name": "test_where[shape0]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_where[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.3999961083754897e-06,
+                "max": 7.88000033935532e-05,
+                "mean": 1.6133527552979664e-06,
+                "stddev": 6.251587078101168e-07,
+                "rounds": 66226,
+                "median": 1.500011421740055e-06,
+                "iqr": 1.0001531336456537e-07,
+                "q1": 1.4999968698248267e-06,
+                "q3": 1.600012183189392e-06,
+                "iqr_outliers": 5920,
+                "stddev_outliers": 1684,
+                "outliers": "1684;5920",
+                "ld15iqr": 1.3999961083754897e-06,
+                "hd15iqr": 1.7999991541728377e-06,
+                "ops": 619827.2490105936,
+                "total": 0.10684589957236312,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (10000x10)",
+            "name": "test_where[shape1]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_where[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.029999010730535e-05,
+                "max": 0.001418899992131628,
+                "mean": 5.657148158581317e-05,
+                "stddev": 1.3309234172309e-05,
+                "rounds": 14815,
+                "median": 5.4100004490464926e-05,
+                "iqr": 6.499991286545992e-06,
+                "q1": 5.220000457484275e-05,
+                "q3": 5.869999586138874e-05,
+                "iqr_outliers": 827,
+                "stddev_outliers": 563,
+                "outliers": "563;827",
+                "ld15iqr": 5.029999010730535e-05,
+                "hd15iqr": 6.849999772384763e-05,
+                "ops": 17676.751111478352,
+                "total": 0.8381064996938221,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (1000x1000)",
+            "name": "test_where[shape2]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_where[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0013381000026129186,
+                "max": 0.0030520000000251457,
+                "mean": 0.0014966990639435275,
+                "stddev": 0.00015389731029267017,
+                "rounds": 641,
+                "median": 0.001452099997550249,
+                "iqr": 0.00013177499204175547,
+                "q1": 0.0014128750044619665,
+                "q3": 0.001544649996503722,
+                "iqr_outliers": 19,
+                "stddev_outliers": 61,
+                "outliers": "61;19",
+                "ld15iqr": 0.0013381000026129186,
+                "hd15iqr": 0.0017436999914934859,
+                "ops": 668.1369849762473,
+                "total": 0.9593840999878012,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (100)",
+            "name": "test_n2n[shape0]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_n2n[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.199995939619839e-06,
+                "max": 7.409999670926481e-05,
+                "mean": 7.299404860122031e-06,
+                "stddev": 2.2490997406149604e-06,
+                "rounds": 14451,
+                "median": 5.699999746866524e-06,
+                "iqr": 4.2000028770416975e-06,
+                "q1": 5.49999822396785e-06,
+                "q3": 9.700001101009548e-06,
+                "iqr_outliers": 23,
+                "stddev_outliers": 5080,
+                "outliers": "5080;23",
+                "ld15iqr": 5.199995939619839e-06,
+                "hd15iqr": 1.649999467190355e-05,
+                "ops": 136997.47022708398,
+                "total": 0.10548369963362347,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (10000x10)",
+            "name": "test_n2n[shape1]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_n2n[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0003147999959765002,
+                "max": 0.0006744999991497025,
+                "mean": 0.00035481342193087164,
+                "stddev": 4.198898515520204e-05,
+                "rounds": 2183,
+                "median": 0.0003429999924264848,
+                "iqr": 2.5774996174732223e-05,
+                "q1": 0.0003319999959785491,
+                "q3": 0.00035777499215328135,
+                "iqr_outliers": 261,
+                "stddev_outliers": 260,
+                "outliers": "260;261",
+                "ld15iqr": 0.0003147999959765002,
+                "hd15iqr": 0.00039670000842306763,
+                "ops": 2818.3826715406226,
+                "total": 0.7745577000750927,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (1000x1000)",
+            "name": "test_n2n[shape2]",
+            "fullname": "test_fillna.py::TestFillnaNumpy::test_n2n[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004497499990975484,
+                "max": 0.006180899988976307,
+                "mean": 0.004947088325519096,
+                "stddev": 0.00040408932776309905,
+                "rounds": 197,
+                "median": 0.004828699995414354,
+                "iqr": 0.000338999987434363,
+                "q1": 0.004673500006902032,
+                "q3": 0.005012499994336395,
+                "iqr_outliers": 31,
+                "stddev_outliers": 46,
+                "outliers": "46;31",
+                "ld15iqr": 0.004497499990975484,
+                "hd15iqr": 0.005531000002520159,
+                "ops": 202.13910369087063,
+                "total": 0.9745764001272619,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (100)",
+            "name": "test_where[shape0]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_where[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 8.000002708286047e-06,
+                "max": 5.5900003644637764e-05,
+                "mean": 1.0760869886523679e-05,
+                "stddev": 9.870606233986236e-06,
+                "rounds": 23,
+                "median": 8.499991963617504e-06,
+                "iqr": 8.499955583829433e-07,
+                "q1": 8.225000783568248e-06,
+                "q3": 9.074996341951191e-06,
+                "iqr_outliers": 2,
+                "stddev_outliers": 1,
+                "outliers": "1;2",
+                "ld15iqr": 8.000002708286047e-06,
+                "hd15iqr": 1.170000177808106e-05,
+                "ops": 92929.29015453899,
+                "total": 0.00024750000739004463,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (10000x10)",
+            "name": "test_where[shape1]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_where[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 9.099996532313526e-06,
+                "max": 0.00011809999705292284,
+                "mean": 2.190000073328106e-05,
+                "stddev": 2.7733202983719107e-05,
+                "rounds": 22,
+                "median": 1.0149989975616336e-05,
+                "iqr": 1.5999976312741637e-06,
+                "q1": 9.900002623908222e-06,
+                "q3": 1.1500000255182385e-05,
+                "iqr_outliers": 4,
+                "stddev_outliers": 4,
+                "outliers": "4;4",
+                "ld15iqr": 9.099996532313526e-06,
+                "hd15iqr": 5.020000389777124e-05,
+                "ops": 45662.098927709936,
+                "total": 0.0004818000161321834,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (1000x1000)",
+            "name": "test_where[shape2]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_where[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.1600001016631722e-05,
+                "max": 0.00046540000766981393,
+                "mean": 8.61399996210821e-05,
+                "stddev": 0.0001339752223258933,
+                "rounds": 20,
+                "median": 1.995000638999045e-05,
+                "iqr": 4.18499912484549e-05,
+                "q1": 1.61500065587461e-05,
+                "q3": 5.7999997807201e-05,
+                "iqr_outliers": 4,
+                "stddev_outliers": 4,
+                "outliers": "4;4",
+                "ld15iqr": 1.1600001016631722e-05,
+                "hd15iqr": 0.0002891999902203679,
+                "ops": 11609.008641732775,
+                "total": 0.001722799992421642,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (100)",
+            "name": "test_n2n[shape0]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_n2n[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 6.799993570894003e-06,
+                "max": 3.599999763537198e-05,
+                "mean": 8.161110195538236e-06,
+                "stddev": 4.800611378503133e-06,
+                "rounds": 36,
+                "median": 7.2499969974160194e-06,
+                "iqr": 6.499903975054622e-07,
+                "q1": 7.000009645707905e-06,
+                "q3": 7.650000043213367e-06,
+                "iqr_outliers": 2,
+                "stddev_outliers": 1,
+                "outliers": "1;2",
+                "ld15iqr": 6.799993570894003e-06,
+                "hd15iqr": 9.499999578110874e-06,
+                "ops": 122532.34866828664,
+                "total": 0.0002937999670393765,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (10000x10)",
+            "name": "test_n2n[shape1]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_n2n[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.5000051613897085e-06,
+                "max": 3.2099997042678297e-05,
+                "mean": 6.888238096828846e-06,
+                "stddev": 6.529057070644601e-06,
+                "rounds": 17,
+                "median": 5.399997462518513e-06,
+                "iqr": 8.500028343405575e-07,
+                "q1": 4.775007255375385e-06,
+                "q3": 5.625010089715943e-06,
+                "iqr_outliers": 2,
+                "stddev_outliers": 1,
+                "outliers": "1;2",
+                "ld15iqr": 4.5000051613897085e-06,
+                "hd15iqr": 7.100010407157242e-06,
+                "ops": 145175.00497846788,
+                "total": 0.00011710004764609039,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (1000x1000)",
+            "name": "test_n2n[shape2]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_n2n[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.2000028770416975e-06,
+                "max": 3.1499992473982275e-05,
+                "mean": 6.209999749747416e-06,
+                "stddev": 4.836237852183591e-06,
+                "rounds": 30,
+                "median": 5.149995558895171e-06,
+                "iqr": 8.00006091594696e-07,
+                "q1": 4.999994416721165e-06,
+                "q3": 5.800000508315861e-06,
+                "iqr_outliers": 2,
+                "stddev_outliers": 1,
+                "outliers": "1;2",
+                "ld15iqr": 4.2000028770416975e-06,
+                "hd15iqr": 7.700000423938036e-06,
+                "ops": 161030.6023024677,
+                "total": 0.00018629999249242246,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (100)",
+            "name": "test_mask[shape0]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_mask[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00029739999445155263,
+                "max": 0.0009007000044221058,
+                "mean": 0.0004344125027273549,
+                "stddev": 0.00021686995825049668,
+                "rounds": 8,
+                "median": 0.0003279000011389144,
+                "iqr": 0.00019250000332249328,
+                "q1": 0.0003091000035055913,
+                "q3": 0.0005016000068280846,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.00029739999445155263,
+                "hd15iqr": 0.0009007000044221058,
+                "ops": 2301.9595286087288,
+                "total": 0.003475300021818839,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (10000x10)",
+            "name": "test_mask[shape1]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_mask[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0012876999971922487,
+                "max": 0.00228390000120271,
+                "mean": 0.001490687498517218,
+                "stddev": 0.0003361839025544439,
+                "rounds": 8,
+                "median": 0.0013525999966077507,
+                "iqr": 0.00023345000226981938,
+                "q1": 0.0012954499979969114,
+                "q3": 0.0015289000002667308,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.0012876999971922487,
+                "hd15iqr": 0.00228390000120271,
+                "ops": 670.8314123481258,
+                "total": 0.011925499988137744,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (1000x1000)",
+            "name": "test_mask[shape2]",
+            "fullname": "test_fillna.py::TestFillnaJax::test_mask[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00835559998813551,
+                "max": 0.010764000006020069,
+                "mean": 0.010015557139662892,
+                "stddev": 0.0007797340113811673,
+                "rounds": 7,
+                "median": 0.010244099990813993,
+                "iqr": 0.000437599988799775,
+                "q1": 0.009982975003367756,
+                "q3": 0.01042057499216753,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.00997260000440292,
+                "hd15iqr": 0.010764000006020069,
+                "ops": 99.84467025202937,
+                "total": 0.07010889997764025,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (100)",
+            "name": "test_where[cpu-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_where[cpu-shape0]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cpu-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.2999960239976645e-06,
+                "max": 2.099999983329326e-05,
+                "mean": 3.6253874682929407e-06,
+                "stddev": 5.942308712993173e-07,
+                "rounds": 2387,
+                "median": 3.5999983083456755e-06,
+                "iqr": 2.00001522898674e-07,
+                "q1": 3.4999975468963385e-06,
+                "q3": 3.6999990697950125e-06,
+                "iqr_outliers": 25,
+                "stddev_outliers": 22,
+                "outliers": "22;25",
+                "ld15iqr": 3.2999960239976645e-06,
+                "hd15iqr": 4.1000021155923605e-06,
+                "ops": 275832.58582588483,
+                "total": 0.00865379988681525,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (10000x10)",
+            "name": "test_where[cpu-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_where[cpu-shape1]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cpu-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.3800002206116915e-05,
+                "max": 0.00027540000155568123,
+                "mean": 7.816918281056339e-05,
+                "stddev": 2.352365063383659e-05,
+                "rounds": 159,
+                "median": 7.509998977184296e-05,
+                "iqr": 1.562500256113708e-05,
+                "q1": 6.469999789260328e-05,
+                "q3": 8.032500045374036e-05,
+                "iqr_outliers": 13,
+                "stddev_outliers": 15,
+                "outliers": "15;13",
+                "ld15iqr": 5.3800002206116915e-05,
+                "hd15iqr": 0.0001049999991664663,
+                "ops": 12792.765179897277,
+                "total": 0.012428900066879578,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (1000x1000)",
+            "name": "test_where[cpu-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_where[cpu-shape2]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cpu-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00015090001397766173,
+                "max": 0.0006454999966081232,
+                "mean": 0.00017983779122630146,
+                "stddev": 3.654180307604412e-05,
+                "rounds": 1630,
+                "median": 0.0001694999955361709,
+                "iqr": 1.1900003300979733e-05,
+                "q1": 0.00016419999883510172,
+                "q3": 0.00017610000213608146,
+                "iqr_outliers": 216,
+                "stddev_outliers": 156,
+                "outliers": "156;216",
+                "ld15iqr": 0.00015090001397766173,
+                "hd15iqr": 0.00019469999824650586,
+                "ops": 5560.566514863584,
+                "total": 0.2931355996988714,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (100)",
+            "name": "test_where[cuda-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_where[cuda-shape0]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cuda-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.339999916031957e-05,
+                "max": 0.000716499998816289,
+                "mean": 0.00018896250003308523,
+                "stddev": 0.00022608534863439634,
+                "rounds": 8,
+                "median": 8.750000415602699e-05,
+                "iqr": 0.000173999993421603,
+                "q1": 5.4700001783203334e-05,
+                "q3": 0.00022869999520480633,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 5.339999916031957e-05,
+                "hd15iqr": 0.000716499998816289,
+                "ops": 5292.055301051326,
+                "total": 0.0015117000002646819,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (10000x10)",
+            "name": "test_where[cuda-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_where[cuda-shape1]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cuda-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.149999585933983e-05,
+                "max": 0.00023570000485051423,
+                "mean": 5.508950401075834e-05,
+                "stddev": 1.778377508181047e-05,
+                "rounds": 5021,
+                "median": 4.8600006266497076e-05,
+                "iqr": 9.8999917099718e-06,
+                "q1": 4.579999949783087e-05,
+                "q3": 5.569999120780267e-05,
+                "iqr_outliers": 509,
+                "stddev_outliers": 467,
+                "outliers": "467;509",
+                "ld15iqr": 4.149999585933983e-05,
+                "hd15iqr": 7.059999916236848e-05,
+                "ops": 18152.278150928923,
+                "total": 0.27660439963801764,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (1000x1000)",
+            "name": "test_where[cuda-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_where[cuda-shape2]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cuda-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 6.560000474564731e-05,
+                "max": 0.0003336000081617385,
+                "mean": 9.697518041314455e-05,
+                "stddev": 2.6400968936713556e-05,
+                "rounds": 4988,
+                "median": 8.850000449456275e-05,
+                "iqr": 1.3700002455152571e-05,
+                "q1": 8.230000094044954e-05,
+                "q3": 9.600000339560211e-05,
+                "iqr_outliers": 648,
+                "stddev_outliers": 546,
+                "outliers": "546;648",
+                "ld15iqr": 6.560000474564731e-05,
+                "hd15iqr": 0.00011660000018309802,
+                "ops": 10311.916881615356,
+                "total": 0.48371219990076497,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (100)",
+            "name": "test_n2n[cpu-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_n2n[cpu-shape0]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cpu-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.4999968698248267e-06,
+                "max": 1.5400000847876072e-05,
+                "mean": 1.9063448525381464e-06,
+                "stddev": 4.7177097896991355e-07,
+                "rounds": 9882,
+                "median": 1.7999991541728377e-06,
+                "iqr": 2.00001522898674e-07,
+                "q1": 1.6999983927235007e-06,
+                "q3": 1.8999999156221747e-06,
+                "iqr_outliers": 1112,
+                "stddev_outliers": 1105,
+                "outliers": "1105;1112",
+                "ld15iqr": 1.4999968698248267e-06,
+                "hd15iqr": 2.2999884095042944e-06,
+                "ops": 524564.0623041417,
+                "total": 0.018838499832781963,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (10000x10)",
+            "name": "test_n2n[cpu-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_n2n[cpu-shape1]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cpu-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 7.299997378140688e-06,
+                "max": 0.00032479999936185777,
+                "mean": 1.3264815195575711e-05,
+                "stddev": 9.71450852380865e-06,
+                "rounds": 9470,
+                "median": 1.1399999493733048e-05,
+                "iqr": 4.9000082071870565e-06,
+                "q1": 9.499999578110874e-06,
+                "q3": 1.440000778529793e-05,
+                "iqr_outliers": 384,
+                "stddev_outliers": 339,
+                "outliers": "339;384",
+                "ld15iqr": 7.299997378140688e-06,
+                "hd15iqr": 2.1799991372972727e-05,
+                "ops": 75387.40534685593,
+                "total": 0.12561779990210198,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (1000x1000)",
+            "name": "test_n2n[cpu-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_n2n[cpu-shape2]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cpu-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.1899992134422064e-05,
+                "max": 0.001379199995426461,
+                "mean": 3.395740032514284e-05,
+                "stddev": 2.9417174570893365e-05,
+                "rounds": 6270,
+                "median": 2.819999644998461e-05,
+                "iqr": 2.2999884095042944e-06,
+                "q1": 2.7300004148855805e-05,
+                "q3": 2.95999925583601e-05,
+                "iqr_outliers": 1081,
+                "stddev_outliers": 347,
+                "outliers": "347;1081",
+                "ld15iqr": 2.3899992811493576e-05,
+                "hd15iqr": 3.309999010525644e-05,
+                "ops": 29448.661865307076,
+                "total": 0.2129129000386456,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (100)",
+            "name": "test_n2n[cuda-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_n2n[cuda-shape0]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cuda-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 6.78999931551516e-05,
+                "max": 0.00047820000327192247,
+                "mean": 0.0001676642818243376,
+                "stddev": 0.00011097495839751776,
+                "rounds": 14,
+                "median": 0.0001375499996356666,
+                "iqr": 7.510000432375818e-05,
+                "q1": 9.82999918051064e-05,
+                "q3": 0.00017339999612886459,
+                "iqr_outliers": 2,
+                "stddev_outliers": 2,
+                "outliers": "2;2",
+                "ld15iqr": 6.78999931551516e-05,
+                "hd15iqr": 0.0003274999908171594,
+                "ops": 5964.299546206886,
+                "total": 0.002347299945540726,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (10000x10)",
+            "name": "test_n2n[cuda-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_n2n[cuda-shape1]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cuda-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.9300004825927317e-05,
+                "max": 0.0003117000014754012,
+                "mean": 6.736466295330334e-05,
+                "stddev": 3.4609128134267885e-05,
+                "rounds": 5074,
+                "median": 6.510000093840063e-05,
+                "iqr": 4.329999501351267e-05,
+                "q1": 3.809999907389283e-05,
+                "q3": 8.13999940874055e-05,
+                "iqr_outliers": 179,
+                "stddev_outliers": 679,
+                "outliers": "679;179",
+                "ld15iqr": 2.9300004825927317e-05,
+                "hd15iqr": 0.0001463999942643568,
+                "ops": 14844.57809420337,
+                "total": 0.3418082998250611,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (1000x1000)",
+            "name": "test_n2n[cuda-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_n2n[cuda-shape2]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cuda-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.529999569058418e-05,
+                "max": 0.00028900000324938446,
+                "mean": 7.29451327127379e-05,
+                "stddev": 2.297115416177382e-05,
+                "rounds": 4263,
+                "median": 6.679999933112413e-05,
+                "iqr": 1.0599993402138352e-05,
+                "q1": 6.120000034570694e-05,
+                "q3": 7.179999374784529e-05,
+                "iqr_outliers": 476,
+                "stddev_outliers": 408,
+                "outliers": "408;476",
+                "ld15iqr": 5.060000694356859e-05,
+                "hd15iqr": 8.769999840296805e-05,
+                "ops": 13708.933863182581,
+                "total": 0.31096510075440165,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (100)",
+            "name": "test_mask_inplace[cpu-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_inplace[cpu-shape0]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cpu-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.9999937396496534e-06,
+                "max": 9.499999578110874e-06,
+                "mean": 3.125999792246148e-06,
+                "stddev": 6.480148948214681e-07,
+                "rounds": 100,
+                "median": 3.0999945010989904e-06,
+                "iqr": 1.0001531336456537e-07,
+                "q1": 2.9999937396496534e-06,
+                "q3": 3.100009053014219e-06,
+                "iqr_outliers": 3,
+                "stddev_outliers": 1,
+                "outliers": "1;3",
+                "ld15iqr": 2.9999937396496534e-06,
+                "hd15iqr": 3.2999960239976645e-06,
+                "ops": 319897.65401790466,
+                "total": 0.0003125999792246148,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (10000x10)",
+            "name": "test_mask_inplace[cpu-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_inplace[cpu-shape1]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cpu-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 7.480000203941017e-05,
+                "max": 0.00038019999919924885,
+                "mean": 0.00010646099908626639,
+                "stddev": 4.331856811039149e-05,
+                "rounds": 100,
+                "median": 9.980000322684646e-05,
+                "iqr": 2.7449998015072197e-05,
+                "q1": 8.465000428259373e-05,
+                "q3": 0.00011210000229766592,
+                "iqr_outliers": 5,
+                "stddev_outliers": 6,
+                "outliers": "6;5",
+                "ld15iqr": 7.480000203941017e-05,
+                "hd15iqr": 0.00015469999925699085,
+                "ops": 9393.111172944096,
+                "total": 0.010646099908626638,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (1000x1000)",
+            "name": "test_mask_inplace[cpu-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_inplace[cpu-shape2]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cpu-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0002753000007942319,
+                "max": 0.0005073999927844852,
+                "mean": 0.0003244139994785655,
+                "stddev": 3.520490350001608e-05,
+                "rounds": 100,
+                "median": 0.00031709999893791974,
+                "iqr": 3.445000038482249e-05,
+                "q1": 0.0003007499981322326,
+                "q3": 0.00033519999851705506,
+                "iqr_outliers": 4,
+                "stddev_outliers": 18,
+                "outliers": "18;4",
+                "ld15iqr": 0.0002753000007942319,
+                "hd15iqr": 0.0004017999890493229,
+                "ops": 3082.481032283785,
+                "total": 0.03244139994785655,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (100)",
+            "name": "test_mask_inplace[cuda-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_inplace[cuda-shape0]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cuda-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 7.229999755509198e-05,
+                "max": 0.00030449999030679464,
+                "mean": 0.00010712400035117753,
+                "stddev": 3.832885320891066e-05,
+                "rounds": 100,
+                "median": 9.874999523162842e-05,
+                "iqr": 2.9999995604157448e-05,
+                "q1": 8.140000136336312e-05,
+                "q3": 0.00011139999696752056,
+                "iqr_outliers": 8,
+                "stddev_outliers": 11,
+                "outliers": "11;8",
+                "ld15iqr": 7.229999755509198e-05,
+                "hd15iqr": 0.00015729998995084316,
+                "ops": 9334.97625855799,
+                "total": 0.010712400035117753,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (10000x10)",
+            "name": "test_mask_inplace[cuda-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_inplace[cuda-shape1]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cuda-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 8.090000483207405e-05,
+                "max": 0.0002648000081535429,
+                "mean": 0.0001121650003187824,
+                "stddev": 3.6839584901839226e-05,
+                "rounds": 100,
+                "median": 9.759999375091866e-05,
+                "iqr": 3.3549993531778455e-05,
+                "q1": 8.795000030659139e-05,
+                "q3": 0.00012149999383836985,
+                "iqr_outliers": 8,
+                "stddev_outliers": 14,
+                "outliers": "14;8",
+                "ld15iqr": 8.090000483207405e-05,
+                "hd15iqr": 0.00018600000475998968,
+                "ops": 8915.437053964388,
+                "total": 0.01121650003187824,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (1000x1000)",
+            "name": "test_mask_inplace[cuda-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_inplace[cuda-shape2]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cuda-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00015639999764971435,
+                "max": 0.00039770000148564577,
+                "mean": 0.00027947200011112726,
+                "stddev": 6.351725555031449e-05,
+                "rounds": 100,
+                "median": 0.000287499999103602,
+                "iqr": 0.00010834999557118863,
+                "q1": 0.0002182000025641173,
+                "q3": 0.00032654999813530594,
+                "iqr_outliers": 0,
+                "stddev_outliers": 41,
+                "outliers": "41;0",
+                "ld15iqr": 0.00015639999764971435,
+                "hd15iqr": 0.00039770000148564577,
+                "ops": 3578.1759875850425,
+                "total": 0.027947200011112727,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (100)",
+            "name": "test_mask_copy[cpu-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_copy[cpu-shape0]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cpu-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.7999998312443495e-06,
+                "max": 7.37999944249168e-05,
+                "mean": 5.190796285032106e-06,
+                "stddev": 1.4633184354149315e-06,
+                "rounds": 9757,
+                "median": 4.699992132373154e-06,
+                "iqr": 1.8999999156221747e-06,
+                "q1": 4.1000021155923605e-06,
+                "q3": 6.000002031214535e-06,
+                "iqr_outliers": 29,
+                "stddev_outliers": 1463,
+                "outliers": "1463;29",
+                "ld15iqr": 3.7999998312443495e-06,
+                "hd15iqr": 8.999995770864189e-06,
+                "ops": 192648.66989358547,
+                "total": 0.050646599353058264,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (10000x10)",
+            "name": "test_mask_copy[cpu-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_copy[cpu-shape1]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cpu-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.3499996536411345e-05,
+                "max": 0.0019434999994700775,
+                "mean": 6.696141708704994e-05,
+                "stddev": 3.954818172762824e-05,
+                "rounds": 4883,
+                "median": 6.0300008044578135e-05,
+                "iqr": 1.9699989934451878e-05,
+                "q1": 4.980000085197389e-05,
+                "q3": 6.949999078642577e-05,
+                "iqr_outliers": 406,
+                "stddev_outliers": 344,
+                "outliers": "344;406",
+                "ld15iqr": 4.3499996536411345e-05,
+                "hd15iqr": 9.910001244861633e-05,
+                "ops": 14933.973077361827,
+                "total": 0.32697259963606484,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (1000x1000)",
+            "name": "test_mask_copy[cpu-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_copy[cpu-shape2]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cpu-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.000254700004006736,
+                "max": 0.0007775999984005466,
+                "mean": 0.0003092399484934476,
+                "stddev": 3.4991097922132165e-05,
+                "rounds": 1174,
+                "median": 0.0003006000042660162,
+                "iqr": 2.3199987481348217e-05,
+                "q1": 0.00029180001001805067,
+                "q3": 0.0003149999974993989,
+                "iqr_outliers": 89,
+                "stddev_outliers": 124,
+                "outliers": "124;89",
+                "ld15iqr": 0.0002578999992692843,
+                "hd15iqr": 0.00034980000054929405,
+                "ops": 3233.7348549946123,
+                "total": 0.36304769953130744,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (100)",
+            "name": "test_mask_copy[cuda-shape0]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_copy[cuda-shape0]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cuda-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 6.199999188538641e-05,
+                "max": 0.0004687999899033457,
+                "mean": 0.00010218140646175576,
+                "stddev": 4.0816342541434735e-05,
+                "rounds": 3114,
+                "median": 8.774999878369272e-05,
+                "iqr": 3.370000922586769e-05,
+                "q1": 7.79999973019585e-05,
+                "q3": 0.00011170000652782619,
+                "iqr_outliers": 197,
+                "stddev_outliers": 314,
+                "outliers": "314;197",
+                "ld15iqr": 6.199999188538641e-05,
+                "hd15iqr": 0.00016239999968092889,
+                "ops": 9786.516301028581,
+                "total": 0.31819289972190745,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (10000x10)",
+            "name": "test_mask_copy[cuda-shape1]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_copy[cuda-shape1]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cuda-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.169999738223851e-05,
+                "max": 0.000298700004350394,
+                "mean": 6.217751812528619e-05,
+                "stddev": 2.5868146456643325e-05,
+                "rounds": 5818,
+                "median": 5.1099996198900044e-05,
+                "iqr": 2.190002123825252e-05,
+                "q1": 4.6599991037510335e-05,
+                "q3": 6.850001227576286e-05,
+                "iqr_outliers": 352,
+                "stddev_outliers": 878,
+                "outliers": "878;352",
+                "ld15iqr": 4.169999738223851e-05,
+                "hd15iqr": 0.00010150000161956996,
+                "ops": 16082.983530880476,
+                "total": 0.361748800452915,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (1000x1000)",
+            "name": "test_mask_copy[cuda-shape2]",
+            "fullname": "test_fillna.py::TestFillnaTorch::test_mask_copy[cuda-shape2]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cuda-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 9.279999358113855e-05,
+                "max": 0.00032869999995455146,
+                "mean": 0.00013447740764398783,
+                "stddev": 2.985615183066239e-05,
+                "rounds": 3333,
+                "median": 0.00013040000339969993,
+                "iqr": 3.4325003070989624e-05,
+                "q1": 0.00011160000212839805,
+                "q3": 0.00014592500519938767,
+                "iqr_outliers": 157,
+                "stddev_outliers": 656,
+                "outliers": "656;157",
+                "ld15iqr": 9.279999358113855e-05,
+                "hd15iqr": 0.00019750000501517206,
+                "ops": 7436.193316927816,
+                "total": 0.44821319967741147,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (100)",
+            "name": "test_mask_xpc_np[shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_np[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.0000006770715117e-06,
+                "max": 7.899987394921482e-06,
+                "mean": 2.4739122676217686e-06,
+                "stddev": 1.2303772036418957e-06,
+                "rounds": 23,
+                "median": 2.1999876480549574e-06,
+                "iqr": 1.00000761449337e-07,
+                "q1": 2.1000014385208488e-06,
+                "q3": 2.2000021999701858e-06,
+                "iqr_outliers": 4,
+                "stddev_outliers": 1,
+                "outliers": "1;4",
+                "ld15iqr": 2.0000006770715117e-06,
+                "hd15iqr": 2.4000037228688598e-06,
+                "ops": 404218.0529551778,
+                "total": 5.689998215530068e-05,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (10000x10)",
+            "name": "test_mask_xpc_np[shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_np[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00027289999707136303,
+                "max": 0.0005682999908458441,
+                "mean": 0.0003157641849430755,
+                "stddev": 3.45443710931572e-05,
+                "rounds": 2767,
+                "median": 0.000304599991068244,
+                "iqr": 2.4375000066356733e-05,
+                "q1": 0.00029599999834317714,
+                "q3": 0.0003203749984095339,
+                "iqr_outliers": 378,
+                "stddev_outliers": 525,
+                "outliers": "525;378",
+                "ld15iqr": 0.00027289999707136303,
+                "hd15iqr": 0.0003569999971659854,
+                "ops": 3166.920276852409,
+                "total": 0.87371949973749,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (1000x1000)",
+            "name": "test_mask_xpc_np[shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_np[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004275900006177835,
+                "max": 0.005745100002968684,
+                "mean": 0.004741133170815684,
+                "stddev": 0.0003516249115545775,
+                "rounds": 205,
+                "median": 0.0046233999892137945,
+                "iqr": 0.0003992249949078541,
+                "q1": 0.004514250005740905,
+                "q3": 0.004913475000648759,
+                "iqr_outliers": 9,
+                "stddev_outliers": 57,
+                "outliers": "57;9",
+                "ld15iqr": 0.004275900006177835,
+                "hd15iqr": 0.0055238000059034675,
+                "ops": 210.9200404147171,
+                "total": 0.9719323000172153,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (100)",
+            "name": "test_where_xpc_np[shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_np[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.7999991541728377e-06,
+                "max": 3.5899996873922646e-05,
+                "mean": 2.3380850496760343e-06,
+                "stddev": 6.364135387088311e-07,
+                "rounds": 41494,
+                "median": 2.1000014385208488e-06,
+                "iqr": 1.0999938240274787e-06,
+                "q1": 1.8999999156221747e-06,
+                "q3": 2.9999937396496534e-06,
+                "iqr_outliers": 73,
+                "stddev_outliers": 11238,
+                "outliers": "11238;73",
+                "ld15iqr": 1.7999991541728377e-06,
+                "hd15iqr": 4.7000066842883825e-06,
+                "ops": 427700.4380736964,
+                "total": 0.09701650105125736,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (10000x10)",
+            "name": "test_where_xpc_np[shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_np[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.079999391455203e-05,
+                "max": 0.00014089999604038894,
+                "mean": 5.952638855658236e-05,
+                "stddev": 7.992669574884782e-06,
+                "rounds": 10406,
+                "median": 5.819999205414206e-05,
+                "iqr": 8.400005754083395e-06,
+                "q1": 5.3499999921768904e-05,
+                "q3": 6.19000056758523e-05,
+                "iqr_outliers": 373,
+                "stddev_outliers": 1977,
+                "outliers": "1977;373",
+                "ld15iqr": 5.079999391455203e-05,
+                "hd15iqr": 7.46000005165115e-05,
+                "ops": 16799.272125327367,
+                "total": 0.6194315993197961,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (1000x1000)",
+            "name": "test_where_xpc_np[shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_np[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0015859999984968454,
+                "max": 0.002176899986807257,
+                "mean": 0.0017209648262877931,
+                "stddev": 0.00011244204388005267,
+                "rounds": 489,
+                "median": 0.001676900006714277,
+                "iqr": 9.46749969443772e-05,
+                "q1": 0.0016474500007461756,
+                "q3": 0.0017421249976905528,
+                "iqr_outliers": 70,
+                "stddev_outliers": 95,
+                "outliers": "95;70",
+                "ld15iqr": 0.0015859999984968454,
+                "hd15iqr": 0.0018852999928640202,
+                "ops": 581.0694005623867,
+                "total": 0.8415518000547308,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (100)",
+            "name": "test_n2n_xpc_np[shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_np[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.699999746866524e-06,
+                "max": 7.229999755509198e-05,
+                "mean": 6.833230082334111e-06,
+                "stddev": 1.7614205063411938e-06,
+                "rounds": 18727,
+                "median": 6.099988240748644e-06,
+                "iqr": 3.00002284348011e-07,
+                "q1": 5.900001269765198e-06,
+                "q3": 6.200003554113209e-06,
+                "iqr_outliers": 4496,
+                "stddev_outliers": 4434,
+                "outliers": "4434;4496",
+                "ld15iqr": 5.699999746866524e-06,
+                "hd15iqr": 6.700007361359894e-06,
+                "ops": 146343.67465326408,
+                "total": 0.1279658997518709,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (10000x10)",
+            "name": "test_n2n_xpc_np[shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_np[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0003203999949619174,
+                "max": 0.0007035000016912818,
+                "mean": 0.00039815980928136673,
+                "stddev": 5.2888820354480675e-05,
+                "rounds": 1784,
+                "median": 0.00038314999983413145,
+                "iqr": 6.149999535409734e-05,
+                "q1": 0.00036070000351173803,
+                "q3": 0.00042219999886583537,
+                "iqr_outliers": 56,
+                "stddev_outliers": 487,
+                "outliers": "487;56",
+                "ld15iqr": 0.0003203999949619174,
+                "hd15iqr": 0.0005145000031916425,
+                "ops": 2511.5543474990272,
+                "total": 0.7103170997579582,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "numpy (1000x1000)",
+            "name": "test_n2n_xpc_np[shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_np[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004831700003705919,
+                "max": 0.007197899991297163,
+                "mean": 0.00547885757524372,
+                "stddev": 0.0005906511567255797,
+                "rounds": 132,
+                "median": 0.005288300002575852,
+                "iqr": 0.0008585500036133453,
+                "q1": 0.004977949996828102,
+                "q3": 0.005836500000441447,
+                "iqr_outliers": 3,
+                "stddev_outliers": 35,
+                "outliers": "35;3",
+                "ld15iqr": 0.004831700003705919,
+                "hd15iqr": 0.007150200006435625,
+                "ops": 182.51980203291126,
+                "total": 0.723209199932171,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (100)",
+            "name": "test_mask_xpc_jax[shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_jax[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00026169999910052866,
+                "max": 0.00039069999183993787,
+                "mean": 0.00027571694769549295,
+                "stddev": 2.096408319037938e-05,
+                "rounds": 59,
+                "median": 0.00026950000028591603,
+                "iqr": 9.324983693659306e-06,
+                "q1": 0.0002663000050233677,
+                "q3": 0.000275624988717027,
+                "iqr_outliers": 6,
+                "stddev_outliers": 5,
+                "outliers": "5;6",
+                "ld15iqr": 0.00026169999910052866,
+                "hd15iqr": 0.000294700002996251,
+                "ops": 3626.907987913819,
+                "total": 0.016267299914034083,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (10000x10)",
+            "name": "test_mask_xpc_jax[shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_jax[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0012378999963402748,
+                "max": 0.0025205999991158023,
+                "mean": 0.001457284828827437,
+                "stddev": 0.00019550209647410137,
+                "rounds": 613,
+                "median": 0.001380399990011938,
+                "iqr": 0.0002196749992435798,
+                "q1": 0.001328475002082996,
+                "q3": 0.0015481500013265759,
+                "iqr_outliers": 25,
+                "stddev_outliers": 116,
+                "outliers": "116;25",
+                "ld15iqr": 0.0012378999963402748,
+                "hd15iqr": 0.0018782999977702275,
+                "ops": 686.2076515300182,
+                "total": 0.8933156000712188,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (1000x1000)",
+            "name": "test_mask_xpc_jax[shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_jax[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.011145299999043345,
+                "max": 0.01587820000713691,
+                "mean": 0.012819590789723933,
+                "stddev": 0.0008737318538344996,
+                "rounds": 76,
+                "median": 0.012654250000196043,
+                "iqr": 0.0008048000017879531,
+                "q1": 0.012279150003450923,
+                "q3": 0.013083950005238876,
+                "iqr_outliers": 5,
+                "stddev_outliers": 19,
+                "outliers": "19;5",
+                "ld15iqr": 0.011145299999043345,
+                "hd15iqr": 0.014585000011720695,
+                "ops": 78.00561003878461,
+                "total": 0.9742889000190189,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (100)",
+            "name": "test_where_xpc_jax[shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_jax[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 8.199989679269493e-06,
+                "max": 0.00011129998893011361,
+                "mean": 9.496856646427895e-06,
+                "stddev": 2.5156457339465698e-06,
+                "rounds": 15016,
+                "median": 8.799994247965515e-06,
+                "iqr": 6.00004568696022e-07,
+                "q1": 8.59999272506684e-06,
+                "q3": 9.199997293762863e-06,
+                "iqr_outliers": 2041,
+                "stddev_outliers": 1502,
+                "outliers": "1502;2041",
+                "ld15iqr": 8.199989679269493e-06,
+                "hd15iqr": 1.0199990356341004e-05,
+                "ops": 105297.99882534138,
+                "total": 0.14260479940276127,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (10000x10)",
+            "name": "test_where_xpc_jax[shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_jax[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 9.800001862458885e-06,
+                "max": 0.00018730000010691583,
+                "mean": 2.7806661558787794e-05,
+                "stddev": 1.4288887030715943e-05,
+                "rounds": 19380,
+                "median": 2.4300010409206152e-05,
+                "iqr": 1.6000005416572094e-05,
+                "q1": 1.720000000204891e-05,
+                "q3": 3.3200005418621004e-05,
+                "iqr_outliers": 825,
+                "stddev_outliers": 4835,
+                "outliers": "4835;825",
+                "ld15iqr": 9.800001862458885e-06,
+                "hd15iqr": 5.729999975301325e-05,
+                "ops": 35962.605503211445,
+                "total": 0.5388931010093074,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (1000x1000)",
+            "name": "test_where_xpc_jax[shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_jax[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.6299993149004877e-05,
+                "max": 0.0006470999942393973,
+                "mean": 0.00034791401089545164,
+                "stddev": 3.9697040892974556e-05,
+                "rounds": 2755,
+                "median": 0.0003446000046096742,
+                "iqr": 3.497500438243151e-05,
+                "q1": 0.0003290250024292618,
+                "q3": 0.0003640000068116933,
+                "iqr_outliers": 104,
+                "stddev_outliers": 386,
+                "outliers": "386;104",
+                "ld15iqr": 0.00028330000350251794,
+                "hd15iqr": 0.00041649999911896884,
+                "ops": 2874.2734373537505,
+                "total": 0.9585031000169693,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (100)",
+            "name": "test_n2n_xpc_jax[shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_jax[shape0]",
+            "params": {
+                "shape": [
+                    100
+                ]
+            },
+            "param": "shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.399989848025143e-06,
+                "max": 0.0003392000071471557,
+                "mean": 5.07866144373784e-06,
+                "stddev": 5.432011353672579e-06,
+                "rounds": 27701,
+                "median": 4.699992132373154e-06,
+                "iqr": 2.00001522898674e-07,
+                "q1": 4.6000059228390455e-06,
+                "q3": 4.8000074457377195e-06,
+                "iqr_outliers": 3222,
+                "stddev_outliers": 107,
+                "outliers": "107;3222",
+                "ld15iqr": 4.399989848025143e-06,
+                "hd15iqr": 5.199995939619839e-06,
+                "ops": 196902.27653056761,
+                "total": 0.14068400065298192,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (10000x10)",
+            "name": "test_n2n_xpc_jax[shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_jax[shape1]",
+            "params": {
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.699992132373154e-06,
+                "max": 0.00026960000104736537,
+                "mean": 3.386992365627472e-05,
+                "stddev": 1.3103521662765517e-05,
+                "rounds": 30396,
+                "median": 3.060000017285347e-05,
+                "iqr": 9.2999980552122e-06,
+                "q1": 2.8099995688535273e-05,
+                "q3": 3.739999374374747e-05,
+                "iqr_outliers": 4440,
+                "stddev_outliers": 5769,
+                "outliers": "5769;4440",
+                "ld15iqr": 1.4199991710484028e-05,
+                "hd15iqr": 5.1399998483248055e-05,
+                "ops": 29524.719634693967,
+                "total": 1.0295101994561264,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "jax (1000x1000)",
+            "name": "test_n2n_xpc_jax[shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_jax[shape2]",
+            "params": {
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 8.499991963617504e-06,
+                "max": 0.000742600008379668,
+                "mean": 0.0003990767228641372,
+                "stddev": 7.001093085809155e-05,
+                "rounds": 2612,
+                "median": 0.0003953499981435016,
+                "iqr": 7.16499998816289e-05,
+                "q1": 0.00036235000152373686,
+                "q3": 0.00043400000140536577,
+                "iqr_outliers": 89,
+                "stddev_outliers": 481,
+                "outliers": "481;89",
+                "ld15iqr": 0.0002671000111149624,
+                "hd15iqr": 0.0005415000050561503,
+                "ops": 2505.783832299442,
+                "total": 1.0423884001211263,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (100)",
+            "name": "test_mask_xpc_torch[cpu-shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_torch[cpu-shape0]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cpu-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.299996701069176e-06,
+                "max": 4.509999416768551e-05,
+                "mean": 9.178181415226197e-06,
+                "stddev": 4.004632176627243e-06,
+                "rounds": 165,
+                "median": 9.199997293762863e-06,
+                "iqr": 2.2750027710571885e-06,
+                "q1": 7.72500061430037e-06,
+                "q3": 1.0000003385357559e-05,
+                "iqr_outliers": 10,
+                "stddev_outliers": 10,
+                "outliers": "10;10",
+                "ld15iqr": 5.299996701069176e-06,
+                "hd15iqr": 1.3600001693703234e-05,
+                "ops": 108954.04598791696,
+                "total": 0.0015143999335123226,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (10000x10)",
+            "name": "test_mask_xpc_torch[cpu-shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_torch[cpu-shape1]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cpu-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.3099993490614e-05,
+                "max": 0.0005376999906729907,
+                "mean": 6.455817645410233e-05,
+                "stddev": 2.88063820807964e-05,
+                "rounds": 3773,
+                "median": 5.400000372901559e-05,
+                "iqr": 1.71000137925148e-05,
+                "q1": 5.029999010730535e-05,
+                "q3": 6.740000389982015e-05,
+                "iqr_outliers": 301,
+                "stddev_outliers": 300,
+                "outliers": "300;301",
+                "ld15iqr": 4.3099993490614e-05,
+                "hd15iqr": 9.310001041740179e-05,
+                "ops": 15489.904686371532,
+                "total": 0.2435779997613281,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (1000x1000)",
+            "name": "test_mask_xpc_torch[cpu-shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_torch[cpu-shape2]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cpu-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00026420000358484685,
+                "max": 0.0008562000002712011,
+                "mean": 0.000328942506386222,
+                "stddev": 5.441049977580491e-05,
+                "rounds": 1955,
+                "median": 0.0003124999930150807,
+                "iqr": 3.809999907389283e-05,
+                "q1": 0.00029919999360572547,
+                "q3": 0.0003372999926796183,
+                "iqr_outliers": 174,
+                "stddev_outliers": 221,
+                "outliers": "221;174",
+                "ld15iqr": 0.00026420000358484685,
+                "hd15iqr": 0.0003944999916711822,
+                "ops": 3040.0449336452366,
+                "total": 0.643082599985064,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (100)",
+            "name": "test_mask_xpc_torch[cuda-shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_torch[cuda-shape0]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cuda-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.0300004659220576e-05,
+                "max": 0.0003493999975034967,
+                "mean": 0.0001055672802918489,
+                "stddev": 3.7812000777440425e-05,
+                "rounds": 2335,
+                "median": 9.649999265093356e-05,
+                "iqr": 2.8700000257231295e-05,
+                "q1": 8.340000931639224e-05,
+                "q3": 0.00011210000957362354,
+                "iqr_outliers": 240,
+                "stddev_outliers": 475,
+                "outliers": "475;240",
+                "ld15iqr": 5.0300004659220576e-05,
+                "hd15iqr": 0.00015539999003522098,
+                "ops": 9472.632024197486,
+                "total": 0.24649959948146716,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (10000x10)",
+            "name": "test_mask_xpc_torch[cuda-shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_torch[cuda-shape1]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cuda-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.2400002712383866e-05,
+                "max": 0.0016963999951258302,
+                "mean": 5.9192152209863445e-05,
+                "stddev": 2.9723141387302605e-05,
+                "rounds": 4944,
+                "median": 5.390000296756625e-05,
+                "iqr": 7.399998139590025e-06,
+                "q1": 5.1399998483248055e-05,
+                "q3": 5.879999662283808e-05,
+                "iqr_outliers": 531,
+                "stddev_outliers": 254,
+                "outliers": "254;531",
+                "ld15iqr": 4.2400002712383866e-05,
+                "hd15iqr": 6.999999459367245e-05,
+                "ops": 16894.131445914307,
+                "total": 0.2926460005255649,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (1000x1000)",
+            "name": "test_mask_xpc_torch[cuda-shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_mask_xpc_torch[cuda-shape2]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cuda-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 9.580000187270343e-05,
+                "max": 0.000268299991148524,
+                "mean": 0.0001158574980351749,
+                "stddev": 2.379804465788812e-05,
+                "rounds": 2654,
+                "median": 0.00010779999138321728,
+                "iqr": 8.29999044071883e-06,
+                "q1": 0.00010560000373516232,
+                "q3": 0.00011389999417588115,
+                "iqr_outliers": 356,
+                "stddev_outliers": 250,
+                "outliers": "250;356",
+                "ld15iqr": 9.580000187270343e-05,
+                "hd15iqr": 0.0001264000020455569,
+                "ops": 8631.292898249842,
+                "total": 0.3074857997853542,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (100)",
+            "name": "test_where_xpc_torch[cpu-shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_torch[cpu-shape0]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cpu-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.6999990697950125e-06,
+                "max": 5.570000212173909e-05,
+                "mean": 4.291910714021117e-06,
+                "stddev": 1.1947015418121957e-06,
+                "rounds": 17826,
+                "median": 4.1000021155923605e-06,
+                "iqr": 2.9998773243278265e-07,
+                "q1": 4.0000013541430235e-06,
+                "q3": 4.299989086575806e-06,
+                "iqr_outliers": 1307,
+                "stddev_outliers": 1225,
+                "outliers": "1225;1307",
+                "ld15iqr": 3.6999990697950125e-06,
+                "hd15iqr": 4.799992893822491e-06,
+                "ops": 232996.4593003134,
+                "total": 0.07650760038814042,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (10000x10)",
+            "name": "test_where_xpc_torch[cpu-shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_torch[cpu-shape1]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cpu-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.700000863522291e-05,
+                "max": 0.0016990000003715977,
+                "mean": 6.162213038654371e-05,
+                "stddev": 2.7040790970265578e-05,
+                "rounds": 6403,
+                "median": 5.740000051446259e-05,
+                "iqr": 1.0900010238401592e-05,
+                "q1": 5.269999383017421e-05,
+                "q3": 6.36000040685758e-05,
+                "iqr_outliers": 404,
+                "stddev_outliers": 201,
+                "outliers": "201;404",
+                "ld15iqr": 4.700000863522291e-05,
+                "hd15iqr": 7.999999797903001e-05,
+                "ops": 16227.936193169455,
+                "total": 0.3945665008650394,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (1000x1000)",
+            "name": "test_where_xpc_torch[cpu-shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_torch[cpu-shape2]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cpu-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0001475000026402995,
+                "max": 0.0004726999904960394,
+                "mean": 0.00018608142130419842,
+                "stddev": 2.6297106056380518e-05,
+                "rounds": 3757,
+                "median": 0.00017829998978413641,
+                "iqr": 1.4325007214210927e-05,
+                "q1": 0.00017329999536741525,
+                "q3": 0.00018762500258162618,
+                "iqr_outliers": 414,
+                "stddev_outliers": 403,
+                "outliers": "403;414",
+                "ld15iqr": 0.00015209999401122332,
+                "hd15iqr": 0.0002091999922413379,
+                "ops": 5373.9916268440375,
+                "total": 0.6991078998398734,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (100)",
+            "name": "test_where_xpc_torch[cuda-shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_torch[cuda-shape0]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cuda-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 7.110000296961516e-05,
+                "max": 0.00037420001171994954,
+                "mean": 0.00011422983383198048,
+                "stddev": 3.968541085818642e-05,
+                "rounds": 2286,
+                "median": 0.00010209999163635075,
+                "iqr": 3.189999551977962e-05,
+                "q1": 8.939999679569155e-05,
+                "q3": 0.00012129999231547117,
+                "iqr_outliers": 217,
+                "stddev_outliers": 296,
+                "outliers": "296;217",
+                "ld15iqr": 7.110000296961516e-05,
+                "hd15iqr": 0.0001691999932518229,
+                "ops": 8754.280440177214,
+                "total": 0.2611294001399074,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (10000x10)",
+            "name": "test_where_xpc_torch[cuda-shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_torch[cuda-shape1]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cuda-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.439998883754015e-05,
+                "max": 0.00042039999971166253,
+                "mean": 8.494798448600274e-05,
+                "stddev": 3.1990976103366954e-05,
+                "rounds": 5383,
+                "median": 8.970001363195479e-05,
+                "iqr": 4.437500683707185e-05,
+                "q1": 5.6425004004267976e-05,
+                "q3": 0.00010080001084133983,
+                "iqr_outliers": 127,
+                "stddev_outliers": 1309,
+                "outliers": "1309;127",
+                "ld15iqr": 4.439998883754015e-05,
+                "hd15iqr": 0.0001674999948590994,
+                "ops": 11771.90966979063,
+                "total": 0.4572750004881527,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (1000x1000)",
+            "name": "test_where_xpc_torch[cuda-shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_where_xpc_torch[cuda-shape2]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cuda-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 7.929999264888465e-05,
+                "max": 0.0003378999972483143,
+                "mean": 0.00011380322357474847,
+                "stddev": 2.88004585864805e-05,
+                "rounds": 3071,
+                "median": 0.00010560000373516232,
+                "iqr": 2.2100008209235966e-05,
+                "q1": 9.629999112803489e-05,
+                "q3": 0.00011839999933727086,
+                "iqr_outliers": 307,
+                "stddev_outliers": 448,
+                "outliers": "448;307",
+                "ld15iqr": 7.929999264888465e-05,
+                "hd15iqr": 0.00015160000475589186,
+                "ops": 8787.097312258276,
+                "total": 0.34948969959805254,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (100)",
+            "name": "test_n2n_xpc_torch[cpu-shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_torch[cpu-shape0]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cpu-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.7999991541728377e-06,
+                "max": 0.0005538000114029273,
+                "mean": 2.0191774088596545e-06,
+                "stddev": 3.5615258379165165e-06,
+                "rounds": 26526,
+                "median": 1.9999861251562834e-06,
+                "iqr": 1.00000761449337e-07,
+                "q1": 1.8999999156221747e-06,
+                "q3": 2.0000006770715117e-06,
+                "iqr_outliers": 280,
+                "stddev_outliers": 70,
+                "outliers": "70;280",
+                "ld15iqr": 1.7999991541728377e-06,
+                "hd15iqr": 2.1999876480549574e-06,
+                "ops": 495251.18278970715,
+                "total": 0.053560699947411194,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (10000x10)",
+            "name": "test_n2n_xpc_torch[cpu-shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_torch[cpu-shape1]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cpu-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 9.2999980552122e-06,
+                "max": 0.0021720999939134344,
+                "mean": 2.424101141979459e-05,
+                "stddev": 4.4461547567109764e-05,
+                "rounds": 4567,
+                "median": 1.6999998479150236e-05,
+                "iqr": 1.1199997970834374e-05,
+                "q1": 1.2200005585327744e-05,
+                "q3": 2.340000355616212e-05,
+                "iqr_outliers": 458,
+                "stddev_outliers": 169,
+                "outliers": "169;458",
+                "ld15iqr": 9.2999980552122e-06,
+                "hd15iqr": 4.030000127386302e-05,
+                "ops": 41252.40414611684,
+                "total": 0.1107086991542019,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cpu (1000x1000)",
+            "name": "test_n2n_xpc_torch[cpu-shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_torch[cpu-shape2]",
+            "params": {
+                "device": "cpu",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cpu-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.409999433439225e-05,
+                "max": 0.00022200000239536166,
+                "mean": 3.1907790597920136e-05,
+                "stddev": 1.0234015069417332e-05,
+                "rounds": 1566,
+                "median": 2.9400005587376654e-05,
+                "iqr": 2.3000029614195228e-06,
+                "q1": 2.849999873433262e-05,
+                "q3": 3.0800001695752144e-05,
+                "iqr_outliers": 258,
+                "stddev_outliers": 111,
+                "outliers": "111;258",
+                "ld15iqr": 2.509998739697039e-05,
+                "hd15iqr": 3.429999924264848e-05,
+                "ops": 31340.308472037657,
+                "total": 0.04996760007634293,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (100)",
+            "name": "test_n2n_xpc_torch[cuda-shape0]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_torch[cuda-shape0]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    100
+                ]
+            },
+            "param": "cuda-shape0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.730001091957092e-05,
+                "max": 0.0014799000055063516,
+                "mean": 9.187626457111217e-05,
+                "stddev": 4.863974495442217e-05,
+                "rounds": 3025,
+                "median": 7.769999501761049e-05,
+                "iqr": 3.9699996705166996e-05,
+                "q1": 6.500000017695129e-05,
+                "q3": 0.00010469999688211828,
+                "iqr_outliers": 213,
+                "stddev_outliers": 364,
+                "outliers": "364;213",
+                "ld15iqr": 4.730001091957092e-05,
+                "hd15iqr": 0.00016459998732898384,
+                "ops": 10884.20393088577,
+                "total": 0.2779257003276143,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (10000x10)",
+            "name": "test_n2n_xpc_torch[cuda-shape1]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_torch[cuda-shape1]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    10000,
+                    10
+                ]
+            },
+            "param": "cuda-shape1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.7299992982298136e-05,
+                "max": 0.0002919999969890341,
+                "mean": 7.463453909393454e-05,
+                "stddev": 2.330832581802042e-05,
+                "rounds": 5142,
+                "median": 7.369999366346747e-05,
+                "iqr": 1.4899997040629387e-05,
+                "q1": 6.44999963697046e-05,
+                "q3": 7.939999341033399e-05,
+                "iqr_outliers": 599,
+                "stddev_outliers": 891,
+                "outliers": "891;599",
+                "ld15iqr": 4.220000118948519e-05,
+                "hd15iqr": 0.00010180000390391797,
+                "ops": 13398.622301953345,
+                "total": 0.3837708000210114,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "torch-cuda (1000x1000)",
+            "name": "test_n2n_xpc_torch[cuda-shape2]",
+            "fullname": "test_fillna.py::TestFillnaXpc::test_n2n_xpc_torch[cuda-shape2]",
+            "params": {
+                "device": "cuda",
+                "shape": [
+                    1000,
+                    1000
+                ]
+            },
+            "param": "cuda-shape2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.140001303516328e-05,
+                "max": 0.00036360000376589596,
+                "mean": 8.505628290585455e-05,
+                "stddev": 2.508115372452582e-05,
+                "rounds": 3239,
+                "median": 7.870000263210386e-05,
+                "iqr": 9.200011845678091e-06,
+                "q1": 7.399999594781548e-05,
+                "q3": 8.320000779349357e-05,
+                "iqr_outliers": 375,
+                "stddev_outliers": 285,
+                "outliers": "285;375",
+                "ld15iqr": 6.260001100599766e-05,
+                "hd15iqr": 9.709999721962959e-05,
+                "ops": 11756.92101554521,
+                "total": 0.2754973003320629,
+                "iterations": 1
+            }
+        }
+    ],
+    "datetime": "2026-03-08T12:17:30.361147+00:00",
+    "version": "5.2.3"
+}

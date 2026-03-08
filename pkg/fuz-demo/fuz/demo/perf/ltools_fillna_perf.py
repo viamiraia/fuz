@@ -240,5 +240,19 @@ def _(jnp, np, torch):
     return (setup,)
 
 
+@app.cell
+def _(fillna, np):
+    _x = np.empty(10)
+    _x[:] = np.nan
+    fillna(_x)
+    _x
+    return
+
+
+@app.cell
+def _():
+    return
+
+
 if __name__ == "__main__":
     app.run()

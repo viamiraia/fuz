@@ -1,0 +1,10 @@
+tasks:
+  sync-root:
+    command: "moon generate sync-base --to ."
+    options:
+      runFromWorkspaceRoot: true
+
+  mo:
+    command: "pixi r -e devrocm marimo edit -p 3589 --headless --no-token"
+    options:
+      runFromWorkspaceRoot: true

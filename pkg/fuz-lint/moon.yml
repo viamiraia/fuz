@@ -1,0 +1,27 @@
+layer: "library"
+language: "python"
+
+project:
+  name: "fuz-lint"
+  description: "Logarithmic space operations for the fuz library."
+  maintainers: ["Miraia S. Chiou"]
+
+tags:
+  - "pkg"
+
+tasks:
+  bench:
+    script: "pixi r -e devrocm pytest bench/"
+    toolchain: "system"
+  bench-save:
+    script: "pixi r -e devrocm pytest bench/ --benchmark-autosave --benchmark-storage=file://bench/results"
+    toolchain: "system"
+  bench-compare:
+    script: "pixi r -e devrocm pytest bench/ --benchmark-compare --benchmark-storage=file://bench/results"
+    toolchain: "system"
+  bench-ci:
+    script: "pixi r -e devrocm pytest bench/ -k 'not cuda' --benchmark-autosave --benchmark-storage=file://bench/results"
+    toolchain: "system"
+  bench-graph:
+    script: "pixi r -e devrocm pytest bench/ --benchmark-histogram=bench/results/histogram"
+    toolchain: "system"

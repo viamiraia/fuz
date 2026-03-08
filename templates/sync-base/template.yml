@@ -1,0 +1,5 @@
+# https://moonrepo.dev/docs/config/template
+$schema: "../../.moon/cache/schemas/template.json"
+
+title: "Sync shared files"
+description: "Overwrites canonical shared files in any project."

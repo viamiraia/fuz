@@ -1,0 +1,18 @@
+tasks:
+  sync-gitignore:
+    command: "moon generate sync-gitignore --to $projectSource"
+    options:
+      runFromWorkspaceRoot: true
+
+  sync-shared:
+    command: "moon generate sync-base --to $projectSource"
+    options:
+      runFromWorkspaceRoot: true
+    deps:
+      - "sync-gitignore"
+  lint:
+    command: "ruff check ."
+  format:
+    command: "ruff format --check ."
+  test:
+    command: "pytest"

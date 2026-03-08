@@ -1,3 +1,6 @@
+---
+force: true
+---
 cff-version: 1.2.0
 title: "fuz: Probability Fusion and More in Python"
 message: >-

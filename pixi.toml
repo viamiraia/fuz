@@ -95,6 +95,7 @@
   plum-dispatch = '*'
   pytest = '*'
   pytest-benchmark = '*'
+  pygal = '*'
   pytest-cov = '*'
   ruff = '*'
   scipy-stubs = '*'

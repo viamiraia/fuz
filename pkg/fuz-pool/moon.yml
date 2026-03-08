@@ -1,0 +1,10 @@
+layer: "library"
+language: "python"
+
+project:
+  name: "fuz-pool"
+  description: "Probability pooling operations for the fuz library."
+  maintainers: ["Miraia S. Chiou"]
+
+tags:
+  - "pkg"

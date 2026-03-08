@@ -1,0 +1,10 @@
+layer: "library"
+language: "python"
+
+project:
+  name: "fuz-demo"
+  description: "Demos associated with the fuz library."
+  maintainers: ["Miraia S. Chiou"]
+
+tags:
+  - "pkg"

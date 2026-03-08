@@ -1,0 +1,36 @@
+name: Benchmarks
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: uv pip install --system ".[dev]" pytest-benchmark
+
+      - name: Run benchmarks (CPU only)
+        run: >
+          pytest bench/
+          -k "not cuda"
+          --benchmark-autosave
+          --benchmark-storage=file://bench/results
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-${{ github.ref_name || 'manual' }}-${{ github.sha }}
+          path: bench/results/

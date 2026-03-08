@@ -5,6 +5,9 @@ $schema: "./cache/schemas/workspace.json"
 
 projects:
   - "pkg/*"
-vcs:
-  manager: "git"
-  defaultBranch: "main"
+
+generator:
+  templates:
+    - "./templates"
+
+defaultProject: "fuz-core"

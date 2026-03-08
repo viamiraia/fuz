@@ -1,23 +1,14 @@
-# setuptools-scm
-fuz/_version.py
-
-# sphinx
-docs/source/api/
-
-# special folders
+# Special folders
 temp/
 tmp/
 /private/
 /data/
 /dist/
 .vscode/
-.pixi/*
-!.pixi/config.toml
 .moon/cache
 .moon/docker
-
-# AI
-claude.md
+.pixi/*
+!.pixi/config.toml
 .claude/
 
 # Byte-compiled / optimized / DLL files
@@ -236,3 +227,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+

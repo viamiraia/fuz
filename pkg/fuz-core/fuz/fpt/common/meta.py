@@ -1,5 +1,6 @@
-import torch
 from typing import TypeAlias
+
+import torch
 from attrs import frozen
 
 DevType: TypeAlias = str | torch.device
